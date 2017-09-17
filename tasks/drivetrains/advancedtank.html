@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Tank Drive &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Drive Trains" href="drivetrains.html"/>
+        <link rel="next" title="Mecanum Drive" href="mecanum.html"/>
+        <link rel="prev" title="Drive Trains" href="drivetrains.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="drivetrains.html">Drive Trains</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Advanced Tank Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sensitivity-and-control-curves">Sensitivity and Control Curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mecanum.html">Mecanum Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="swerve.html">Swerve Drive</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="drivetrains.html">Drive Trains</a> &raquo;</li>
+        
+      <li>Advanced Tank Drive</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-tank-drive">
+<h1>Advanced Tank Drive<a class="headerlink" href="#advanced-tank-drive" title="Permalink to this headline">¶</a></h1>
+<p>Programming the drive controls is one of the most important tasks of the programming team. This section is dedicated to programming a more advanced Tank Drive. For other drivetrain types, see <a class="reference external" href="drivetrains.html">Advanced Drive Programming</a>.</p>
+<p>This guide builds a more advanced DriveContinuous command for the <a class="reference external" href="./../subsystems/examples/tankdrive.html">Tank Drive subsystem</a>.</p>
+<p>Note that this guide does not cover pneumatic gearshifting and assumes a single gear robot.</p>
+<div class="section" id="tank-drive-control-schemes">
+<h2>Tank Drive Control Schemes<a class="headerlink" href="#tank-drive-control-schemes" title="Permalink to this headline">¶</a></h2>
+<p>There are 2 common control schemes for a tank drive robot. Both use 2 joysticks, and work best with the xbox controller. Your team may design a different scheme based on this year&#8217;s game, but these are the most common and most useful.</p>
+<ul>
+<li><p class="first">Tank Drive</p>
+<blockquote>
+<div><p>In the tank drive scheme, the y-axis of each joystick controls the left and right drivetrain, respectively. This scheme gives the most direct control over the motors of the robot, but has the disadvantage of being difficult to drive straight.</p>
+<a class="reference internal image-reference" href="../../_images/tankdrive.png"><img alt="../../_images/tankdrive.png" src="../../_images/tankdrive.png" style="width: 70%;" /></a>
+</div></blockquote>
+</li>
+<li><p class="first">Car Drive</p>
+<blockquote>
+<div><p>This scheme is designed to make the robot handle like a car, with the left joystick y-axis controlling robot speed and the right joystick x-axis controls turning. This gives less direct control over the drivetrains, but is much easier to drive straight and is preferred by many drivers.</p>
+<a class="reference internal image-reference" href="../../_images/cardrive.png"><img alt="../../_images/cardrive.png" src="../../_images/cardrive.png" style="width: 70%;" /></a>
+</div></blockquote>
+</li>
+</ul>
+<p>In this example, we are going to be using the Tank Drive control scheme.</p>
+</div>
+<div class="section" id="writing-the-drivecontinuous-command">
+<h2>Writing the DriveContinuous Command<a class="headerlink" href="#writing-the-drivecontinuous-command" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Now for the DriveContinuous command, we need to</dt>
+<dd><ul class="first last simple">
+<li>Get controller input</li>
+<li>Output to motors</li>
+</ul>
+</dd>
+</dl>
+<p>Here is a basic tank drive:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DriveContinuous</span> <span class="kd">extends</span> <span class="n">Command</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">DriveContinuous</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//requires the Drive subsystem (instantiated as drive in Robot.java)</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">drive</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">//get joystick values</span>
+        <span class="kt">double</span> <span class="n">leftY</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">DRIVER_LEFT_Y_AXIS</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">rightY</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">DRIVER_RIGHT_Y_AXIS</span><span class="o">);</span>
+
+        <span class="c1">//set joystick values to drivetrains</span>
+        <span class="n">Drive</span><span class="o">.</span><span class="na">setLeftMotors</span><span class="o">(</span><span class="n">leftY</span><span class="o">);</span>
+        <span class="n">Drive</span><span class="o">.</span><span class="na">setRightMotors</span><span class="o">(</span><span class="n">rightY</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//if ended, stop robot</span>
+        <span class="n">Robot</span><span class="o">.</span><span class="na">drive</span><span class="o">.</span><span class="na">setLeftMotors</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="n">Robot</span><span class="o">.</span><span class="na">drive</span><span class="o">.</span><span class="na">setRightMotors</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//if interrupted, end command</span>
+        <span class="n">end</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>On some controllers, the axes are flipped, meaning that pushing forward gives a negative value. For these controllers, you will have to invert the axis&#8217;s values. Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">leftY</span> <span class="o">=</span> <span class="o">-</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">DRIVER_LEFT_Y_AXIS</span><span class="o">);</span>
+<span class="kt">double</span> <span class="n">rightY</span> <span class="o">=</span> <span class="o">-</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">DRIVER_RIGHT_Y_AXIS</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sensitivity-and-control-curves">
+<h1>Sensitivity and Control Curves<a class="headerlink" href="#sensitivity-and-control-curves" title="Permalink to this headline">¶</a></h1>
+<p>This is all you need to get basic Tank Drive working, but it&#8217;s not very easy to control. Mapping the output of the joystick directly to the motors doesn&#8217;t give much room for the driver to do lower speed precision driving.</p>
+<p>This direct mapping of the joystick position to the motor output is a <em>linear control curve</em>, and looks like so, with the x axis representing the joystick position (-1 being all the way down, and 1 being all the way up) <a class="footnote-reference" href="#id5" id="id1">[1]</a>, and the y axis the power output to the motors from -1 to 1.</p>
+<a class="reference internal image-reference" href="../../_images/linearcurve.png"><img alt="../../_images/linearcurve.png" src="../../_images/linearcurve.png" style="width: 70%;" /></a>
+<p>This relationship can be shown mathematically as</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">motor</span> <span class="n">output</span> <span class="o">=</span> <span class="n">joystick</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>or</p>
+<a class="reference internal image-reference" href="../../_images/oei.png"><img alt="../../_images/oei.png" src="../../_images/oei.png" style="width: 15%;" /></a>
+<p>if we call the motor output O and the joystick value (input) I.</p>
+<p>Note that this relationship doesn&#8217;t give a lot of room to the lower motor speeds, which are important for precision driving. Higher speeds tend to be less important when it comes to accuracy, a driver needs to be able to control lower speeds well to get game tasks done quickly.</p>
+<p>In order to maximize the amount of joystick room given to lower values, we use a polynomial curve (we multiply the values together to make the curve tend to stay at lower values for longer). This makes the formula:</p>
+<a class="reference internal image-reference" href="../../_images/oin.png"><img alt="../../_images/oin.png" src="../../_images/oin.png" style="width: 15%;" /></a>
+<p>Where n is odd <a class="footnote-reference" href="#id6" id="id2">[2]</a>.</p>
+<p>The higher n is, the more room is given to lower values. This can be tweaked based on your driver&#8217;s preferences.
+In the following example we use n=3.
+This is represented by the equation:</p>
+<a class="reference internal image-reference" href="../../_images/i3.png"><img alt="../../_images/i3.png" src="../../_images/i3.png" style="width: 15%;" /></a>
+<a class="reference internal image-reference" href="../../_images/x3curve.png"><img alt="../../_images/x3curve.png" src="../../_images/x3curve.png" style="width: 70%;" /></a>
+<p>Changing n to a higher values gives even more preference to lower values. Here we have n=5 for O=I^5.</p>
+<a class="reference internal image-reference" href="../../_images/x5curve.png"><img alt="../../_images/x5curve.png" src="../../_images/x5curve.png" style="width: 70%;" /></a>
+<p>Great! Now our drivers can do higher precision driving, and still move at max speed when needed. There is a bit of a problem, though. Robots run on carpet, which means there&#8217;s a lot of internal resistance. Outputting to the motors at very low values often won&#8217;t do anything at all. This means that there&#8217;s a certain threshold T after which  the robot will start to move, but it won&#8217;t move before that.</p>
+<p>It&#8217;s pretty easy to see what this does to our curves in this example, where our example robot starts moving at T = 0.1 <a class="footnote-reference" href="#id7" id="id3">[3]</a>:</p>
+<a class="reference internal image-reference" href="../../_images/x3t.png"><img alt="../../_images/x3t.png" src="../../_images/x3t.png" style="width: 70%;" /></a>
+<p>In this example we&#8217;re using I^3 for our curve.</p>
+<p>If the robot doesn&#8217;t start moving until 0.1, then almost half of the joystick is a dead zone! This also negates our large area
+for low sensitivity,  making for a pretty aggressive curve once the robot does start moving.</p>
+<p>This is resolved by moving the curve <em>above</em> our movement threshold, so we still get our nice precision sensitivity and no dead space.</p>
+<p>The piecewise formula for this is <a class="footnote-reference" href="#id8" id="id4">[4]</a></p>
+<a class="reference internal image-reference" href="../../_images/piecewiseO.png"><img alt="../../_images/piecewiseO.png" src="../../_images/piecewiseO.png" style="width: 55%;" /></a>
+<dl class="docutils">
+<dt>For</dt>
+<dd><ul class="first last simple">
+<li><strong>O</strong> is the output to the motors</li>
+<li><strong>I</strong> is the input from the joystick</li>
+<li><strong>n</strong> is the odd number that determines how much the curve is stretched toward the lower values</li>
+<li><strong>T</strong> is the threshold after which the robot will start to move</li>
+</ul>
+</dd>
+</dl>
+<p>If we plot an example for T=0.1 and n=3:</p>
+<a class="reference internal image-reference" href="../../_images/adjO3.gif"><img alt="../../_images/adjO3.gif" src="../../_images/adjO3.gif" style="width: 70%;" /></a>
+<p>We can see that the robot drives accurately, with most of the joystick dedicated to low values, and there are no dead zones, as the curve never crosses T=0.1.</p>
+<p>However, there is a deadzone that we want to implement on purpose. Note that the joystick will drift, meaning that it will never quite be 0 even when the stick is released. This means that, since our piecewise function can only return 0 if the joystick input is 0, that the drive motors will always be set to either -0.1 or 0.1 even when the stick is released. This can lead to the robot moving even when the drive is not touching the controller.</p>
+<p>To fix this, we want to add something called a deadzone. This will cause all joystick input with an absolute value less than 0.1 to register as 0.</p>
+<a class="reference internal image-reference" href="../../_images/adjO3deadzone.gif"><img alt="../../_images/adjO3deadzone.gif" src="../../_images/adjO3deadzone.gif" style="width: 70%;" /></a>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The implementation and addition of this curve to our example curve is a simple task, and can be done by adding an applyCurve function to the command</p>
+<p>Here we call our T value TORQUE_RESISTANCE_THRESHOLD (this value is usually 0.05 to 0.1), and use n=3 for our polynomial curve.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">double</span> <span class="nf">applyCurve</span><span class="o">(</span><span class="kt">double</span> <span class="n">joystickPosition</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">//apply piecewise logic</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">joystickPosition</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">TORQUE_RESISTANCE_THRESHOLD</span><span class="o">)</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">joystickPosition</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span> <span class="o">+</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">TORQUE_RESISTANCE_THRESHOLD</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">joystickPosition</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">TORQUE_RESISTANCE_THRESHOLD</span><span class="o">)</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">joystickPosition</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span> <span class="o">-</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">TORQUE_RESISTANCE_THRESHOLD</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">//return 0 if joystickPosition is 0</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Additionally, add the deadzone function. This can also sometimes be found in OI.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">double</span> <span class="nf">deadzone</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">,</span> <span class="kt">double</span> <span class="n">deadzone</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">deadzone</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, we add applyCurve and deadzone to our execute() code.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">//get joystick values</span>
+    <span class="kt">double</span> <span class="n">leftY</span> <span class="o">=</span> <span class="n">deadzone</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">DRIVER_LEFT_Y_AXIS</span><span class="o">));</span>
+    <span class="kt">double</span> <span class="n">rightY</span> <span class="o">=</span> <span class="n">deadzone</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">DRIVER_RIGHT_Y_AXIS</span><span class="o">));</span>
+
+    <span class="c1">//set joystick values to drivetrains</span>
+    <span class="n">Drive</span><span class="o">.</span><span class="na">setLeftMotors</span><span class="o">(</span><span class="n">applyCurve</span><span class="o">(</span><span class="n">leftY</span><span class="o">));</span>
+    <span class="n">Drive</span><span class="o">.</span><span class="na">setRightMotors</span><span class="o">(</span><span class="n">applyCurve</span><span class="o">(</span><span class="n">rightY</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And that&#8217;s it! We have written a function Drive subsystem and drive command that can drive a tank drive robot using the standard Tank Drive dual joystick scheme that uses a precise sensitivity curve.</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The xbox joystick actually uses 1 for all the way down and -1 for all the way up, but we&#8217;ll ignore that for the simplicity of the math and just account for it in the code</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>We only use odd values here because putting negative outputs to an even value makes them positive, resulting in the robot being unable to go backwards anymore. This can be fixed for even powers by doing some tricks with absolute values, but it&#8217;s not discussed here.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Note that threshold have negative counterparts too: if the robot doesn&#8217;t start moving until T=0.1, then it presumably won&#8217;t start moving backwards until T=-0.1</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>If you&#8217;re wondering how this was derived, it was done by taking the original I^n function, moving it up by T, and solving O=a*I^n+T for a when O=1 and I=1 (which should still be the final position of the curve), and then piecewise splitting it to make it work.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mecanum.html" class="btn btn-neutral float-right" title="Mecanum Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="drivetrains.html" class="btn btn-neutral" title="Drive Trains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

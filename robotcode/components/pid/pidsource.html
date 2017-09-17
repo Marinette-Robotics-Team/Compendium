@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PID Sources &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="PID Components" href="pid.html"/>
+        <link rel="next" title="PID Outputs" href="pidoutput.html"/>
+        <link rel="prev" title="Tuning a PID Controller" href="pidcontroller2.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sensors/sensors.html">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../actuators/actuators.html">Actuators</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pid.html">PID Components</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller0.html">Why use a PID Controller?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller1.html">Using a PID Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller2.html">Tuning a PID Controller</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PID Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidoutput.html">PID Outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="pid.html">PID Components</a> &raquo;</li>
+        
+      <li>PID Sources</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pid-sources">
+<h1>PID Sources<a class="headerlink" href="#pid-sources" title="Permalink to this headline">¶</a></h1>
+<p>Note: This guide is mainly for advanced users. For basic use, see <a class="reference external" href="pidcontroller1.html">PIDControllers</a>.
+This guide also requires knowledge about how to use Interfaces.</p>
+<p>Remember that a PIDController&#8217;s basic structure is kind of like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="o">(</span><span class="n">enabled</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// get sensor reading</span>
+    <span class="kt">double</span> <span class="n">sensor</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="na">pidGet</span><span class="o">();</span>
+
+    <span class="c1">// calculate what to write to the output using the input and setpoint</span>
+    <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">calculateOutput</span><span class="o">(</span><span class="n">setpoint</span><span class="o">,</span> <span class="n">sensor</span><span class="o">);</span>
+
+    <span class="c1">// write to the output</span>
+    <span class="n">output</span><span class="o">.</span><span class="na">pidWrite</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>A PIDSource is anything that can be read from using pidGet(). The most commonly used one is an Encoder.</p>
+<p><strong>Example on how to use PIDSource:</strong></p>
+<p>Say there are 4 drive wheels on the robot, and there is one encoder per wheel. Then, when measuring how far the robot has traveled, it would be wise to try to use the median of all 4 encoders, so that even if one fails, the other ones can still give an accurate result.</p>
+<p>However, a PID Controller can only take in one PIDSource. So, we have to write our own implementation of PIDSource.</p>
+<p>Create a new class named DrivePIDSource. This class will take the median of the four encoders.</p>
+<p>The first thing you should do with the class is to add &#8220;implements PIDSource&#8221; to the class declaration, to make the compiler see it as a PIDSource.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.PIDSource</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrivePIDSource</span> <span class="kd">implements</span> <span class="n">PIDSource</span>
+<span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">pidGet</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">PIDSourceType</span> <span class="nf">getPIDSourceType</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPIDSourceType</span><span class="o">(</span><span class="n">PIDSourceType</span> <span class="n">pidSourceType</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>First, we should add the 4 drive encoders we&#8217;re going to pass in to our constructor.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.PIDSource</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrivePIDSource</span> <span class="kd">implements</span> <span class="n">PIDSource</span>
+<span class="o">{</span>
+    <span class="n">Encoder</span> <span class="n">LEFT_FRONT</span><span class="o">;</span>
+    <span class="n">Encoder</span> <span class="n">LEFT_BACK</span><span class="o">;</span>
+    <span class="n">Encoder</span> <span class="n">RIGHT_FRONT</span><span class="o">;</span>
+    <span class="n">Encoder</span> <span class="n">RIGHT_BACK</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">DrivePIDSource</span><span class="o">(</span><span class="n">Encoder</span> <span class="n">LEFT_FRONT</span><span class="o">,</span> <span class="n">Encoder</span> <span class="n">LEFT_BACK</span><span class="o">,</span> <span class="n">Encoder</span> <span class="n">RIGHT_FRONT</span><span class="o">,</span> <span class="n">Encoder</span> <span class="n">RIGHT_BACK</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">LEFT_FRONT</span> <span class="o">=</span> <span class="n">LEFT_FRONT</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">LEFT_BACK</span> <span class="o">=</span> <span class="n">LEFT_BACK</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">RIGHT_FRONT</span> <span class="o">=</span> <span class="n">RIGHT_FRONT</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">RIGHT_BACK</span> <span class="o">=</span> <span class="n">RIGHT_BACK</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">pidGet</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">PIDSourceType</span> <span class="nf">getPIDSourceType</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPIDSourceType</span><span class="o">(</span><span class="n">PIDSourceType</span> <span class="n">pidSourceType</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Next, we should get the methods &#8220;getPIDSourceType&#8221; and &#8220;setPIDSourceType&#8221; out of the way.</p>
+<p>There are two types of PIDSources:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>PIDSourceType.kDisplacement</dt>
+<dd>This means that the PIDSource measures distance of some kind.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PIDSourceType.kRate</dt>
+<dd>This means that the PIDSource measure speed of some kind.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>In our case, these encoders are measuring distance, and are always measuring distance. So, getPIDSourceType should return PIDSourceType.kDisplacement, and setPIDSourceType should do nothing, since we always want to measure distance.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">PIDSourceType</span> <span class="nf">getPIDSourceType</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">return</span> <span class="n">PIDSourceType</span><span class="o">.</span><span class="na">kDisplacement</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPIDSourceType</span><span class="o">(</span><span class="n">PIDSourceType</span> <span class="n">pidSourceType</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// do nothing since we always measure distance</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, is our important implementation of pidGet(). The way to find a median of four numbers is to sort the four values, and then take the two middle values and average them.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">double</span> <span class="nf">pidGet</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// get the four encoder values</span>
+    <span class="kt">double</span><span class="o">[]</span> <span class="n">encoderValues</span> <span class="o">=</span>
+    <span class="o">{</span>
+        <span class="n">LEFT_FRONT</span><span class="o">.</span><span class="na">get</span><span class="o">(),</span>
+        <span class="n">LEFT_BACK</span><span class="o">.</span><span class="na">get</span><span class="o">(),</span>
+        <span class="n">RIGHT_FRONT</span><span class="o">.</span><span class="na">get</span><span class="o">(),</span>
+        <span class="n">RIGHT_BACK</span><span class="o">.</span><span class="na">get</span><span class="o">()</span>
+    <span class="o">};</span>
+
+    <span class="c1">// sort the four encoder values</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">encoderValues</span><span class="o">);</span>
+
+    <span class="c1">// take the two middle values and average them</span>
+    <span class="kt">double</span> <span class="n">median</span> <span class="o">=</span> <span class="o">(</span><span class="n">encoderValues</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">encoderValues</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">*</span> <span class="mf">0.5</span><span class="o">;</span>
+
+    <span class="c1">// return the result to the PID Controller</span>
+    <span class="k">return</span> <span class="n">median</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, all that&#8217;s left is to pass our custom PID Source implementation into the PID Controller, in the Drive subsystem.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">PIDSource</span> <span class="n">DRIVE_ENCODERS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DrivePIDSource</span><span class="o">(</span><span class="n">DRIVE_LEFT_FRONT_ENCODERS</span><span class="o">,</span> <span class="n">DRIVE_LEFT_BACK_ENCODERS</span><span class="o">,</span> <span class="n">DRIVE_RIGHT_FRONT_ENCODERS</span><span class="o">,</span> <span class="n">DRIVE_RIGHT_BACK_ENCODERS</span><span class="o">);</span>
+
+<span class="n">DRIVE_CONTROL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="mf">0.015</span><span class="o">,</span> <span class="mf">0.010</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">DRIVE_ENCODERS</span><span class="o">,</span> <span class="n">DRIVE_MOTORS</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Now, whenever the DRIVE_CONTROL PIDController reads from the DRIVE_ENCODERS PIDSource, it will instead take the median of all of the drive encoders, giving it a more robust reading.</p>
+<p>This is called implementing PIDSource, where you write your own pidGet(), getPIDSourceType(), and setPIDSourceType(PIDSourceType).</p>
+<p>Similar to in PIDOutput, you can put anything you want in pidGet(), as long as it returns some value in the end.</p>
+<p>Another useful thing to do is to add a get() method to all PIDSources for quality of life, since most programmers are used to calling get() instead of pidGet().</p>
+<p><strong>Important debugging note:</strong>
+Note that PIDControllers run in a separate thread. Thus, if an exception occurs in pidGet(), just like in PIDSource.pidWrite(), the exception is printed but it is NOT rethrown, and then the PIDController disables. This means that other than the RioLog, there is no indication that the exception occurred, and the PID will seem to just stop for no reason. If a PID Controller seems to stop functioning (e.g. motor is stuck at a value, sensor input no longer affects it) then check the RioLog for exceptions that the PIDController thread swallowed.</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2016/robot/trunk/Team93Robot2016/src/org/usfirst/frc/team93/robot/Utilities/TwoEncoderPIDSource.java">TwoEncoderPIDSource</a></dt>
+<dd>A PID Source that adds two encoder readings.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/AveragePIDSource.java">AveragePIDSource</a></dt>
+<dd>Uses the arithmetic mean of the PIDSources given.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/MedianPIDSource.java">MedianPIDSource</a></dt>
+<dd>Uses the median of the PIDSources given, similar to what was contructed as the example.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/PIDSourceExtended.java">PIDSourceExtended</a></dt>
+<dd>Adds a gain multiplier to a PIDSource.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pidoutput.html" class="btn btn-neutral float-right" title="PID Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pidcontroller2.html" class="btn btn-neutral" title="Tuning a PID Controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

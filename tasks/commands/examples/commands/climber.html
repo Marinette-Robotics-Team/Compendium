@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Climber &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Examples of Commands" href="../commandexamples.html"/>
+        <link rel="next" title="Tank Drive" href="tankdrive.html"/>
+        <link rel="prev" title="Examples of Commands" href="../commandexamples.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../integration.html">Integrating code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../commands.html">Creating a Command</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../commandexamples.html">Examples of Commands</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Climber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tankdrive.html">Tank Drive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bacq.html">Ball Acquisition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claw.html">Open and Close a Claw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="elevatormanual.html">Moving an Elevator Manually</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drivesetpoint.html">Driving a Distance Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aimclaw.html">Rotating a Claw both Manually and using Setpoints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="../../commands.html">Creating a Command</a> &raquo;</li>
+        
+          <li><a href="../commandexamples.html">Examples of Commands</a> &raquo;</li>
+        
+      <li>Climber</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="climber">
+<h1>Climber<a class="headerlink" href="#climber" title="Permalink to this headline">¶</a></h1>
+<p>This examples shows how we might program a climber on a robot, by making a command called ClimberContinuous.</p>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<p>In this example, the design of the climber is simply a CIM motor that turns a shaft with velcro that attaches to the rope and spins, pulling the robot upwards.</p>
+<p>That CIM Motor is hooked up to a VictorSP speed controller, and should directly be controlled by the left thumbstick on the operator&#8217;s controller.</p>
+<p>However, there is a ratcheting mechanism that makes sure the robot can&#8217;t fall down, which makes the motor unable to turn backwards. Thus, to prevent the motor from burning out, we also need to make sure it can&#8217;t be set to spin backwards.</p>
+</div>
+<div class="section" id="subsystem-methods">
+<h2>Subsystem methods<a class="headerlink" href="#subsystem-methods" title="Permalink to this headline">¶</a></h2>
+<p>This guide assumes that there already is a Climber subsystem, and to set the climber motor, you simply need to write:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Climber</span><span class="o">.</span><span class="na">setClimberMotor</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>On how to create this subsystem, see <a class="reference external" href="./../../../subsystems/subsystems.html">Creating a subsystem</a>.</p>
+<p>We also assume that OI already has a Joystick named operator, whose left thumbstick thumbstick is axis 1.</p>
+<p>On how to use OI, see <a class="reference external" href="./../../../../robotcode/structure/oi.html">OI</a>.</p>
+</div>
+<div class="section" id="writing-the-command">
+<h2>Writing the command<a class="headerlink" href="#writing-the-command" title="Permalink to this headline">¶</a></h2>
+<p>Once you create the ClimberContinuous command, you&#8217;ll get a blank command template like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.Command</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClimberContinuous</span> <span class="kd">extends</span> <span class="n">Command</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">ClimberContinuous</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="c1">// eg. requires(chassis);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called just before this Command runs the first time</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once after isFinished returns true</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called when another command which requires one or more of the same</span>
+    <span class="c1">// subsystems is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the javadoc at the top, describe what this command does.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * This command gives the operator manual control of the climber.</span>
+<span class="cm"> * This command also prevents turning the climber backwards to prevent burning out the motor.</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>Then, in the constructor, since this command uses the climber motor, make sure this command requires the Climber subsystem.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">ClimberContinuous</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+    <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">climber</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If Robot can&#8217;t be resolved, make sure to hover over the error and import Robot.</p>
+<p>There isn&#8217;t any need to initialize anything, since all input to comes from the operator joystick. Then, in the execute() method, add the logic of the command.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// get joystick value</span>
+    <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">operator</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+    <span class="c1">// make sure it isn&#39;t going backwards</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// set the climber motor to the non-negative joystick value</span>
+    <span class="n">Climber</span><span class="o">.</span><span class="na">setClimberMotor</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If Climber isn&#8217;t resolved, make sure to import it.</p>
+<p>We always want the operator to have control over the climber, so this command should never finish. Thus, leave isFinished() as it is.</p>
+<p>For safety purposes, when this command has to end(), it should stop the climber. interrupted() should do the same.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Called once after isFinished returns true</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">Climber</span><span class="o">.</span><span class="na">setClimberMotor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// Called when another command which requires one or more of the same</span>
+<span class="c1">// subsystems is scheduled to run</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">end</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-command">
+<h2>Running the command<a class="headerlink" href="#running-the-command" title="Permalink to this headline">¶</a></h2>
+<p>Now, go into the Climber subsystem and make ClimberContinuous the default command of the Climber subsystem.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// This is the only command for this subsystem and it needs to run for all of teleop</span>
+    <span class="n">setDefaultCommand</span><span class="o">(</span><span class="k">new</span> <span class="n">ClimberContinuous</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Make sure that ClimberContinuous requires Robot.climber, and that the Climber subsystem is constructed in the Robot class, or else there will be a IllegalUseOfCommandException.</p>
+<p>And that&#8217;s it! Now, the operator has manual control over the climber, and cannot move the climber motor backwards and burn out the motor.</p>
+</div>
+<div class="section" id="final-code">
+<h2>Final code<a class="headerlink" href="#final-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.usfirst.frc.team93.robot.Robot</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.usfirst.frc.team93.robot.subsystems.Climber</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.Command</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * This command gives the operator manual control of the climber. This command</span>
+<span class="cm"> * also prevents turning the climber backwards to prevent burning out the motor.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ClimberContinuous</span> <span class="kd">extends</span> <span class="n">Command</span>
+<span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">ClimberContinuous</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">climber</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called just before this Command runs the first time</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// get joystick value</span>
+        <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">operator</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="c1">// make sure it isn&#39;t going backwards</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// set the climber motor to the non-negative joystick value</span>
+        <span class="n">Climber</span><span class="o">.</span><span class="na">setClimberMotor</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once after isFinished returns true</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Climber</span><span class="o">.</span><span class="na">setClimberMotor</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called when another command which requires one or more of the same</span>
+    <span class="c1">// subsystems is scheduled to run</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tankdrive.html" class="btn btn-neutral float-right" title="Tank Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../commandexamples.html" class="btn btn-neutral" title="Examples of Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

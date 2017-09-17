@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Branches &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../index.html"/>
+        <link rel="up" title="GitHub" href="github.html"/>
+        <link rel="prev" title="Issue Tracking" href="issueTracking.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="github.html">GitHub</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="generalUse.html">GitHub General Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issueTracking.html">Issue Tracking</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Branches</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="github.html">GitHub</a> &raquo;</li>
+        
+      <li>Branches</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="branches">
+<h1>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h1>
+<p>A Branch of a Repository is a copy of the code that you can edit and commit changes to without affecting the original code. This new copy is called a <em>Branch</em>, and is maintained separately until the branch is remerged into the master branch.</p>
+<p>The original branch where the main code of the repository is kept is called the <em>master branch</em>. Every repository starts with a master branch.</p>
+<div class="section" id="why-use-branches">
+<h2>Why use branches?<a class="headerlink" href="#why-use-branches" title="Permalink to this headline">¶</a></h2>
+<p>To put it simply, all code is broken before it&#8217;s tested. If everyone committed to master as they worked on different parts of the Robot Code, then at any given time the robot would be full of partially-implemented and patially-tested code. Splitting different projects into branches means that any code that is merged into the mastser branch is fully implemented, and presumable well-tested.</p>
+<p>When a branch is merged back into the master, a <em>Pull Request</em> needs to be submitted. Only after the Pull Request is cleared is the code re-merged. This gives the team the opportunity to code review the branch and make sure that it is safe to run on the robot for competitions.</p>
+</div>
+<div class="section" id="creating-a-new-branch">
+<h2>Creating a new branch<a class="headerlink" href="#creating-a-new-branch" title="Permalink to this headline">¶</a></h2>
+<p>To create a new branch, click the Branch icon amove the commit history, make a name for your new Branch (presumably named after the feature you&#8217;re implementing in this branch), and select which branch you&#8217;ll be copying from (this will usually be master).</p>
+<a class="reference internal image-reference" href="../_images/branch0.png"><img alt="../_images/branch0.png" src="../_images/branch0.png" style="width: 100%;" /></a>
+<p>Now that you&#8217;ve created your new branch, you&#8217;ll see that the currently selected branch has changed from <em>master</em> to your new branch. You can use this drop down to switch between branches if you ever need to.</p>
+<a class="reference internal image-reference" href="../_images/branch1.png"><img alt="../_images/branch1.png" src="../_images/branch1.png" style="width: 100%;" /></a>
+<p>Now you can write and commit code to your branch. Note that your new branch won&#8217;t show up on the GitHub website or be available to other people until you click the &#8220;Publish&#8221; button in the upper-left hand corner. This will synchronize your entire branch with GitHub, and enable others to collaborate on the branch.</p>
+</div>
+<div class="section" id="merging-branches-and-pull-requests">
+<h2>Merging Branches and Pull Requests<a class="headerlink" href="#merging-branches-and-pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>When all of the features of a branch have been implemented and tested, and the code is properly commented, branches can be merged back into another branch or to master by submitting a <em>pull request</em>.</p>
+<p>Note that all pull reqests should be code-reviewed by other programming team members before any pull requests are made.</p>
+<p>In order to submit a pull request, with the GitHub client set to the branch to merge, select &#8220;Pull Request&#8221; upper-right hand corner. This will open the pull request tab, where you can title and document the changes made in the branch. This tab will also say whether there are any merge conflicts and if the pull request can be merged automatically (for manual merging, see <em>Resolving Merge Conflicts</em>).</p>
+<a class="reference internal image-reference" href="../_images/branch2.png"><img alt="../_images/branch2.png" src="../_images/branch2.png" style="width: 60%;" /></a>
+</div>
+<div class="section" id="resolving-merge-conflicts">
+<h2>Resolving Merge Conflicts<a class="headerlink" href="#resolving-merge-conflicts" title="Permalink to this headline">¶</a></h2>
+<p>When git encounters a merging issue (both branches have modified the same file), it automatically creates a merge in the following format.</p>
+<p>Assume we have just merged Branch1 with master.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">blah</span><span class="o">();</span>
+<span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">Branch1</span>
+<span class="nf">stuff</span><span class="o">();</span>
+<span class="n">things</span><span class="o">();</span>
+<span class="o">========</span>
+<span class="n">perhaps</span><span class="o">();</span>
+<span class="n">indeed</span><span class="o">();</span>
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>The code between the Branch1 label and the equals signs is the code that git found on Branch1, and the code between the equals signs and the master label is the code that it found on the master branch.</p>
+<p>Merging this is as simple as looking at the code and determining what goes where.</p>
+<p>GitHub provides a tool for editing this one the Pull Request page created once the pull request is submitted.</p>
+</div>
+<div class="section" id="manually-merging-branches-with-beyond-compare">
+<h2>Manually Merging Branches With Beyond Compare<a class="headerlink" href="#manually-merging-branches-with-beyond-compare" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes codebases have to be merged manually, either because GitHub is unable to, or because the merging needs to be done at competitions where there&#8217;s no interent connection. Either way, this manual merging is done with Beyond Compare.</p>
+<p>After loading the 2 codebases from their respective folders, the code can be merged by going through each file and using the yellow arrows provide dby Beyond Compare to copy chunks of code from one codebase to another. Do this for the whole codebase to merge the 2 branches.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="issueTracking.html" class="btn btn-neutral" title="Issue Tracking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

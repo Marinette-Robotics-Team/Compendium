@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Teleop Camera &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Camera" href="camera.html"/>
+        <link rel="next" title="Vision" href="vision/vision.html"/>
+        <link rel="prev" title="Camera" href="camera.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="camera.html">Camera</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Teleop Camera</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vision/vision.html">Vision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="camera.html">Camera</a> &raquo;</li>
+        
+      <li>Teleop Camera</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="teleop-camera">
+<h1>Teleop Camera<a class="headerlink" href="#teleop-camera" title="Permalink to this headline">¶</a></h1>
+<p>A teleop camera is simply a USB camera that is mounted on the robot, which streams video to the SmartDashboard. Using a teleop camera, the drivers can see the surroundings of the robot even when their view from the driver station is obstructed.</p>
+<p>One important fact to keep in mind when using teleop cameras is that each robot is only allowed to use 7 Mbps of bandwidth during matches. This means that, if a camera&#8217;s stream takes up too much bandwidth, the controls from the drivers may not be able to correctly reach the robot, causing the robot to be undrivable. Hence, the number of cameras that can be used, as well as their quality and framerate, is limited by bandwidth.</p>
+<div class="section" id="code-implementation">
+<h2>Code implementation<a class="headerlink" href="#code-implementation" title="Permalink to this headline">¶</a></h2>
+<p>In this example we will be streaming from two USB cameras plugged in to the RoboRIO.</p>
+<p>Although it is possible to stick all of the teleop camera code in the Robot class, this is not recommended, due to the clutter it causes. Instead, teleop camera code should be located in its own subsystem.</p>
+<p>Firstly, create the subsystem file.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Teleop Camera subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TeleopCamera</span> <span class="kd">extends</span> <span class="n">Subsystem</span> <span class="o">{</span>
+
+    <span class="c1">// Put methods for controlling this subsystem</span>
+    <span class="c1">// here. Call these from Commands.</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Set the default command for a subsystem here.</span>
+        <span class="c1">//setDefaultCommand(new MySpecialCommand());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>USB cameras are represented using the UsbCamera class. Add these to the subsystem class.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Teleop Camera subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TeleopCamera</span> <span class="kd">extends</span> <span class="n">Subsystem</span> <span class="o">{</span>
+
+<span class="hll">    <span class="kd">public</span> <span class="n">UsbCamera</span> <span class="n">frontCamera</span><span class="o">;</span>
+</span><span class="hll">    <span class="kd">public</span> <span class="n">UsbCamera</span> <span class="n">backCamera</span><span class="o">;</span>
+</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Create a constructor. We will initialize the UsbCameras in the constructor.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Teleop Camera subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TeleopCamera</span> <span class="kd">extends</span> <span class="n">Subsystem</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">UsbCamera</span> <span class="n">frontCamera</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">UsbCamera</span> <span class="n">backCamera</span><span class="o">;</span>
+
+<span class="hll">    <span class="kd">public</span> <span class="nf">TeleopCamera</span><span class="o">()</span>
+</span><span class="hll">    <span class="o">{</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="o">}</span>
+</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, to initialize the UsbCameras:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Teleop Camera subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TeleopCamera</span> <span class="kd">extends</span> <span class="n">Subsystem</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">UsbCamera</span> <span class="n">frontCamera</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">UsbCamera</span> <span class="n">backCamera</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TeleopCamera</span><span class="o">()</span>
+    <span class="o">{</span>
+<span class="hll">        <span class="c1">// start capture from the camera at the front plugged into USB slot 0</span>
+</span><span class="hll">        <span class="n">frontCamera</span> <span class="o">=</span> <span class="n">CameraServer</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">startAutomaticCapture</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class="hll">        <span class="c1">// set the stream&#39;s resolution to 320x240</span>
+</span><span class="hll">        <span class="n">frontCamera</span><span class="o">.</span><span class="na">setResolution</span><span class="o">(</span><span class="mi">320</span><span class="o">,</span> <span class="mi">240</span><span class="o">);</span>
+</span><span class="hll">        <span class="c1">// set the stream&#39;s frames per second to 15</span>
+</span><span class="hll">        <span class="n">frontCamera</span><span class="o">.</span><span class="na">setFPS</span><span class="o">(</span><span class="mi">15</span><span class="o">);</span>
+</span>
+<span class="hll">        <span class="c1">// start capture from the camera at the back plugged into USB slot 1</span>
+</span><span class="hll">        <span class="n">backCamera</span> <span class="o">=</span> <span class="n">CameraServer</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">startAutomaticCapture</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span><span class="hll">        <span class="c1">// set the stream&#39;s resolution to 160x120</span>
+</span><span class="hll">        <span class="n">backCamera</span><span class="o">.</span><span class="na">setResolution</span><span class="o">(</span><span class="mi">160</span><span class="o">,</span> <span class="mi">120</span><span class="o">);</span>
+</span><span class="hll">        <span class="c1">// set the stream&#39;s frames per second to 10</span>
+</span><span class="hll">        <span class="n">backCamera</span><span class="o">.</span><span class="na">setFPS</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+</span>    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>There are more methods for adjusting settings related to UsbCamera, which you can find <a class="reference external" href="http://first.wpi.edu/FRC/roborio/release/docs/java/edu/wpi/cscore/UsbCamera.html">here</a>.</p>
+<p>Then, make sure you declare and initialize this subsystem in Robot:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="hll"><span class="n">TeleopCamera</span> <span class="n">teleopCamera</span><span class="o">;</span>
+</span>
+    <span class="cm">/**</span>
+<span class="cm">     * This function is run when the robot is first started up and should be used</span>
+<span class="cm">     * for any initialization code.</span>
+<span class="cm">     */</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">robotInit</span><span class="o">()</span>
+    <span class="o">{</span>
+<span class="hll">    <span class="n">teleopCamera</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TeleopCamera</span><span class="o">();</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, that&#8217;s all there is to the robot code portion. If this is run on a robot, however, nothing will happen, since you also have to open the camera stream in SmartDashboard.</p>
+</div>
+<div class="section" id="opening-the-camera-stream-in-smartdashboard">
+<h2>Opening the camera stream in SmartDashboard<a class="headerlink" href="#opening-the-camera-stream-in-smartdashboard" title="Permalink to this headline">¶</a></h2>
+<p>First, open up SmartDashboard.</p>
+<a class="reference internal image-reference" href="../../_images/Screenshot_0.png"><img alt="../../_images/Screenshot_0.png" src="../../_images/Screenshot_0.png" style="width: 70%;" /></a>
+<p>Then, once you have SmartDashboard open, select <strong>View</strong> -&gt; <strong>Add...</strong> -&gt; <strong>CameraServer Stream Viewer</strong>.</p>
+<a class="reference internal image-reference" href="../../_images/Screenshot_2.png"><img alt="../../_images/Screenshot_2.png" src="../../_images/Screenshot_2.png" style="width: 70%;" /></a>
+<p>This will create a video frame that shows the camera feed. If it can&#8217;t reach the robot or the camera isn&#8217;t connected, however, it will show <em>NO CONNECTION</em>.</p>
+<a class="reference internal image-reference" href="../../_images/Screenshot_3.png"><img alt="../../_images/Screenshot_3.png" src="../../_images/Screenshot_3.png" style="width: 70%;" /></a>
+<p>If you create more than one CameraServer Stream Viewer, you will find that they all show the same camera feed, since they all stream from camera 0. The way to change which camera a video frame is streaming from is to go to its properties:</p>
+<a class="reference internal image-reference" href="../../_images/Screenshot_4.png"><img alt="../../_images/Screenshot_4.png" src="../../_images/Screenshot_4.png" style="width: 70%;" /></a>
+<p>Opening its properties, we can see a field called <strong>Camera Choice</strong>. If a robot with multiple cameras is connected, we are able to choose which camera (for example, USB0 or USB1) that we want to stream from.</p>
+<a class="reference internal image-reference" href="../../_images/Screenshot_5.png"><img alt="../../_images/Screenshot_5.png" src="../../_images/Screenshot_5.png" style="width: 70%;" /></a>
+<p>If a CameraServer Stream Viewer does not let you right click it to open the properties menu, then try hitting Ctrl-E to toggle to <strong>Editable</strong> setting.</p>
+<p>Now, if the robot is connected, those video frames should stream from the USB cameras on the robot, giving the drivers a better view of what&#8217;s going on.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vision/vision.html" class="btn btn-neutral float-right" title="Vision" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="camera.html" class="btn btn-neutral" title="Camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

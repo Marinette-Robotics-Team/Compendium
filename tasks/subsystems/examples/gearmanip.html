@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gear manipulator subsystem &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Examples of Subsystems" href="examplesubsystems.html"/>
+        <link rel="next" title="Autonomous Code" href="../../autonomous/autonomous.html"/>
+        <link rel="prev" title="Tank Drive subsystem" href="tankdrive.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../subsystems.html">Creating a Subsystem</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="examplesubsystems.html">Examples of Subsystems</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="climber.html">Climber subsystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tankdrive.html">Tank Drive subsystem</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Gear manipulator subsystem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="../subsystems.html">Creating a Subsystem</a> &raquo;</li>
+        
+          <li><a href="examplesubsystems.html">Examples of Subsystems</a> &raquo;</li>
+        
+      <li>Gear manipulator subsystem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gear-manipulator-subsystem">
+<h1>Gear manipulator subsystem<a class="headerlink" href="#gear-manipulator-subsystem" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we create a subsystem designed to control the Gear Manipulator subsystem from 2017.</p>
+<p>In this subsystem, a belt motor moves a carriage between two endpoints, the front and the back of the robot. At each end, there is a reed switch that tells when the carriage has reached that end. There is also an encoder that tracks the position of the belt.</p>
+<p>Attached to the carriage, there is also a claw that is made up of two grabbers that open and close, controlled by double solenoids. One grabber is in the front, and one grabber is in the back. They open and close to allow gears in. When the solenoid is in forward position, the claw is closed, and if it is in reverse position, the claw is open.</p>
+<p>Start out by <a class="reference external" href="./../subsystems.html#create-the-subsystem-s-file">creating the subsystem file</a>. You&#8217;ll start out with this code:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GearManipulator</span> <span class="kd">extends</span> <span class="n">Subsystem</span> <span class="o">{</span>
+
+    <span class="c1">// Put methods for controlling this subsystem</span>
+    <span class="c1">// here. Call these from Commands.</span>
+
+    <span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Set the default command for a subsystem here.</span>
+        <span class="c1">//setDefaultCommand(new MySpecialCommand());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="motor">
+<h2>Motor<a class="headerlink" href="#motor" title="Permalink to this headline">¶</a></h2>
+<p>First, create the Victor that represents the belt motor.</p>
+<p>Declare it in the class:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="n">Victor</span> <span class="n">BELT_MOTOR</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize it in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BELT_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_MOTOR_PIN</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, add the method setBeltMotor, so that commands can aset the motor power. It is generally good practice to expose only public setters, and make the field itself private.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setBeltMotor</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">{</span>
+<span class="hll">        <span class="n">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+</span>    <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="solenoids">
+<h2>Solenoids<a class="headerlink" href="#solenoids" title="Permalink to this headline">¶</a></h2>
+<p>Similarly, the front and back claw DoubleSolenoids must be created also.</p>
+<p>Declare them in the class:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="n">DoubleSolenoid</span> <span class="n">FRONT_CLAW</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">DoubleSolenoid</span> <span class="n">BACK_CLAW</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize them in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BELT_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_MOTOR_PIN</span><span class="o">);</span>
+
+<span class="hll">    <span class="n">FRONT_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_B</span><span class="o">);</span>
+</span><span class="hll">    <span class="n">BACK_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_B</span><span class="o">);</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Also, create the setters for these claws.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">openFrontClaw</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">FRONT_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kReverse</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeFrontClaw</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">FRONT_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">openBackClaw</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BACK_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kReverse</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeBackClaw</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BACK_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reed-switches">
+<h2>Reed Switches<a class="headerlink" href="#reed-switches" title="Permalink to this headline">¶</a></h2>
+<p>Next up is to add the reed switch sensors to the subsystem. Since reed switches are just digital inputs, we treat them as such. Declare the DigitalInputs in the class:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="n">DigitalInput</span> <span class="n">FRONT_REED_SWITCH</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">DigitalInput</span> <span class="n">BACK_REED_SWITCH</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize them in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BELT_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_MOTOR_PIN</span><span class="o">);</span>
+
+    <span class="n">FRONT_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_B</span><span class="o">);</span>
+    <span class="n">BACK_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_B</span><span class="o">);</span>
+
+<span class="hll">    <span class="n">FRONT_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_REED_SWITCH_PIN</span><span class="o">);</span>
+</span><span class="hll">    <span class="n">BACK_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_REED_SWITCH_PIN</span><span class="o">);</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, add the getters that tell commands about the state of the reed switches. Remember that reed switches are often active low, so that means the DigitalInput.get() gives false when the reed switch is close to a magnet. So, return the opposite of the DigitalInput reading for a sensible result.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">getFrontReedSwitchActive</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">return</span> <span class="o">!(</span><span class="n">FRONT_REED_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">getBackReedSwitchActive</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">return</span> <span class="o">!(</span><span class="n">BACK_REED_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="encoder">
+<h2>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">¶</a></h2>
+<p>Now, add the encoder to the subsystem. Declare it in the class:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">BELT_ENCODER</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize it in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BELT_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_MOTOR_PIN</span><span class="o">);</span>
+
+    <span class="n">FRONT_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_B</span><span class="o">);</span>
+    <span class="n">BACK_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_B</span><span class="o">);</span>
+
+    <span class="n">FRONT_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_REED_SWITCH_PIN</span><span class="o">);</span>
+    <span class="n">BACK_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_REED_SWITCH_PIN</span><span class="o">);</span>
+
+<span class="hll">    <span class="n">BELT_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_ENCODER_PIN_B</span><span class="o">);</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, add a getter for the encoder.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">getBeltEncoder</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">return</span> <span class="n">BELT_ENCODER</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pid-controller">
+<h2>PID Controller<a class="headerlink" href="#pid-controller" title="Permalink to this headline">¶</a></h2>
+<p>Lastly, add the PID Controller linking the belt encoder to the belt motor. Add the PID Controller to the subsystem:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">PIDController</span> <span class="n">BELT_POSITION_CONTROLLER</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize it in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">BELT_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_MOTOR_PIN</span><span class="o">);</span>
+
+    <span class="n">FRONT_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_B</span><span class="o">);</span>
+    <span class="n">BACK_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_B</span><span class="o">);</span>
+
+    <span class="n">FRONT_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_REED_SWITCH_PIN</span><span class="o">);</span>
+    <span class="n">BACK_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_REED_SWITCH_PIN</span><span class="o">);</span>
+
+<span class="hll">    <span class="n">BELT_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_ENCODER_PIN_B</span><span class="o">);</span>
+</span>
+    <span class="n">BELT_POSITION_CONTROLLER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="mf">0.015</span><span class="o">,</span> <span class="mf">0.001</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="n">BELT_ENCODER</span><span class="o">,</span> <span class="n">BELT_MOTOR</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And that&#8217;s it! Now, the GearManipulator subsystem has all the necessary methods for writing commands.</p>
+</div>
+<div class="section" id="final-code">
+<h2>Final code<a class="headerlink" href="#final-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * GearManipulator subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GearManipulator</span> <span class="kd">extends</span> <span class="n">Subsystem</span>
+<span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Victor</span> <span class="n">BELT_MOTOR</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">DoubleSolenoid</span> <span class="n">FRONT_CLAW</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">DoubleSolenoid</span> <span class="n">BACK_CLAW</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">DigitalInput</span> <span class="n">FRONT_REED_SWITCH</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">DigitalInput</span> <span class="n">BACK_REED_SWITCH</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">BELT_ENCODER</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">PIDController</span> <span class="n">BELT_POSITION_CONTROLLER</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">GearManipulator</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">BELT_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_MOTOR_PIN</span><span class="o">);</span>
+
+        <span class="n">FRONT_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_CLAW_PIN_B</span><span class="o">);</span>
+        <span class="n">BACK_CLAW</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_CLAW_PIN_B</span><span class="o">);</span>
+
+        <span class="n">FRONT_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">FRONT_REED_SWITCH_PIN</span><span class="o">);</span>
+        <span class="n">BACK_REED_SWITCH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DigitalInput</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BACK_REED_SWITCH_PIN</span><span class="o">);</span>
+
+        <span class="n">BELT_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">BELT_ENCODER_PIN_B</span><span class="o">);</span>
+
+        <span class="n">BELT_POSITION_CONTROLLER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="mf">0.015</span><span class="o">,</span> <span class="mf">0.001</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="n">BELT_ENCODER</span><span class="o">,</span> <span class="n">BELT_MOTOR</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setBeltMotor</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">openFrontClaw</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">FRONT_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kReverse</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeFrontClaw</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">FRONT_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">openBackClaw</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">BACK_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kReverse</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">closeBackClaw</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">BACK_CLAW</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">getFrontReedSwitchActive</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="o">!(</span><span class="n">FRONT_REED_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">getBackReedSwitchActive</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="o">!(</span><span class="n">BACK_REED_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">getBeltEncoder</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="n">BELT_ENCODER</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../autonomous/autonomous.html" class="btn btn-neutral float-right" title="Autonomous Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tankdrive.html" class="btn btn-neutral" title="Tank Drive subsystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

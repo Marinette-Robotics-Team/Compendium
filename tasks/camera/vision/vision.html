@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vision &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Camera" href="../camera.html"/>
+        <link rel="next" title="Installing OpenCV on the Raspberry Pi" href="rpinstall.html"/>
+        <link rel="prev" title="Teleop Camera" href="../teleopcam.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../camera.html">Camera</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../teleopcam.html">Teleop Camera</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vision</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rpinstall.html">Installing OpenCV on the Raspberry Pi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="../camera.html">Camera</a> &raquo;</li>
+        
+      <li>Vision</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vision">
+<h1>Vision<a class="headerlink" href="#vision" title="Permalink to this headline">¶</a></h1>
+<p>This section discusses how to use Machine Vision.</p>
+<p>Before reading this guide, it&#8217;s highly recommended to watch the <a class="reference external" href="https://www.youtube.com/watch?v=rLwOkAJqImo">Cheesy Poofs&#8217; machine vision video</a>.</p>
+<p><strong>Note:</strong> Working on machine vision takes a lot of time and programming skill. If you choose to work on machine vision, note that you may have to dedicate your entire season to it.</p>
+<p>Often, machine vision is not necessary for success. Preprogrammed commands built on dead reckoning using encoders and a gyro is definitely capable of completing most tasks in autonomous mode. However, for some very complex tasks, such as autonomously aiming a shooter at a goal from any position while on the move, a preprogrammed command may not be enough. Our team probably will not attempt many of these more complex tasks, so machine vision is seldom necessary.</p>
+<p>However, if in the future we become a higher tier team, machine vision may become the standard. So, for future-proofing&#8217;s sake, I provide you my guide on using machine vision.</p>
+<div class="section" id="choosing-a-platform">
+<h2>Choosing a platform<a class="headerlink" href="#choosing-a-platform" title="Permalink to this headline">¶</a></h2>
+<p>Before you start working on machine vision code, you need to choose a platform for it to run on. There are three main ways to run it:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>The RoboRIO</dt>
+<dd>It&#8217;s possible to run machine vision code directly on the RoboRIO, using GRIP or WPILib&#8217;s OpenCV library. However, this is slow and risky. If the camera code takes too much of the RoboRIO&#8217;s processing power, it may not be able to run the rest of the robot&#8217;s commands, making the robot unusable. I would not recommend this option.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Raspberry Pi (also called RPi)</dt>
+<dd>This small, cheap single board computer can use OpenCV to do machine vision. It&#8217;s a separate processor from the RoboRIO, which eliminates the risk of messing up the rest of the robot if the machine vision code runs too slowly. However, setting up a raspberry pi with OpenCV is fairly difficult. It requires some familiarity with Linux commands. Unfortunately, raspberry pis are usually not compatible with most USB webcams, which means it must use a special Raspberry Pi Camera. Thankfully, RPi and the RPiCam combined only cost about $65.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Kangaroo</dt>
+<dd>The Kangaroo is by far the most expensive option here, costing an extra $150-$200. It is a powerful, onboard computer that runs Windows, meaning that it is not difficult to set up. There&#8217;s been some whispering that our team might buy one of these if we need to do machine vision, but it might not happen.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>After choosing a platform, you must choose between the two main ways of writing camera code:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt><a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/24194/l/463566-introduction-to-grip">GRIP</a></dt>
+<dd>GRIP is WPILib&#8217;s graphical tool for developing machine vision code. You add components to the GRIP Pipeline, such as filters, and then it generates code for you. Unfortunately, GRIP does not run on raspberry pi&#8217;s <a class="reference external" href="https://github.com/WPIRoboticsProjects/GRIP/wiki/Running-GRIP-on-a-Raspberry-Pi-2">without some extra effort</a> due to hardware differences with the RoboRIO, so I would not recommend running GRIP on a RPi.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://opencv.org/">OpenCV</a></dt>
+<dd>OpenCV is an open source machine vision library. I would recommend using the Python programming language, so if you don&#8217;t know Python and don&#8217;t want to learn it, I would stick with GRIP. If you already know Python, however, using OpenCV offers a lot of flexibility and customization that GRIP does not offer.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Since <a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/24194/c/194953">WPILib&#8217;s documentation already covers using GRIP</a>, I will cover how to install OpenCV on a Raspberry Pi.</p>
+<p>On how to actually use OpenCV, here&#8217;s a link to an amazing guide called <a class="reference external" href="http://frc-pdr.readthedocs.io/en/latest/index.html">FRC Programming Done Right</a>. I currently don&#8217;t have the resources nor the time to actually write a guide on it myself, since college is starting.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rpinstall.html">Installing OpenCV on the Raspberry Pi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rpinstall.html#installing-raspbian">Installing Raspbian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpinstall.html#installing-opencv">Installing OpenCV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#update-the-rpi">1. Update the RPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#install-necessary-software">2. Install necessary software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#install-numpy-which-is-necessary-to-use-opencv">3. Install numpy, which is necessary to use OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#format-and-mount-the-usb-drive-to-store-opencv">4. Format and mount the USB drive to store OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#download-and-extract-the-opencv-source-code">5. Download and extract the OpenCV source code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#prepare-to-build-opencv">6. Prepare to build OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#build-opencv">7. Build OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#install-the-build">8. Install the build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#configure-opencv">9. Configure OpenCV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpinstall.html#check-to-make-sure-it-worked">10. Check to make sure it worked</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rpinstall.html#installing-the-picamera">Installing the Picamera</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rpinstall.html" class="btn btn-neutral float-right" title="Installing OpenCV on the Raspberry Pi" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../teleopcam.html" class="btn btn-neutral" title="Teleop Camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

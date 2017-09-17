@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PID Outputs &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="PID Components" href="pid.html"/>
+        <link rel="next" title="Common Tasks" href="../../../tasks/tasks.html"/>
+        <link rel="prev" title="PID Sources" href="pidsource.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sensors/sensors.html">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../actuators/actuators.html">Actuators</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pid.html">PID Components</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller0.html">Why use a PID Controller?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller1.html">Using a PID Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller2.html">Tuning a PID Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidsource.html">PID Sources</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PID Outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="pid.html">PID Components</a> &raquo;</li>
+        
+      <li>PID Outputs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pid-outputs">
+<h1>PID Outputs<a class="headerlink" href="#pid-outputs" title="Permalink to this headline">¶</a></h1>
+<p>Note: This guide is mainly for advanced users. For basic use, see <a class="reference external" href="pidcontroller1.html">PIDControllers</a>.
+This guide also requires knowledge about how to use Interfaces.</p>
+<p>Remember that a PIDController&#8217;s basic structure is kind of like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="o">(</span><span class="n">enabled</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// get sensor reading</span>
+    <span class="kt">double</span> <span class="n">sensor</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="na">pidGet</span><span class="o">();</span>
+
+    <span class="c1">// calculate what to write to the output using the input and setpoint</span>
+    <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">calculateOutput</span><span class="o">(</span><span class="n">setpoint</span><span class="o">,</span> <span class="n">sensor</span><span class="o">);</span>
+
+    <span class="c1">// write to the output</span>
+    <span class="n">output</span><span class="o">.</span><span class="na">pidWrite</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, a PIDOutput is simply something that can be written to using pidWrite. The most common one is a speed controller.</p>
+<p><strong>Example on how to use PIDOutput:</strong></p>
+<p>When getting the robot to drive a certain distance forwards, usually, the drive PID Controller should write the same value to all of the drive motors. However, you can only supply one PIDOutput object as an output for a PIDController. How, then would we get one PID Controller to write to all 4 drive motors?</p>
+<p>In this case, it would be wise to write your own custom implementation of PIDOutput.</p>
+<p>Create a new class named DrivePIDOutput. This class will group together several PID Outputs.</p>
+<p>The first thing you should do with the class is to add &#8220;implements PIDOutput&#8221; to the class declaration, to make the compiler see it as a PIDOutput.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.PIDOutput</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrivePIDOutput</span> <span class="kd">implements</span> <span class="n">PIDOutput</span>
+<span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pidWrite</span><span class="o">(</span><span class="kt">double</span> <span class="n">output</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, the class needs to know what the speed controllers are. Add these to the method&#8217;s class, and pass them into the constructor.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.PIDOutput</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrivePIDOutput</span> <span class="kd">implements</span> <span class="n">PIDOutput</span>
+<span class="o">{</span>
+    <span class="n">SpeedController</span> <span class="n">LEFT_FRONT</span><span class="o">;</span>
+    <span class="n">SpeedController</span> <span class="n">LEFT_BACK</span><span class="o">;</span>
+    <span class="n">SpeedController</span> <span class="n">RIGHT_FRONT</span><span class="o">;</span>
+    <span class="n">SpeedController</span> <span class="n">RIGHT_BACK</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">DrivePIDOutput</span><span class="o">(</span><span class="n">SpeedController</span> <span class="n">LEFT_FRONT</span><span class="o">,</span> <span class="n">SpeedController</span> <span class="n">LEFT_BACK</span><span class="o">,</span> <span class="n">SpeedController</span> <span class="n">RIGHT_FRONT</span><span class="o">,</span> <span class="n">SpeedController</span> <span class="n">RIGHT_BACK</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">LEFT_FRONT</span> <span class="o">=</span> <span class="n">LEFT_FRONT</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">LEFT_BACK</span> <span class="o">=</span> <span class="n">LEFT_BACK</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">RIGHT_FRONT</span> <span class="o">=</span> <span class="n">RIGHT_FRONT</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">RIGHT_BACK</span> <span class="o">=</span> <span class="n">RIGHT_BACK</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pidWrite</span><span class="o">(</span><span class="kt">double</span> <span class="n">output</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// TODO Auto-generated method stub</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, the important part is that whenever the PID Controller calls pidWrite(), we want it to write to all of the drive motors.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">pidWrite</span><span class="o">(</span><span class="kt">double</span> <span class="n">output</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// write to all of the drive motors</span>
+    <span class="n">LEFT_FRONT</span><span class="o">.</span><span class="na">pidWrite</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="n">LEFT_BACK</span><span class="o">.</span><span class="na">pidWrite</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="n">RIGHT_FRONT</span><span class="o">.</span><span class="na">pidWrite</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="n">RIGHT_BACK</span><span class="o">.</span><span class="na">pidWrite</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And that&#8217;s it! Now just make sure to, in the Drive subsystem, have:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">PIDOutput</span> <span class="n">DRIVE_MOTORS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DrivePIDOutput</span><span class="o">(</span><span class="n">DRIVE_LEFT_FRONT</span><span class="o">,</span> <span class="n">DRIVE_LEFT_BACK</span><span class="o">,</span> <span class="n">DRIVE_RIGHT_FRONT</span><span class="o">,</span> <span class="n">DRIVE_RIGHT_BACK</span><span class="o">);</span>
+
+<span class="n">DRIVE_CONTROL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="mf">0.015</span><span class="o">,</span> <span class="mf">0.010</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">DRIVE_ENCODER</span><span class="o">,</span> <span class="n">DRIVE_MOTORS</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Now, whenever the PID Controller DRIVE_CONTROL writes to DRIVE_MOTORS, then it will also write to all of the drive motors, giving us the behavior we want.</p>
+<p>This is called implementing PIDOutput, where you put your own code in pidWrite(), and then the PIDController will call that code.</p>
+<p>Note that you can put anything you want in pidWrite(), from setting a variable, to printing out text. It doesn&#8217;t have to set a motor.</p>
+<p>In this example, we grouped 4 motors together. However, note that you can make groups of 2, 3, or even any size. You can also add the ability to multiply a motor&#8217;s output by a certain value, called a gain, and more.</p>
+<p>Another useful thing to do is to add a set method to all PIDOutputs for quality of life, since most programmers are used to calling set instead of pidWrite.</p>
+<p><strong>Important debugging note:</strong>
+Note that PIDControllers run in a separate thread. Thus, if an exception occurs in pidWrite(), just like in PIDSource.pidGet(), the exception is printed but it is NOT rethrown, and then the PIDController disables. This means that other than the RioLog, there is no indication that the exception occurred, and the PID will seem to just stop for no reason. If a PID Controller seems to stop functioning (e.g. motor is stuck at a value, sensor input no longer affects it) then check the RioLog for exceptions that the PIDController thread swallowed.</p>
+<p>Examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/PrintPIDOutput.java">PrintPIDOutput</a></dt>
+<dd>Simply prints out everything that is written to it.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/PIDOutputGroup.java">PIDOutputGroup</a></dt>
+<dd>Groups any number of PIDOutputs together.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/PIDOutputExtended.java">PIDOutputExtended</a></dt>
+<dd>Adds a gain multiplier to a PIDOutput.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2016/robot/trunk/Team93Robot2016/src/org/usfirst/frc/team93/robot/Utilities/SteeringAndSpeedCoordinator.java">SteeringAndSpeedCoordinator</a></dt>
+<dd>Uses PIDOutputs to receive information from the PIDController about how to control both speed and the robot&#8217;s heading.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../tasks/tasks.html" class="btn btn-neutral float-right" title="Common Tasks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pidsource.html" class="btn btn-neutral" title="PID Sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

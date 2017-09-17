@@ -1,0 +1,504 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installing OpenCV on the Raspberry Pi &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Vision" href="vision.html"/>
+        <link rel="next" title="GitHub" href="../../../github/github.html"/>
+        <link rel="prev" title="Vision" href="vision.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../camera.html">Camera</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../teleopcam.html">Teleop Camera</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="vision.html">Vision</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Installing OpenCV on the Raspberry Pi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="../camera.html">Camera</a> &raquo;</li>
+        
+          <li><a href="vision.html">Vision</a> &raquo;</li>
+        
+      <li>Installing OpenCV on the Raspberry Pi</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installing-opencv-on-the-raspberry-pi">
+<h1>Installing OpenCV on the Raspberry Pi<a class="headerlink" href="#installing-opencv-on-the-raspberry-pi" title="Permalink to this headline">¶</a></h1>
+<p>This article covers how to install OpenCV on raspberry pi. You might already have a raspberry pi with OpenCV installed. You can check using:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python
+&gt;&gt;&gt; import cv2
+&gt;&gt;&gt; print cv2.__version__
+</pre></div>
+</div>
+<p>You should get &#8216;3.2.0&#8217;.</p>
+<p>To install things on the raspberry pi, you will need unrestricted internet access. You can either <a class="reference external" href="https://askubuntu.com/questions/347886/apt-get-not-working-behind-restricted-internet-access">try to use a proxy</a> (this may not work) or take the raspberry pi home and directly plug it into your router with an ethernet cable.</p>
+<p>You will also want an HDMI cable and a monitor so that you can see the rasbperry pi gui, as well as an extra keyboard and mouse.</p>
+<p>To power the raspberry pi, you&#8217;ll need a mini USB power cable (the type of charging cable usually used for most android phones).</p>
+<div class="section" id="installing-raspbian">
+<h2>Installing Raspbian<a class="headerlink" href="#installing-raspbian" title="Permalink to this headline">¶</a></h2>
+<p>If you don&#8217;t already have a microSD card with Raspbian on it, you will have to create one. The minimum SD card size to install Rasbian with NOOBS is 8 GB, but if you don&#8217;t want to have to deal with mounting a flash drive to download OpenCV, you will want a 16 GB microSD card.</p>
+<p>If the Raspberry Pi boots up and shows the desktop, then Raspbian is already installed and you can skip this section.</p>
+<p><a class="reference external" href="https://www.raspberrypi.org/documentation/installation/noobs.md">Instructions for installing Raspbian with NOOBS can be found here</a>, but they are also repeated in this guide.</p>
+<ol class="arabic simple">
+<li>Obtain a microSD card that&#8217;s at least 8 GB (16 GB recommended for easier installation of OpenCV).</li>
+<li>Format the SD card to <strong>FAT</strong> using the <a class="reference external" href="https://www.sdcard.org/downloads/formatter_4/">SD Card Formatter Tool</a>. Make ure that <strong>FORMAT SIZE ADJUSTMENT</strong> option is set to <strong>ON</strong>.</li>
+<li><a class="reference external" href="https://www.raspberrypi.org/downloads/">Download the NOOBS zip file</a>.</li>
+<li>Extract it to the SD card. Make sure that the files are at the root directory of the SD card.</li>
+<li>Put the SD card in the Raspberry Pi and boot it up. To turn on the raspberry pi, you only need to plug it in.</li>
+<li>Once the raspberry pi has booted up and you can see the NOOBS menu, follow the instructions to install Raspbian with PIXEL. You don&#8217;t need an internet connection to install.</li>
+</ol>
+<p>That should be it for installing Raspbian.</p>
+</div>
+<div class="section" id="installing-opencv">
+<h2>Installing OpenCV<a class="headerlink" href="#installing-opencv" title="Permalink to this headline">¶</a></h2>
+<p>Since Python already comes installed with the Raspbian with NOOBS install above, we don&#8217;t need to install Python. However, we do need to install OpenCV.</p>
+<p>To do so, follow the instructions <a class="reference external" href="https://github.com/Tes3awy/OpenCV-3.2.0-Compiling-on-Raspberry-Pi">here</a>.</p>
+<p>These instructions are copied down (since GitHub is sometimes blocked on school wifi), with a few explanations and edits.</p>
+<div class="section" id="update-the-rpi">
+<h3>1. Update the RPi<a class="headerlink" href="#update-the-rpi" title="Permalink to this headline">¶</a></h3>
+<p>Update software:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get upgrade
+</pre></div>
+</div>
+<p>Update firmware:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo rpi-update
+</pre></div>
+</div>
+<p>Reboot to apply updates.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo reboot now
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-necessary-software">
+<h3>2. Install necessary software<a class="headerlink" href="#install-necessary-software" title="Permalink to this headline">¶</a></h3>
+<p>Install cmake, which is used to build OpenCV from its source code</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install build-essential cmake pkg-config
+</pre></div>
+</div>
+<p>This next step might take a long while, since it&#8217;s a lot of software to install.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+
+$ sudo apt-get install libgtk2.0-dev libgstreamer0.10-0-dbg libgstreamer0.10-0 libgstreamer0.10-dev libv4l-0 libv4l-dev
+
+$ sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+$ sudo apt-get install libxvidcore-dev libx264-dev
+
+$ sudo apt-get install libatlas-base-dev gfortran
+
+$ sudo apt-get install python-numpy python-scipy python-matplotlib
+
+$ sudo apt-get install default-jdk ant
+
+$ sudo apt-get install libgtkglext1-dev
+$ sudo apt-get install v4l-utils
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-numpy-which-is-necessary-to-use-opencv">
+<h3>3. Install numpy, which is necessary to use OpenCV<a class="headerlink" href="#install-numpy-which-is-necessary-to-use-opencv" title="Permalink to this headline">¶</a></h3>
+<p>Install pip, python&#8217;s package manager:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ wget https://bootstrap.pypa.io/get-pip.py
+$ sudo python get-pip.py
+</pre></div>
+</div>
+<p>Install numpy:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo pip install numpy
+</pre></div>
+</div>
+</div>
+<div class="section" id="format-and-mount-the-usb-drive-to-store-opencv">
+<h3>4. Format and mount the USB drive to store OpenCV<a class="headerlink" href="#format-and-mount-the-usb-drive-to-store-opencv" title="Permalink to this headline">¶</a></h3>
+<p>If you&#8217;re using a 16 GB (or larger) SD card, skip this step.</p>
+<p>If you&#8217;re using an 8 GB SD card, you will have to download OpenCV to a flash drive, since OpenCV is quite large and won&#8217;t fit on the SD card. However, once built, the OpenCV library is quite small and can easily fit on the SD card even though the source code may be too large to fit. So, we simply download the OpenCV source code to the flash drive and build it to the Raspberry Pi.</p>
+<p>We&#8217;re going to have to format the flash drive to ext4, which will wipe it, so make sure nothing important is on there. The flash drive has to be formatted, because usually, flash drives don&#8217;t support symbolic links.</p>
+<p>So, plug in the flash drive and run:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ ls /dev/sd*
+</pre></div>
+</div>
+<p>You should see which directory the USB drive is under. Usually, it&#8217;s something like &#8220;/dev/sda&#8221;, &#8220;/dev/sda1&#8221;, or &#8220;/dev/sda2&#8221;.</p>
+<p>For the rest of this guide, I assume that the directory was &#8220;/dev/sda1&#8221;. Remember, however, to replace &#8220;dev/sda1&#8221; with the correct directory if yours is different.</p>
+<p>To format the USB drive to ext4, which supports symbolic links, use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo mkfs.ext4 /dev/sda1 -L untitled
+</pre></div>
+</div>
+<p>Now, we will mount the USB to the RPi so that you can access it.</p>
+<p>First, make the directory you&#8217;re going to mount to.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo mkdir -p /mnt/usb
+</pre></div>
+</div>
+<p>Then, mount:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo mount /dev/sda1 /mnt/usb
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-and-extract-the-opencv-source-code">
+<h3>5. Download and extract the OpenCV source code<a class="headerlink" href="#download-and-extract-the-opencv-source-code" title="Permalink to this headline">¶</a></h3>
+<p>If you followed Step 4, then change directories to your USB drive.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /mnt/usb
+</pre></div>
+</div>
+<p>If you didn&#8217;t have to, then change to your home directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
+</pre></div>
+</div>
+<p>Then, download and extract OpenCV.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.2.0.zip
+$ unzip opencv.zip
+$ wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.2.0.zip
+$ unzip opencv_contrib.zip
+</pre></div>
+</div>
+<p>These commands will take a while depending on your internet connection since OpenCV is quite large.</p>
+</div>
+<div class="section" id="prepare-to-build-opencv">
+<h3>6. Prepare to build OpenCV<a class="headerlink" href="#prepare-to-build-opencv" title="Permalink to this headline">¶</a></h3>
+<p>If you followed step 4, use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /mnt/usb/opencv-3.2.0/
+</pre></div>
+</div>
+<p>Otherwise, use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/opencv-3.2.0/
+</pre></div>
+</div>
+<p>Prepare to build OpenCV with these options:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir build
+$ <span class="nb">cd</span> build
+$ cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE <span class="se">\</span>
+        -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="se">\</span>
+        -D <span class="nv">INSTALL_C_EXAMPLES</span><span class="o">=</span>OFF <span class="se">\</span>
+        -D <span class="nv">INSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON <span class="se">\</span>
+        -D <span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>~/opencv_contrib-3.2.0/modules <span class="se">\</span>
+        -D <span class="nv">BUILD_EXAMPLES</span><span class="o">=</span>ON <span class="se">\</span>
+        -D <span class="nv">ENABLE_NEON</span><span class="o">=</span>ON ..
+</pre></div>
+</div>
+<p>To enter arguments on a newline in the terminal as shown above, press the key and then press enter. Note that you can just enter all those arguments on one line, however messy that may be.</p>
+</div>
+<div class="section" id="build-opencv">
+<h3>7. Build OpenCV<a class="headerlink" href="#build-opencv" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s recommended to let this run overnight, since it takes a LONG time (4 or more hours).</p>
+<p>The safest option is to use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo make
+</pre></div>
+</div>
+<p>If you want to use multiple cores (to speed things up), use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo make -j3
+</pre></div>
+</div>
+<p>This may fail sometimes, however. If the process fails, use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo make clean
+</pre></div>
+</div>
+<p>and try again.</p>
+</div>
+<div class="section" id="install-the-build">
+<h3>8. Install the build<a class="headerlink" href="#install-the-build" title="Permalink to this headline">¶</a></h3>
+<p>This step also takes a while, but not nearly as long as building.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo make install
+$ sudo ldconfig
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-opencv">
+<h3>9. Configure OpenCV<a class="headerlink" href="#configure-opencv" title="Permalink to this headline">¶</a></h3>
+<p>Edit the OpenCV config file:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo nano /etc/ld.so.conf.d/opencv.conf
+</pre></div>
+</div>
+<p>The file will be blank, so add to the bottom of the file:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>/usr/local/lib
+</pre></div>
+</div>
+<p>with a blank line at the end.</p>
+<p>Use Ctrl-O, then Ctrl-X to save and exit.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo ldconfig
+</pre></div>
+</div>
+<p>Now, configure bashrc:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo nano /etc/bash.bashrc
+</pre></div>
+</div>
+<p>Add these lines at the bottom:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH
+</pre></div>
+</div>
+<p>Add a blank line at the bottom, and once again, Ctrl-O and Ctrl-X to save and exit.</p>
+<p>Now, reboot.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo reboot now
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-to-make-sure-it-worked">
+<h3>10. Check to make sure it worked<a class="headerlink" href="#check-to-make-sure-it-worked" title="Permalink to this headline">¶</a></h3>
+<p>When you use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python
+&gt;&gt;&gt; import cv2
+&gt;&gt;&gt; print cv2.__version__
+</pre></div>
+</div>
+<p>it should print out &#8216;3.2.0&#8217;. If it did not, then something went wrong, and recheck your steps.</p>
+<p>If it worked, then you&#8217;ve successfully installed OpenCV on the RPi. You may want to make a backup image of the SD Card using a tool like <a class="reference external" href="https://thepihut.com/blogs/raspberry-pi-tutorials/17789160-backing-up-and-restoring-your-raspberry-pis-sd-card">Win32 Disk Imager</a> so that you never have to go through this extremely long process again.</p>
+</div>
+</div>
+<div class="section" id="installing-the-picamera">
+<h2>Installing the Picamera<a class="headerlink" href="#installing-the-picamera" title="Permalink to this headline">¶</a></h2>
+<p>f you&#8217;re using a RPi and OpenCV, you&#8217;re probably using a Raspberry Pi Camera. This means that you must also install the Picamera.</p>
+<p>Firstly, plug in the camera.</p>
+<p>Then, use raspi-config and enable the camera:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo raspi-config
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/raspi-config.png"><img alt="../../../_images/raspi-config.png" src="../../../_images/raspi-config.png" style="width: 100%;" /></a>
+<p>Then, select Enable Camera, and enable it.</p>
+<p>To test the camera, use:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ raspistill -t <span class="m">5000</span> -o image.jpg
+</pre></div>
+</div>
+<p>This shows a preview of the camera feed for 5 seconds, then takes a picture and saves it to image.jpg.</p>
+<p>Then, if the picamera works, install the python package:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ sudo pip install picamera
+
+$ sudo pip install <span class="s2">&quot;picamera[array]&quot;</span>
+</pre></div>
+</div>
+<p>After that&#8217;s done, then the entire installation process is complete. Hooray! I hope you never have to do that again.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../github/github.html" class="btn btn-neutral float-right" title="GitHub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vision.html" class="btn btn-neutral" title="Vision" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

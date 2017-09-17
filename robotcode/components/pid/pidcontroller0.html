@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Why use a PID Controller? &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="PID Components" href="pid.html"/>
+        <link rel="next" title="Using a PID Controller" href="pidcontroller1.html"/>
+        <link rel="prev" title="PID Components" href="pid.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sensors/sensors.html">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../actuators/actuators.html">Actuators</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pid.html">PID Components</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Why use a PID Controller?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller1.html">Using a PID Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller2.html">Tuning a PID Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidsource.html">PID Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidoutput.html">PID Outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="pid.html">PID Components</a> &raquo;</li>
+        
+      <li>Why use a PID Controller?</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="why-use-a-pid-controller">
+<h1>Why use a PID Controller?<a class="headerlink" href="#why-use-a-pid-controller" title="Permalink to this headline">¶</a></h1>
+<p>This section focuses on the reasons for using a PID Controller, and their advantage over other systems that we may write.</p>
+<p>A PID Controller is a way to use a sensor to control a motor, without the motor jerking around and going crazy. Instead, a PID Controller has 3 adjustable values that can be tuned to make the motor behave nicely.</p>
+<p>Imagine that we want a motor to turn 1000 encoder ticks. One simple way might be:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// if we need to go forward</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">encoder</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// go forward</span>
+        <span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// if we need to go backward</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">encoder</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// go backward</span>
+        <span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">(-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>But, this code has problems. Note how if encoder is even one tick off, the motor will still turn at full power. For example, if it&#8217;s at 999 ticks, it will still continue to turn at full power forward, causing it to overshoot by far, due to the momentum of the motor&#8217;s spinning. It will then try to go back, and then start oscillating back and forth, trying to reach 1000 ticks.</p>
+<p>That means we want to slow down the motor as we get closer and closer to the goal. One way to do this is to directly relate how far we are from the goal to how much power we give to the motor. That way, the closer we get the goal, the less power we give to the motor, slowing it down.</p>
+<p>To do this, we need to know how far we are from the goal. We call this error:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// how far we are from the goal</span>
+<span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">encoder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>Since this is a direct relation, we also have to choose a constant multiplier. This can&#8217;t just be 1 since otherwise when the encoder is at 999, then error is equal to 1000 - 999 = 1. Then, if the multiplier is just 1, then 1 * error = 1 * 1 = 1, which gives us exactly the same thing as the dumb way of doing this above. Thus, we choose a smaller value, like 0.001.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// the constant multiplier linking error to output</span>
+<span class="kt">double</span> <span class="n">P</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>Now, the direct relation is clear. Simply make the output equal to the error times the constant multiplier.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Now, implement that into the command:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// how far we are from the goal</span>
+    <span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">encoder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+    <span class="c1">// the constant multiplier linking error to output</span>
+    <span class="kt">double</span> <span class="n">P</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+
+    <span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, all you have to do is to tune the P value until the motor goes accurately to 1000 ticks.</p>
+<p>However, there is another issue in many systems, and that is static friction. What often happens with only a direct relation from error to the motor is that static friction can get in the way of accuracy.</p>
+<p>So, if we&#8217;re a bit off of the target, and if we&#8217;re stopped from static friction, then we need to ramp up our motor output over time to correct it.</p>
+<p>This is accomplished using something called an Integral value. Calculus people will know that an integral is the area under a curve, but the important part to know is that the integral builds up as we are off of the target for longer periods of time (e.g. stopped due to static friction).</p>
+<p>Then, when the integral builds up to a large enough value, it overcomes static friction by a little bit, and moves the robot to its intended target. So, we need to add the integral to our controller:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// calculate integral (if you don&#39;t know calculus, don&#39;t bother)</span>
+<span class="kt">double</span> <span class="n">integral</span> <span class="o">=</span> <span class="n">integral</span> <span class="o">+</span> <span class="o">(</span><span class="n">error</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="o">);</span>
+
+<span class="c1">// the constant multiplier linking the integral of error to output</span>
+<span class="kt">double</span> <span class="n">I</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>Then, instead of</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>use:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">integral</span> <span class="o">*</span> <span class="n">I</span><span class="o">));</span>
+</pre></div>
+</div>
+<p>Now, our controller looks like:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// how far we are from the goal</span>
+    <span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">encoder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+    <span class="c1">// the constant multiplier linking error to output</span>
+    <span class="kt">double</span> <span class="n">P</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+
+    <span class="c1">// calculate integral (if you don&#39;t know calculus, don&#39;t bother)</span>
+    <span class="kt">double</span> <span class="n">integral</span> <span class="o">=</span> <span class="n">integral</span> <span class="o">+</span> <span class="o">(</span><span class="n">error</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="o">);</span>
+
+    <span class="c1">// the constant multiplier linking the integral of error to output</span>
+    <span class="kt">double</span> <span class="n">I</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="o">;</span>
+
+    <span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">integral</span> <span class="o">*</span> <span class="n">I</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, however, we have the issue that the I value builds really quickly at the start as the error is high in the beginning. Then, when we actually reach the goal, we are outputting too much power to the motor, and now we overshoot.</p>
+<p>To fix this, we need something that limits out motor power if we&#8217;re approaching the target very quickly, so that we don&#8217;t overshoot it, but also doesn&#8217;t interfere with the rest of our system if we&#8217;re only making small, slow adjustments.</p>
+<p>We can do this by examining how fast we&#8217;re approaching the target. This is called the Derivative of the error. That way, if our error is decreasing quickly, we know to slow down the motor. But, if our error isn&#8217;t decreasing quickly, and it&#8217;s just a small adjustment, the Derivative is small, so it doesn&#8217;t interfere.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// calculate derivative (if you don&#39;t know calculus, don&#39;t bother)</span>
+<span class="kt">double</span> <span class="n">derivative</span> <span class="o">=</span> <span class="o">(</span><span class="n">error</span> <span class="o">-</span> <span class="n">old</span><span class="o">)</span> <span class="o">/</span> <span class="n">deltaTime</span><span class="o">;</span>
+<span class="n">old</span> <span class="o">=</span> <span class="n">error</span><span class="o">;</span>
+
+<span class="c1">// the constant multiplier linking the derivative of error to output</span>
+<span class="kt">double</span> <span class="n">D</span> <span class="o">=</span> <span class="mf">0.01</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>Now, our controller looks like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// how far we are from the goal</span>
+    <span class="kt">double</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">-</span> <span class="n">encoder</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+    <span class="c1">// the constant multiplier linking error to output</span>
+    <span class="kt">double</span> <span class="n">P</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+
+    <span class="c1">// calculate integral (if you don&#39;t know calculus, don&#39;t bother)</span>
+    <span class="kt">double</span> <span class="n">integral</span> <span class="o">=</span> <span class="n">integral</span> <span class="o">+</span> <span class="o">(</span><span class="n">error</span> <span class="o">*</span> <span class="n">deltaTime</span><span class="o">);</span>
+
+    <span class="c1">// the constant multiplier linking the integral of error to output</span>
+    <span class="kt">double</span> <span class="n">I</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="o">;</span>
+
+    <span class="c1">// calculate derivative (if you don&#39;t know calculus, don&#39;t bother)</span>
+    <span class="kt">double</span> <span class="n">derivative</span> <span class="o">=</span> <span class="o">(</span><span class="n">error</span> <span class="o">-</span> <span class="n">old</span><span class="o">)</span> <span class="o">/</span> <span class="n">deltaTime</span><span class="o">;</span>
+    <span class="n">old</span> <span class="o">=</span> <span class="n">error</span><span class="o">;</span>
+
+    <span class="c1">// the constant multiplier linking the derivative of error to output</span>
+    <span class="kt">double</span> <span class="n">D</span> <span class="o">=</span> <span class="mf">0.01</span><span class="o">;</span>
+
+    <span class="n">motor</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">integral</span> <span class="o">*</span> <span class="n">I</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">derivative</span> <span class="o">*</span> <span class="n">D</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, this is exactly what a PID Controller is. It&#8217;s like a self-contained command, that takes the P, I, and D values, calculates the error, integral, and derivative, and outputs to the motor. So, instead of making this command by hand, we simply need to create a PIDController and enable it.</p>
+<p>In practice, though, usually just a P value works here, with I and D left as 0. If not, then a P and an I value will usually do the trick, with D left as 0. We rarely ever use P, I, and D all together, since usually, a PID can be tuned enough even without all three, and a D value would then just waste time and be unnecessarily complex.</p>
+<p>Although well tuned PID Controllers can work very well, note that a poorly tuned PID Controller still can jerk around and go crazy, which is something called &#8220;Possessed Robot Syndrome&#8221;.</p>
+<p>On how to use a PID Controller, see <a class="reference external" href="pidcontroller1.html">Using PID Controllers</a>.</p>
+<p>On how to tune a PID Controller, see <a class="reference external" href="pidcontroller2.html">Tuning PID Controllers</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pidcontroller1.html" class="btn btn-neutral float-right" title="Using a PID Controller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pid.html" class="btn btn-neutral" title="PID Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

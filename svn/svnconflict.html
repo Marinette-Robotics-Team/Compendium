@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Resolving SVN Conflicts &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Resolving SVN Conflicts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="resolving-svn-conflicts">
+<h1>Resolving SVN Conflicts<a class="headerlink" href="#resolving-svn-conflicts" title="Permalink to this headline">¶</a></h1>
+<p>A <strong>conflict</strong> occurs when two people try to edit the same file, but their changes can&#8217;t both be made at the same time.</p>
+<p>There are two types of conflicts: <strong>file conflicts</strong>, and <strong>tree conflicts</strong>.</p>
+<div class="section" id="file-conflicts">
+<h2>File Conflicts<a class="headerlink" href="#file-conflicts" title="Permalink to this headline">¶</a></h2>
+<p>A file conflict occurs when two people edit the same line of a file. If one person then commits their change, then when the other person tries to SVN Update, the conflict will appear.</p>
+<div class="section" id="example">
+<h3>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s say there is this line of code:</p>
+<a class="reference internal image-reference" href="../_images/conflict1.png"><img alt="../_images/conflict1.png" src="../_images/conflict1.png" style="width: 60%;" /></a>
+<p>Some time later, Person A notices that this pin is incorrect in RobotMap. He then talks to electrical, and changes the pin from pin 6 to pin 7.</p>
+<a class="reference internal image-reference" href="../_images/conflict2.png"><img alt="../_images/conflict2.png" src="../_images/conflict2.png" style="width: 60%;" /></a>
+<p>Then, Person A commits that change.</p>
+<p>A bit later, Person B also notices the pin is wrong, and changes it from pin 6 to pin 8, which is his best guess as to what the real pin might be.</p>
+<a class="reference internal image-reference" href="../_images/conflict3.png"><img alt="../_images/conflict3.png" src="../_images/conflict3.png" style="width: 60%;" /></a>
+<p>When he tries to SVN update, however, he will be met with this error message:</p>
+<a class="reference internal image-reference" href="../_images/conflict4.png"><img alt="../_images/conflict4.png" src="../_images/conflict4.png" style="width: 100%;" /></a>
+<p>Double click the <strong>Conflicted</strong> entry to open the merging software.</p>
+<a class="reference internal image-reference" href="../_images/conflict5.png"><img alt="../_images/conflict5.png" src="../_images/conflict5.png" style="width: 100%;" /></a>
+<p>Here, you can see the two edits that were made. One changes the pin number to 7, and one changes the pin number to 8.</p>
+<a class="reference internal image-reference" href="../_images/conflict6.png"><img alt="../_images/conflict6.png" src="../_images/conflict6.png" style="width: 100%;" /></a>
+<p>There are several options for merging:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Use this text block</dt>
+<dd>Uses the selected text block as the correct one.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Use this whole file</dt>
+<dd>Uses the selected file as the correct one.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Use text block from &#8216;mine&#8217; before &#8216;theirs&#8217;</dt>
+<dd>Use both the local and the repository&#8217;s code blocks, with the local code block coming first.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Use text block from &#8216;theirs&#8217; before &#8216;mine&#8217;</dt>
+<dd>Use both the local and the repository&#8217;s code blocks, with the repository&#8217;s code block coming first.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Person B then goes to talk to Person A about whose code to use. Then, since Person A already talked to electrical and found out the correct pin, Person A&#8217;s code should be used.</p>
+<p>Thus, Person B selects Person A&#8217;s text block, and chooses <strong>Use this text block</strong>. Since this is the only conflicting line in the file, there are no more conflicts, and the file can be <strong>marked as resolved</strong> by either saving or using the <strong>Mark as resolved</strong> green checkmark button at the top of the merging software.</p>
+<a class="reference internal image-reference" href="../_images/conflict7.png"><img alt="../_images/conflict7.png" src="../_images/conflict7.png" style="width: 100%;" /></a>
+<p>After exiting out of the merging software, you can see that the conflict is no longer giving an error, and the update succeeded.</p>
+<a class="reference internal image-reference" href="../_images/conflict8.png"><img alt="../_images/conflict8.png" src="../_images/conflict8.png" style="width: 100%;" /></a>
+</div>
+</div>
+<div class="section" id="tree-conflicts">
+<h2>Tree Conflicts<a class="headerlink" href="#tree-conflicts" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>tree conflict</strong> occurs when a conflict involves the file tree. For example, if Person A edits a file, but Person B deletes or renames it, then that is a tree conflict, since the file that Person A edited is missing from the file tree.</p>
+<div class="section" id="id1">
+<h3>Example:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s say Person A trying to keep track of the dimensions of the game field by storing the game field data in a text file.</p>
+<a class="reference internal image-reference" href="../_images/treeconflict1.png"><img alt="../_images/treeconflict1.png" src="../_images/treeconflict1.png" style="width: 100%;" /></a>
+<p>Person A then edits the file so that it has the correct dimensions.</p>
+<a class="reference internal image-reference" href="../_images/treeconflict2.png"><img alt="../_images/treeconflict2.png" src="../_images/treeconflict2.png" style="width: 100%;" /></a>
+<p>However, at the same time, Person B realizes that there are two text files containing the field&#8217;s dimensions, one of which is old and was used for a previous competition.</p>
+<p>In this case, the file &#8220;Field Dimensions.txt&#8221; is the old one, and should no longer be used. Instead, people should be using &#8220;Field Dimensions. St. Louis.txt&#8221;. So, to avoid confusion, Person B deletes the old &#8220;Field Dimensions.txt&#8221;. He then commits his change.</p>
+<a class="reference internal image-reference" href="../_images/treeconflict3.png"><img alt="../_images/treeconflict3.png" src="../_images/treeconflict3.png" style="width: 60%;" /></a>
+<p>However, Person B is too late since Person A has already modified &#8220;Field Dimensions.txt&#8221;. So, when Person A tries to SVN update, he gets this error message:</p>
+<a class="reference internal image-reference" href="../_images/treeconflict4.png"><img alt="../_images/treeconflict4.png" src="../_images/treeconflict4.png" style="width: 100%;" /></a>
+<p>This tree conflict alerts him that he changed &#8220;Field Dimensions.txt&#8221;, but that file no longer exists since Person B deleted it.</p>
+<p>Clicking on the conflict gives this window:</p>
+<a class="reference internal image-reference" href="../_images/treeconflict5.png"><img alt="../_images/treeconflict5.png" src="../_images/treeconflict5.png" style="width: 100%;" /></a>
+<p>If it is correct to disregard the repository&#8217;s state and continue with your local copy, you can click <strong>Accept current working copy state (mark as resolved)</strong>. In this example, however, this is not the case, since Person A modified the old file where Person A should have modified the new one.</p>
+<p>Instead, Person A should <a class="reference external" href="svnrevert.html">revert</a> their changes so that the &#8220;Field Dimensions.txt&#8221; file gets deleted. This resolves the conflict, since now, the file is deleted on both the local and repository&#8217;s copy of the code.</p>
+<a class="reference internal image-reference" href="../_images/treeconflict6.png"><img alt="../_images/treeconflict6.png" src="../_images/treeconflict6.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="../_images/treeconflict7.png"><img alt="../_images/treeconflict7.png" src="../_images/treeconflict7.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../_images/treeconflict8.png"><img alt="../_images/treeconflict8.png" src="../_images/treeconflict8.png" style="width: 100%;" /></a>
+<p>Since the conflict is resolved, SVN Update now works again.</p>
+<a class="reference internal image-reference" href="../_images/treeconflict9.png"><img alt="../_images/treeconflict9.png" src="../_images/treeconflict9.png" style="width: 100%;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

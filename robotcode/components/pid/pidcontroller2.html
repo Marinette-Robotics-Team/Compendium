@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tuning a PID Controller &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="PID Components" href="pid.html"/>
+        <link rel="next" title="PID Sources" href="pidsource.html"/>
+        <link rel="prev" title="Using a PID Controller" href="pidcontroller1.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sensors/sensors.html">Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../actuators/actuators.html">Actuators</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="pid.html">PID Components</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller0.html">Why use a PID Controller?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidcontroller1.html">Using a PID Controller</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Tuning a PID Controller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidsource.html">PID Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pidoutput.html">PID Outputs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="pid.html">PID Components</a> &raquo;</li>
+        
+      <li>Tuning a PID Controller</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tuning-a-pid-controller">
+<h1>Tuning a PID Controller<a class="headerlink" href="#tuning-a-pid-controller" title="Permalink to this headline">¶</a></h1>
+<p>This is a more advanced guide on how to use PID Controllers. For how to use a PID Controller in a command, see <a class="reference external" href="pidcontroller1.html">Using PIDs</a>.</p>
+<p>Along with giving a PIDSource and a PIDOutput, the P, I, and D values on a PID Controller must also be tuned for it to function. Although one can make educated guesses as to what those values should be, tuning can only really be performed with a robot to test on.</p>
+<p>P, I, and D stand for Proportional, Integral, and Derivative. If you know calculus, those words should make sense. If you don&#8217;t, it doesn&#8217;t really matter too much.</p>
+<p>Also, note that PID Controller use something called error.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">error</span> <span class="o">=</span> <span class="n">setpoint</span> <span class="o">-</span> <span class="n">sensor</span><span class="o">.</span><span class="na">pidGet</span><span class="o">();</span>
+</pre></div>
+</div>
+<div class="section" id="initial-guess">
+<h2>Initial Guess<a class="headerlink" href="#initial-guess" title="Permalink to this headline">¶</a></h2>
+<p>The P, or Proportional, value is a direct multiplier from the error to the output. With only a P value, the output would look like:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">error</span> <span class="o">*</span> <span class="n">P</span><span class="o">;</span>
+</pre></div>
+</div>
+<p><strong>Example for a Drive Distance Controller:</strong></p>
+<p>First, you want to find (experimentally) how many encoder ticks per foot the robot travels. Let&#8217;s say you find that there are 100 encoder ticks per foot.</p>
+<p>Then, say that you want the robot to go at full power when it is 5 feet away from the target.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="mf">1.0</span> <span class="o">=</span> <span class="mi">5</span> <span class="n">ft</span> <span class="o">*</span> <span class="mi">100</span> <span class="n">ticks</span><span class="o">/</span><span class="n">ft</span> <span class="o">*</span> <span class="n">P</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">0.002</span>
+</pre></div>
+</div>
+<p>Then, your initial P value guess would be 0.002.</p>
+<p>For initial guesses, leave the I and D values as 0.</p>
+<p>I stands for Integral, which is a sum of how much &#8220;total error&#8221; the controller has accumulated over time. This means that if there is a small amount of error, but it stays there for a long time, the controller will output to the motor to fix it.</p>
+<p>D stands for Derivative. We rarely use this, but it&#8217;s used to tone down the output if we&#8217;re approaching the setpoint quickly, which decreases overshoot. However, this is hard to tune.</p>
+</div>
+<div class="section" id="tuning">
+<h2>Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note:</strong> Before you start tuning, make sure that setting the motor to a positive value leads to an increasingly positive encoder value, and vice versa. If not, the PID Controller may not function correctly. Instead, what will happen is that the PID Controller tries to spin the motor towards the goal, but instead causes the motor to spin backwards. This will increase the error, and thus even further increase the motor output in the wrong direction, causing the motor to spin the wrong way at full power forever. This may be unsafe or could damage the robot. So, make sure that the motor and the encoder have the correct polarity before you start tuning and testing.</p>
+<p>The next step is to test the guess. Plug in the guessed values into the PID Controller.</p>
+<p>Now, observe how the robot reacts. There are 4 things to keep track of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Rise Time</dt>
+<dd>How fast the robot approaches the setpoint. For drive distance, this would be how fast the robot rushes forward to its target. This may be important in autonomous mode, where reaching the goal quickly matters.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Overshoot</dt>
+<dd>How much the robot overshoots its goal. For drive distance, this would be seen as how much the robot rushes too far forward, and then runs backwards to get to the goal.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Settling Time</dt>
+<dd>How long it takes the robot to stop moving. For drive distance, it is how long the robot keeps driving back and forth, trying to reach its goal. This may be important in autonomous mode, where reaching the goal quickly matters.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Steady State Error</dt>
+<dd>How far away the robot is from its goal once it stops moving. For drive distance, this would be measured by marking 10 feet on the floor with tape, and then seeing how far away the robot is. This is sometimes called <em>accuracy</em>. This is usually very important for autonomous and for subsystems, which must move to accurate positions or turn to accurate angles.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>This is a table that helps tune these 4 things until the robot behaves correctly:</p>
+<a class="reference internal image-reference" href="../../../_images/PID-tuning-table-1.jpg"><img alt="../../../_images/PID-tuning-table-1.jpg" src="../../../_images/PID-tuning-table-1.jpg" style="width: 100%;" /></a>
+<p>One important thing to note is that we RARELY ever need to use a D value, since we rarely care about overshoot, as long as the end result is accurate. Almost always, adding a D value is a bad idea.</p>
+<p>A simple rule of thumb for tuning PIDs:</p>
+<ol class="arabic simple">
+<li>Increase P until it starts oscillating (the robot never stops moving, keeps going back and forth)</li>
+<li>Pull back P a little bit and add a small I value (for accuracy).</li>
+<li>Increase the I value until the robot accurately reaches its goal.</li>
+<li>Make small adjustments as necessary.</li>
+</ol>
+<p>PID tuning <strong>takes time</strong>. Make sure time is scheduled in the build season for this, especially for more complex PID systems, such as those that control subsystems, depend on potentiometers, control steering, or involve custom implementations. Tuning a PID may takes days, and tuning multiple PIDs and an entire autonomous plan may even take weeks, especially if debugging is involved too.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pidsource.html" class="btn btn-neutral float-right" title="PID Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pidcontroller1.html" class="btn btn-neutral" title="Using a PID Controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

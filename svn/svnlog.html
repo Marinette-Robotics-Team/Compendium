@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Viewing SVN Logs &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Viewing SVN Logs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="viewing-svn-logs">
+<h1>Viewing SVN Logs<a class="headerlink" href="#viewing-svn-logs" title="Permalink to this headline">¶</a></h1>
+<p>You can look at all of the changes made so far using the SVN Log.</p>
+<p>The SVN log is accessed by right clicking, and hovering over <strong>TortoiseSVN</strong> to open up the TortoiseSVN menu. Then, click on <strong>Show log</strong>.</p>
+<a class="reference internal image-reference" href="../_images/svnlog1.png"><img alt="../_images/svnlog1.png" src="../_images/svnlog1.png" style="width: 100%;" /></a>
+<p>The log will then open up. Here, you can look at every revision made to the repository. If not all of them show up, you can click the <strong>Show All</strong> button in the bottom left to show all of the revisions.</p>
+<a class="reference internal image-reference" href="../_images/svnlog2.png"><img alt="../_images/svnlog2.png" src="../_images/svnlog2.png" style="width: 100%;" /></a>
+<p>Additionally, you can right click any revision to get a menu of what you can do with that revision.</p>
+<a class="reference internal image-reference" href="../_images/svnlog3.png"><img alt="../_images/svnlog3.png" src="../_images/svnlog3.png" style="width: 100%;" /></a>
+<p>Here is a list of the possible things you can do with each revision:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>Compare with working copy</dt>
+<dd>This compares the selected revision with your current workspace.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Show changes as unified diff</dt>
+<dd>Shows all of the revision&#8217;s changes in one file. This isn&#8217;t really used that often.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Compare with previous version</dt>
+<dd>This compares the selected revision with the previous revision, showing what that revision changed.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Compare and blame with previous revision</dt>
+<dd>Shows the last editor of each line. This is useful for figuring out who changed what line, which is why it&#8217;s called &#8220;blame&#8221;.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Browse repository</dt>
+<dd>Opens the repo browser for that revision.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Create branch/tag from revision</dt>
+<dd>Similar to the normal TortoiseSVN branch/tag, except it uses the selected revision instead of the local checkout.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Update item to revision</dt>
+<dd>This the same as using <strong>Update to Revision</strong>.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Revert to this revision</dt>
+<dd>Takes the local checkout and adds modifications to it so that it is the same as the selected revision.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Revert changes from this revision</dt>
+<dd>Takes the local checkout and removes all changes that the selected revision made.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Merge revision to...</dt>
+<dd>Used when merging branches to the trunk.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>The rest are relatively self explanatory.</p>
+<p>Lastly, you can search and filter the revisions so that it&#8217;s easier to find the one you want.</p>
+<a class="reference internal image-reference" href="../_images/svnlog4.png"><img alt="../_images/svnlog4.png" src="../_images/svnlog4.png" style="width: 100%;" /></a>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

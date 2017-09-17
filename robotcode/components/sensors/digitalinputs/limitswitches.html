@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Limit Switches &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Digital Inputs" href="digitalinputs.html"/>
+        <link rel="next" title="Reed Switches" href="reedswitches.html"/>
+        <link rel="prev" title="Digital Inputs" href="digitalinputs.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../components.html">Components</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../sensors.html">Sensors</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../joysticks.html">Joysticks</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="digitalinputs.html">Digital Inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../encoders.html">Encoders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../potentiometers.html">Potentiometers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../spi.html">SPI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../actuators/actuators.html">Actuators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pid/pid.html">PID Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="../sensors.html">Sensors</a> &raquo;</li>
+        
+          <li><a href="digitalinputs.html">Digital Inputs</a> &raquo;</li>
+        
+      <li>Limit Switches</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="limit-switches">
+<h1>Limit Switches<a class="headerlink" href="#limit-switches" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="../../../../_images/limswitch.png"><img alt="../../../../_images/limswitch.png" src="../../../../_images/limswitch.png" style="width: 50%;" /></a>
+<p>A limit switch is a DigitalInput that returns true when the bar is pressed down, and false when it is not pressed down.</p>
+<p>Sometimes, the limit switch’s true/false will be flipped due to flipped wiring.</p>
+<p>These are often used as a way to stop a belt at either of its two ends, or detect the presence of something that presses against it.</p>
+<p>In code, this is used as a <a class="reference external" href="digitalinputs.html">DigitalInput</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reedswitches.html" class="btn btn-neutral float-right" title="Reed Switches" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="digitalinputs.html" class="btn btn-neutral" title="Digital Inputs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Moving an Elevator Manually &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Examples of Commands" href="../commandexamples.html"/>
+        <link rel="next" title="Driving a Distance Forward" href="drivesetpoint.html"/>
+        <link rel="prev" title="Open and Close a Claw" href="claw.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../integration.html">Integrating code</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../commands.html">Creating a Command</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../commandexamples.html">Examples of Commands</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="climber.html">Climber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tankdrive.html">Tank Drive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bacq.html">Ball Acquisition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="claw.html">Open and Close a Claw</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Moving an Elevator Manually</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drivesetpoint.html">Driving a Distance Forward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aimclaw.html">Rotating a Claw both Manually and using Setpoints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="../../commands.html">Creating a Command</a> &raquo;</li>
+        
+          <li><a href="../commandexamples.html">Examples of Commands</a> &raquo;</li>
+        
+      <li>Moving an Elevator Manually</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="moving-an-elevator-manually">
+<h1>Moving an Elevator Manually<a class="headerlink" href="#moving-an-elevator-manually" title="Permalink to this headline">¶</a></h1>
+<p>This example describes a command that allows the operator to move an elevator subsystem on a robot up and down, in between two limit switches.</p>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<p>The elevator moves up and down using a belt that is pulled by a motor hooked up to a Talon SRX speed controller. There are two limit switches at the top and bottom of the elevator. When the elevator moves to the top, the top limit switch is pressed, and the code should not allow any further movement upwards to prevent damage. The same goes for the bottom limit switch. If the bottom limit switch is pressed, the elevator should not be able to move any further downwards. Otherwise, the elevator should be controlled by the operator&#8217;s left thumbstick.</p>
+</div>
+<div class="section" id="subsystem-methods">
+<h2>Subsystem methods<a class="headerlink" href="#subsystem-methods" title="Permalink to this headline">¶</a></h2>
+<p>This guide assumes that there already is a Elevator subsystem, and to set the elevator motor, you simply need to write:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Additionally, to access the limit switches:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Elevator</span><span class="o">.</span><span class="na">TOP_LIMIT_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="c1">// top</span>
+</pre></div>
+</div>
+<p>and</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Elevator</span><span class="o">.</span><span class="na">BOTTOM_LIMIT_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="c1">// bottom</span>
+</pre></div>
+</div>
+<p>On how to create this subsystem, see <a class="reference external" href="./../../../subsystems/subsystems.html">Creating a subsystem</a>.</p>
+<p>We also assume that OI already has a Joystick named operator, whose left thumbstick thumbstick&#8217;s y axis is axis 1.</p>
+<p>On how to use OI, see <a class="reference external" href="./../../../../robotcode/structure/oi.html">OI</a>.</p>
+</div>
+<div class="section" id="writing-the-command">
+<h2>Writing the command<a class="headerlink" href="#writing-the-command" title="Permalink to this headline">¶</a></h2>
+<p>Once you create the ElevatorManualControl command, you&#8217;ll get a blank command template like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.Command</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ElevatorManualControl</span> <span class="kd">extends</span> <span class="n">Command</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">ElevatorManualControl</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="c1">// eg. requires(chassis);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called just before this Command runs the first time</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once after isFinished returns true</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called when another command which requires one or more of the same</span>
+    <span class="c1">// subsystems is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the javadoc at the top, describe what this command does.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * This command gives the operator manual control over the elevator motor.</span>
+<span class="cm"> * However, if the elevator hits the top limit switch, it cannot go any further up.</span>
+<span class="cm"> * The same goes for the bottom limit switch.</span>
+<span class="cm"> * This is a safety measure so that the elevator cannot damage itself.</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>Then, in the constructor, since this command uses the elevator, make sure this command requires the Elevator subsystem.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">ElevatorManualControl</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+    <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">elevator</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If Robot can&#8217;t be resolved, make sure to hover over the error and import Robot.</p>
+<p>There isn&#8217;t any need to initialize anything, since all input to comes from the operator joystick. Then, in the execute() method, add the logic of the command.</p>
+<p>Now, since we want to set the power of the motors to the thumbstick input, we use OI.operator.getRawAxis(1) to get the left thumbstick value, and then set the elevator motor to that value.</p>
+<p>However, we must also make sure that if the elevator is moving up, and the top limit switch is pressed, we instead set the motor to 0. Similarly, if the elevator is moving down, and the bottom limit switch is pressed, we instead also set the motor to 0.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// get joystick value</span>
+    <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">operator</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+    <span class="c1">// set belt motor to joystick value initially</span>
+    <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+
+    <span class="c1">// but, if the elevator is moving up, and the top limit switch is pressed</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">Elevator</span><span class="o">.</span><span class="na">TOP_LIMIT_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">())</span>
+    <span class="o">{</span>
+        <span class="c1">// set the motor to 0</span>
+        <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// but, if the elevator is moving down, and the bottom limit switch is pressed</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">Elevator</span><span class="o">.</span><span class="na">BOTTOM_LIMIT_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">())</span>
+    <span class="o">{</span>
+        <span class="c1">// set the motor to 0</span>
+        <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If Elevator isn&#8217;t resolved, make sure to import it.</p>
+<p>We always want the operator to have control over the elevator, so this command should never finish. Thus, leave isFinished() as it is.</p>
+<p>And, for safety purposes, when this command has to end(), it should stop the belt motor. interrupted() should do the same.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// Called once after isFinished returns true</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// Called when another command which requires one or more of the same</span>
+<span class="c1">// subsystems is scheduled to run</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">end</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-the-command">
+<h2>Running the command<a class="headerlink" href="#running-the-command" title="Permalink to this headline">¶</a></h2>
+<p>Now, go into the Elevator subsystem and make ElevatorManualControl the default command of the Elevator subsystem.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="c1">// Give the operator control of the elevator unless interrupted</span>
+    <span class="n">setDefaultCommand</span><span class="o">(</span><span class="k">new</span> <span class="n">ElevatorManualControl</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Make sure that ElevatorManualControl requires Robot.elevator, and that the Elevator subsystem is constructed in the Robot class, or else there will be a IllegalUseOfCommandException.</p>
+<p>And that&#8217;s it! Now, the operator has manual control over the elevator in a safe way.</p>
+</div>
+<div class="section" id="final-code">
+<h2>Final code<a class="headerlink" href="#final-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.usfirst.frc.team93.robot.Robot</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.usfirst.frc.team93.robot.subsystems.Elevator</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.Command</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * This command gives the operator manual control over the elevator motor.</span>
+<span class="cm"> * However, if the elevator hits the top limit switch, it cannot go any further up.</span>
+<span class="cm"> * The same goes for the bottom limit switch.</span>
+<span class="cm"> * This is a safety measure so that the elevator cannot damage itself.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ElevatorManualControl</span> <span class="kd">extends</span> <span class="n">Command</span>
+<span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">ElevatorManualControl</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">elevator</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called just before this Command runs the first time</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// get joystick value</span>
+        <span class="kt">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">operator</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="c1">// set belt motor to joystick value initially</span>
+        <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+
+        <span class="c1">// but, if the elevator is moving up, and the top limit switch is pressed</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">Elevator</span><span class="o">.</span><span class="na">TOP_LIMIT_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">())</span>
+        <span class="o">{</span>
+            <span class="c1">// set the motor to 0</span>
+            <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// but, if the elevator is moving down, and the bottom limit switch is pressed</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">Elevator</span><span class="o">.</span><span class="na">BOTTOM_LIMIT_SWITCH</span><span class="o">.</span><span class="na">get</span><span class="o">())</span>
+        <span class="o">{</span>
+            <span class="c1">// set the motor to 0</span>
+            <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once after isFinished returns true</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Elevator</span><span class="o">.</span><span class="na">BELT_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called when another command which requires one or more of the same</span>
+    <span class="c1">// subsystems is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="drivesetpoint.html" class="btn btn-neutral float-right" title="Driving a Distance Forward" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="claw.html" class="btn btn-neutral" title="Open and Close a Claw" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>More Command Types &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Commands" href="commands.html"/>
+        <link rel="next" title="InstantCommand" href="morecommands/instant.html"/>
+        <link rel="prev" title="Commands" href="commands.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="structure.html">Structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="robot.html">Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="robotmap.html">RobotMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oi.html">OI</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="commands.html">Commands</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">More Command Types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="subsystems.html">Subsystems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commandgroups.html">CommandGroups</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="structure.html">Structure</a> &raquo;</li>
+        
+          <li><a href="commands.html">Commands</a> &raquo;</li>
+        
+      <li>More Command Types</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="more-command-types">
+<h1>More Command Types<a class="headerlink" href="#more-command-types" title="Permalink to this headline">¶</a></h1>
+<p>Although Command and CommandGroup are the most commonly used types of commands, WPI Library provides some more command classes that may be useful.</p>
+<p>Note that some of these may not work in FRC Simulator, so you may have to implement these yourself.</p>
+<div class="section" id="commonly-used">
+<h2>Commonly used<a class="headerlink" href="#commonly-used" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><a class="reference external" href="morecommands/instant.html">InstantCommand</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This command type runs once, then finishes. It&#8217;s useful for commands that are just one-time method calls, which many are.</p>
+</div>
+<div class="section" id="id2">
+<h3><a class="reference external" href="morecommands/wait.html">WaitCommand</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Although our team commonly re-invents the wheel by creating our own SleepCommand, we could just use WaitCommand instead. This command waits a given number of seconds. This is mainly useful for autonomous timing, but can also be used to make sure a pneumatic cylinder has finished moving before moving other parts to prevent damage.</p>
+</div>
+<div class="section" id="id3">
+<h3><a class="reference external" href="morecommands/print.html">PrintCommand</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>This command type simply prints out a message to the riolog. This is mainly used for debugging autonomous or other command groups, to check when certain commands start and finish by printing out messages before they start or after they finish by putting PrintCommands in the command group.</p>
+</div>
+</div>
+<div class="section" id="never-used">
+<h2>Never used<a class="headerlink" href="#never-used" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conditionalcommand">
+<h3>ConditionalCommand<a class="headerlink" href="#conditionalcommand" title="Permalink to this headline">¶</a></h3>
+<p>This command type runs one command if the condition is true, and the other command if the condition is false. This is useful for commands that are designed to toggle something when pressed. However, the main issue is that using a ConditionalCommand to implement a toggle is clunky. It would be better to either make a subsystem method for this, or just use a normal command with an if statement.</p>
+</div>
+<div class="section" id="timedcommand">
+<h3>TimedCommand<a class="headerlink" href="#timedcommand" title="Permalink to this headline">¶</a></h3>
+<p>This command type runs for a certain amount of time, but finishes. This is essentially a WaitCommand, except you can run things in execute() and the like during this command. However, I have never used this, since if a timeout is necessary, it often also needs a more complex, custom implementation in a normal Command using a Timer.</p>
+</div>
+<div class="section" id="startcommand">
+<h3>StartCommand<a class="headerlink" href="#startcommand" title="Permalink to this headline">¶</a></h3>
+<p>This command type starts the command passed into its constructor. All it does is start another command and finish immediately, so this command seems pretty useless. Why not just start the original command?  I&#8217;ve never had any reason to use this.</p>
+</div>
+<div class="section" id="waitforchildren">
+<h3>WaitForChildren<a class="headerlink" href="#waitforchildren" title="Permalink to this headline">¶</a></h3>
+<p>This command type is only useful in a CommandGroup. Otherwise, it finishes immediately. In a CommandGroup, it waits for all of the commands running from addParallel before finishing. That way, you can make sure all of your parallel commands finish before moving along in your addSequential line. Although it can be useful in certain situations, I&#8217;ve never had to use this. Usually, WaitCommand is better suited.</p>
+</div>
+<div class="section" id="waituntilcommand">
+<h3>WaitUntilCommand<a class="headerlink" href="#waituntilcommand" title="Permalink to this headline">¶</a></h3>
+<p>This command type waits until an absolute game time, such as 120 seconds on the match clock. There has never really been a reason to keep track of the match clock, so I have never used this command type.</p>
+</div>
+<div class="section" id="pidcommand">
+<h3>PIDCommand<a class="headerlink" href="#pidcommand" title="Permalink to this headline">¶</a></h3>
+<p>This command type has a build in PID Controller. However, it&#8217;s actually easier and neater to just use the PID Controller in the subsystem anyway, so this command type isn&#8217;t very useful.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="morecommands/instant.html" class="btn btn-neutral float-right" title="InstantCommand" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="commands.html" class="btn btn-neutral" title="Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

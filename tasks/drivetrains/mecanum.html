@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mecanum Drive &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Drive Trains" href="drivetrains.html"/>
+        <link rel="next" title="Swerve Drive" href="swerve.html"/>
+        <link rel="prev" title="Advanced Tank Drive" href="advancedtank.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="drivetrains.html">Drive Trains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="advancedtank.html">Advanced Tank Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advancedtank.html#sensitivity-and-control-curves">Sensitivity and Control Curves</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Mecanum Drive</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="swerve.html">Swerve Drive</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="drivetrains.html">Drive Trains</a> &raquo;</li>
+        
+      <li>Mecanum Drive</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mecanum-drive">
+<h1>Mecanum Drive<a class="headerlink" href="#mecanum-drive" title="Permalink to this headline">¶</a></h1>
+<p>Mecanum Drive is a type of drive train which uses special wheels called Mecanum wheels, and in which each of the robot&#8217;s 4 wheels can rotate independently. The cool thing about Mecanum drive is that, since the wheels are straight but have slanted rollers, the robot can move in any direction.</p>
+<a class="reference internal image-reference" href="../../_images/mecanum.png"><img alt="../../_images/mecanum.png" src="../../_images/mecanum.png" style="width: 40%;" /></a>
+<p>Since the wheels have slanted rollers, by turning the wheels against each other, the robot can move in any direction. Unlike tank drive, which can only move forwards, move backwards, and turn, a mecanum drive can not only move forward, backward, and turn, but it can also move left, right, or in any angle by modifying the motor power.</p>
+<a class="reference internal image-reference" href="../../_images/mecanum2.png"><img alt="../../_images/mecanum2.png" src="../../_images/mecanum2.png" style="width: 100%;" /></a>
+<p>This extra ability to strafe gives a robot some more mobility. However, since there are still rollers on every wheel, mecanum drive robots are usually more easily pushed around by other robots, and thus will not excel at defense. Mecanum drive robots also have less pushing power, since the wheels are designed to slip to allow strafing movement.</p>
+<p>This type of drive train would be used in a robot where mobility is valued over speed and pushing power.</p>
+<div class="section" id="mecanum-drive-subsystem">
+<h2>Mecanum Drive subsystem<a class="headerlink" href="#mecanum-drive-subsystem" title="Permalink to this headline">¶</a></h2>
+<p>First, create a subsystem class named Drive, as with all drivetrains. In this example, since it&#8217;s Mecanum drive, we have 4 motors that turn independently. We also have 4 encoders, one for each wheel (although you only really need one encoder, it may be nice to have more, since mecanum wheels are known to slip easily).</p>
+<p>Create the 4 motors and the 4 encoders by declaring them in the class and initializing them in the constructor. Don&#8217;t forget to add the Drive subsystem to Robot, as usual.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Mecanum Drive subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Drive</span> <span class="kd">extends</span> <span class="n">Subsystem</span>
+<span class="o">{</span>
+    <span class="c1">// Motors</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">LEFT_FRONT_DRIVE_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">LEFT_BACK_DRIVE_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">RIGHT_FRONT_DRIVE_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">RIGHT_BACK_DRIVE_MOTOR</span><span class="o">;</span>
+
+    <span class="c1">// Encoders</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">LEFT_FRONT_DRIVE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">LEFT_BACK_DRIVE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">RIGHT_FRONT_DRIVE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">RIGHT_BACK_DRIVE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">MedianPIDSource</span> <span class="n">DRIVE_ENCODERS</span><span class="o">;</span>
+
+    <span class="c1">// Gyro</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">AHRS</span> <span class="n">DRIVE_GYRO</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Drive</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// Motors</span>
+        <span class="n">LEFT_FRONT_DRIVE_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_MOTOR_PIN</span><span class="o">);</span>
+
+        <span class="c1">// Encoders</span>
+        <span class="n">LEFT_FRONT_DRIVE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_ENCODER_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_ENCODER_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">DRIVE_ENCODERS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MedianPIDSource</span><span class="o">(</span><span class="n">LEFT_FRONT_DRIVE_ENCODER</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_ENCODER</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_ENCODER</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_ENCODER</span><span class="o">);</span>
+
+        <span class="c1">// Gyro</span>
+        <span class="n">DRIVE_GYRO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AHRS</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">MXP_PORT</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>When we move using Mecanum drive, there are 2 different things we can do: We can translate (move without turning), and we can turn. So, we need a method that sets the 4 motors using the direction we want to translate, how fast we want to translate, and how fast want to turn.</p>
+<p>To write our Mecanum drive method, let&#8217;s start with making the robot translate. First, it&#8217;s important to notice that we can not only translate front, back, left, and right, but that we can move in any direction. If we want to move forward and left, for example, notice that the front left and back right wheels are all pointing forward and to the left. Set those wheels to full power, and the others to 0. That will cause the robot to go forward and left. In this way, we can use different combinations of wheel power to make the robot move in any direction.</p>
+<a class="reference internal image-reference" href="../../_images/mecanum3.png"><img alt="../../_images/mecanum3.png" src="../../_images/mecanum3.png" style="width: 100%;" /></a>
+<p>Notice that, in the above graphic, each diagonal pair of wheels (front left and back right, back left and front right) are always set to the same value. This holds for any direction we want to translate in, since each diagonal pair of wheels is facing the same way (as long as we&#8217;re only translating, and not turning yet).</p>
+<p>Here, it&#8217;s important to note that mecanum wheels are slanted at 45°. This means that, when we supply a direction, we can figure out what sum of the mecanum wheel vectors will give us our desired angle.</p>
+<p>This image shows can see that all we need to do is break up any angle&#8217;s unit vector into two vectors that add up to it, and if we turn the wheels with the correct ratio in power, the robot should move in that direction.</p>
+<a class="reference internal image-reference" href="../../_images/mecanum4.png"><img alt="../../_images/mecanum4.png" src="../../_images/mecanum4.png" style="width: 100%;" /></a>
+<p>The way to do this is by transforming the angle&#8217;s unit vector to the coordinate system that is rotated at -45°. The formula for doing this, for every angle θ is:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>A&amp;D power = sin(θ)cos(45°) + cos(θ)sin(45°) = (√2 / 2) * (sin(θ) + cos(θ))
+B&amp;C power = sin(θ)sin(45°) - cos(θ)cos(45°) = (√2 / 2) * (sin(θ) - cos(θ))
+</pre></div>
+</div>
+<p>This formula was derived simply from the angle addition formulas. Since we&#8217;re converting to a coordinate that&#8217;s rotated -45° system, an equivalent operation is instead rotating the point 45° using the angle addition formulas.</p>
+<p>Now, we know what power to set the wheels when translating, since the above formula gives us a unit vector, so we can simply multiply by the translation power to get the final motor power to use:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setMecanumDrive</span><span class="o">(</span><span class="kt">double</span> <span class="n">translationAngle</span><span class="o">,</span> <span class="kt">double</span> <span class="n">translationPower</span><span class="o">,</span> <span class="kt">double</span> <span class="n">turnPower</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// calculate motor power</span>
+    <span class="kt">double</span> <span class="n">ADPower</span> <span class="o">=</span> <span class="n">translationPower</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">)</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">));</span>
+    <span class="kt">double</span> <span class="n">BCPower</span> <span class="o">=</span> <span class="n">translationPower</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">)</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">));</span>
+
+    <span class="c1">// set the motors</span>
+    <span class="n">LEFT_FRONT_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ADPower</span><span class="o">);</span>
+    <span class="n">LEFT_BACK_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">BCPower</span><span class="o">);</span>
+    <span class="n">RIGHT_FRONT_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">BCPower</span><span class="o">);</span>
+    <span class="n">RIGHT_BACK_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ADPower</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This works for translation, but we also need to factor in turning power.</p>
+<p>We want to make it so that if turning power is small, the normal translation is not affected. However, if turning power is large, the turning will start to take more of an effect, causing the left side wheels and right side wheels to turn at different speeds.</p>
+<p>One simple way would be to, for example, simply add turningPower to the right wheels and subtract it from the left wheels. However, this is not optimal, since the maximum motor output is 1.0, and you may set one motor over 1.0 with this way of turning, causing the translation angle to be wrong.</p>
+<p>Instead, we will keep track of the motor values, and make sure that, if we are going to set a motor&#8217;s power over 1.0 or under -1.0, which would affect the translation angle, then we instead scale the other motors down to make sure that doesn&#8217;t happen.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setMecanumDrive</span><span class="o">(</span><span class="kt">double</span> <span class="n">translationAngle</span><span class="o">,</span> <span class="kt">double</span> <span class="n">translationPower</span><span class="o">,</span> <span class="kt">double</span> <span class="n">turnPower</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="c1">// calculate motor power</span>
+    <span class="kt">double</span> <span class="n">ADPower</span> <span class="o">=</span> <span class="n">translationPower</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">)</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">));</span>
+    <span class="kt">double</span> <span class="n">BCPower</span> <span class="o">=</span> <span class="n">translationPower</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">)</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="na">cos</span><span class="o">(</span><span class="n">translationAngle</span><span class="o">));</span>
+
+    <span class="c1">// check if turning power will interfere with normal translation</span>
+    <span class="c1">// check ADPower to see if trying to apply turnPower would put motor power over 1.0 or under -1.0</span>
+    <span class="kt">double</span> <span class="n">turningScale</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">ADPower</span> <span class="o">+</span> <span class="n">turnPower</span><span class="o">),</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">ADPower</span> <span class="o">-</span> <span class="n">turnPower</span><span class="o">));</span>
+    <span class="c1">// check BCPower to see if trying to apply turnPower would put motor power over 1.0 or under -1.0</span>
+    <span class="n">turningScale</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">turningScale</span><span class="o">,</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">BCPower</span> <span class="o">+</span> <span class="n">turnPower</span><span class="o">),</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">BCPower</span> <span class="o">-</span> <span class="n">turnPower</span><span class="o">)));</span>
+
+    <span class="c1">// adjust turn power scale correctly</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">turningScale</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">turningScale</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// set the motors, and divide them by turningScale to make sure none of them go over the top, which would alter the translation angle</span>
+    <span class="n">LEFT_FRONT_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">ADPower</span> <span class="o">-</span> <span class="n">turningScale</span><span class="o">)</span> <span class="o">/</span> <span class="n">turningScale</span><span class="o">);</span>
+    <span class="n">LEFT_BACK_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">BCPower</span> <span class="o">-</span> <span class="n">turningScale</span><span class="o">)</span> <span class="o">/</span> <span class="n">turningScale</span><span class="o">);</span>
+    <span class="n">RIGHT_FRONT_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">BCPower</span> <span class="o">+</span> <span class="n">turningScale</span><span class="o">)</span> <span class="o">/</span> <span class="n">turningScale</span><span class="o">);</span>
+    <span class="n">RIGHT_BACK_DRIVE_MOTOR</span><span class="o">.</span><span class="na">set</span><span class="o">((</span><span class="n">ADPower</span> <span class="o">+</span> <span class="n">turningScale</span><span class="o">)</span> <span class="o">/</span> <span class="n">turningScale</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, using this method, we can create a Mecanum drive command. For mecanum drive, we usually use a joystick rather than a controller. In this example, we&#8217;ll use one joystick, with the direction it&#8217;s pointed at being the translationAngle and the joystick&#8217;s magnitude away from the center being the translationPower. Then, using the twist axis, we can get turnPower.</p>
+<a class="reference internal image-reference" href="../../_images/joystick.png"><img alt="../../_images/joystick.png" src="../../_images/joystick.png" style="width: 70%;" /></a>
+<p>Also, note that there are two modes for a Mecanum drive: Field centric, and Robot centric.</p>
+<a class="reference internal image-reference" href="../../_images/centric.png"><img alt="../../_images/centric.png" src="../../_images/centric.png" style="width: 70%;" /></a>
+<p>Field centric mode is control from the perspective of the driver. This means that, no matter where the robot is on the field and how it&#8217;s turned, if the driver moves the joystick forward, then the robot will go forward from the driver&#8217;s perspective. This type of control requires a gyro (which any mecanum drive robot should have).</p>
+<p>In Robot centric mode, however, if the robot were turned to the right, then the robot would go rightwards from the driver&#8217;s perspective.</p>
+<p>In this example, we add in one line of code to the command that makes it field centric. To make it robot centric, simply remove the line.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Mecanum drive command</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DriveContinuous</span> <span class="kd">extends</span> <span class="n">Command</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">DriveContinuous</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">drive</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called just before this Command runs the first time</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// get joystick input</span>
+        <span class="kt">double</span> <span class="n">angle</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">arctan2</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+        <span class="kt">double</span> <span class="n">magnitude</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">hypot</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+        <span class="kt">double</span> <span class="n">twist</span> <span class="o">=</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+
+        <span class="c1">// use field centric controls by subtracting off the robot angle</span>
+        <span class="n">angle</span> <span class="o">-=</span> <span class="n">Drive</span><span class="o">.</span><span class="na">DRIVE_GYRO</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+        <span class="n">Drive</span><span class="o">.</span><span class="na">setMecanumDrive</span><span class="o">(</span><span class="n">angle</span><span class="o">,</span> <span class="n">magnitude</span><span class="o">,</span> <span class="n">twist</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once after isFinished returns true</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// sets all drive wheels to 0.0</span>
+        <span class="n">Drive</span><span class="o">.</span><span class="na">setMecanumDrive</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called when another command which requires one or more of the same</span>
+    <span class="c1">// subsystems is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">end</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, just don&#8217;t forget to make DriveContinuous the default command:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">setDefaultCommand</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveContinuous</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And that&#8217;s all there is to Mecanum drive! of course, it is possible to add PID controllers to make sure the robot holds its angle and other enhancements, but now that there is a setMecanumDrive method, these improvements should be fairly easy, since you can make custom PID Outputs that call setMecanumDrive.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="swerve.html" class="btn btn-neutral float-right" title="Swerve Drive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="advancedtank.html" class="btn btn-neutral" title="Advanced Tank Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

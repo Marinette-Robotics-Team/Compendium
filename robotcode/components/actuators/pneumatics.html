@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pneumatics and Solenoids &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Actuators" href="actuators.html"/>
+        <link rel="next" title="PID Components" href="../pid/pid.html"/>
+        <link rel="prev" title="Motors and Speed Controllers" href="motors.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sensors/sensors.html">Sensors</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="actuators.html">Actuators</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="motors.html">Motors and Speed Controllers</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Pneumatics and Solenoids</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../pid/pid.html">PID Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="actuators.html">Actuators</a> &raquo;</li>
+        
+      <li>Pneumatics and Solenoids</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pneumatics-and-solenoids">
+<h1>Pneumatics and Solenoids<a class="headerlink" href="#pneumatics-and-solenoids" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="../../../_images/am-3303-2.jpg"><img alt="../../../_images/am-3303-2.jpg" src="../../../_images/am-3303-2.jpg" style="width: 40%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/am-3324-2.jpg"><img alt="../../../_images/am-3324-2.jpg" src="../../../_images/am-3324-2.jpg" style="width: 40%;" /></a>
+<p>Instead of how motors are directly controlled by electricity, pneumatics are controlled by air pressure. Instead of a turning motion like with motors, pneumatics are cylinders that can push a shaft outwards and retract it inwards. These are often used in Drive for gear shifting, or subsystems when a pushing or retracting motion is required.</p>
+<p>Instead of being connected to any pin on the RoboRIO, pneumatics are connected to the Pneumatics Control Module (PCM).</p>
+<p>Mainly, software controls the pistons through Solenoids.
+We usually use DoubleSolenoids, which can be set to push, retract, or neutral.
+A single action Solenoid can only be set to either push or neutral. Because they give us less control, we rarely use these unless we run out of PCM pins.</p>
+<p>DoubleSolenoids use two pins on the PCM. Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">DoubleSolenoid</span> <span class="n">grabber</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleSolenoid</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Single action Solenoids only use one pin on the PCM. Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Solenoid</span> <span class="n">grabber</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Solenoid</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>To set the position of a DoubleSolenoid, use the DoubleSolenoid.Value enum.</p>
+<p>Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">grabber</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>For single action Solenoids, just use a boolean on whether to push or not.</p>
+<p>Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">grabber</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Make sure to be familiar with the status light meanings of the PCM. It can really help in certain debugging situations.
+<a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/24166/l/144972-status-light-quick-reference">Status light reference</a></p>
+<p>Additionally, if the PCM isn&#8217;t working, make sure to check the PCM on the RoboRIO webdashboard at 172.22.11.2. The PCM should be on CAN channel 0, and have no sticky faults. Press the Self-Test button to check for sticky faults, which should print out the issue if there is one.
+Often, the issue is faulty wiring (e.g. bad crimp). Once all electrical issues are resolved, quadruple click the Self-Test button to clear the faults.</p>
+<p>When debugging code related to solenoids, it&#8217;s helpful to examine the LEDs on the solenoids. If the LEDs are changing correctly but no pneumatic cylinders are actuating, then the problem may be an issue with the pneumatics.</p>
+<p>For more information, see <a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/13809/l/599708-operating-pneumatic-cylinders-solenoids">WPILib&#8217;s documentation on pneumatics</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../pid/pid.html" class="btn btn-neutral float-right" title="PID Components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="motors.html" class="btn btn-neutral" title="Motors and Speed Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

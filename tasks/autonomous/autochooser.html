@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Autonomous example &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Autonomous Code" href="autonomous.html"/>
+        <link rel="next" title="Autonomous Testing" href="autotesting.html"/>
+        <link rel="prev" title="Autonomous Code" href="autonomous.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="autonomous.html">Autonomous Code</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Autonomous example</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autotesting.html">Autonomous Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="autonomous.html">Autonomous Code</a> &raquo;</li>
+        
+      <li>Autonomous example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="autonomous-example">
+<h1>Autonomous example<a class="headerlink" href="#autonomous-example" title="Permalink to this headline">¶</a></h1>
+<p>This article examines 2017&#8217;s autonomous code. It serves as both an example of what autonomous code might look like as well as a tutorial on how to implement an autonomous chooser, since autonomous will almost always need a chooser anyway.</p>
+<p>The design of 2017&#8217;s robot is that it is composed of three subsystems: the Drive, the Climber, and the Gear Manipulator. However, in this game, since climbing can only happen at the end of the match, not in the autonomous period in the beginning, the climber will not play a role in this example.</p>
+<p>For the purposes of simplicity, although the 2017 robot had a swerve drive, since its autonomous only used tank drive functionality (DriveForwards and TurnToAngle), its drive subsystem will be treated like a tank drive.</p>
+<div class="section" id="find-out-what-commands-you-have">
+<h2>1. Find out what commands you have<a class="headerlink" href="#find-out-what-commands-you-have" title="Permalink to this headline">¶</a></h2>
+<p>Here, the commands that are usable in autonomous will be listed. Commands used only in teleop mode, such as DriveContinuous, will not be listed.</p>
+<p>Drive Commands:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>DriveForwards(double distance)</dt>
+<dd>Drives the robot forward a given number of encoder ticks. There are 10.25 encoder ticks per inch. A negative value can be passed in to make the robot drive backwards.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>TurnToAngle(double angle)</dt>
+<dd>Turns the robot to a given angle, relative to its starting angle. For example, if 30.0 is passed in, it will turn to 30 degrees counterclockwise of the angle it started at.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Gear Manipulator Commands</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt>MoveGearSafe(GearLocation location)</dt>
+<dd>Moves the gear manipulator to a specified GearLocation along the track by turning the belt motor. GearLocation includes BOTTOM_BACK, BOTTOM_FRONT, PEG, and CHUTE.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>OpenClaw()</dt>
+<dd>Opens the claw, releasing the gear</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>CloseClaw()</dt>
+<dd>Closes the claw.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="make-and-write-the-autonomous-plans">
+<h2>2. Make and write the autonomous plans<a class="headerlink" href="#make-and-write-the-autonomous-plans" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re unfamiliar with 2017&#8217;s game, see the <a class="reference external" href="https://www.youtube.com/watch?v=EMiNmJW7enI">2017 FIRST Robotics Competition STEAMWORKS Game Animation</a>.</p>
+<p>Note that each robot starts with a gear. We want to deliver this gear to a peg, so that it can score points. We start the game by having our gear in the gear manipulator.</p>
+<p>Also, in autonomous, the robot cannot cross over to the other side of the field. So, we only care about our side of the field in this situation.</p>
+<div class="section" id="here-s-a-map-of-one-side-of-the-field">
+<h3>Here&#8217;s a map of one side of the field:<a class="headerlink" href="#here-s-a-map-of-one-side-of-the-field" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/field.png"><img alt="../../_images/field.png" src="../../_images/field.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="now-for-the-field-dimensions">
+<h3>Now, for the field dimensions:<a class="headerlink" href="#now-for-the-field-dimensions" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/measure.png"><img alt="../../_images/measure.png" src="../../_images/measure.png" style="width: 100%;" /></a>
+<p>Measurements for each length:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Robot Length: 41 inches</li>
+<li>Robot Width: 36 inches</li>
+<li>Airship Side Length: 40 inches</li>
+<li>Baseline to Airship: 114 inches</li>
+<li>Center to Key: 54 inches</li>
+<li>Center to Loading Zone: 78 inches</li>
+</ul>
+</div></blockquote>
+<p>Now, note that there are 3 different starting positions. For each of the starting positions, there needs to be an autonomous plan that covers how to place a gear in that position.</p>
+</div>
+<div class="section" id="plan-for-position-b">
+<h3>Plan for Position B:<a class="headerlink" href="#plan-for-position-b" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;re going to start with position B, since the plan for position B is the simplest. The peg is directly in front of the robot.</p>
+<p>Also, here, you can see that the distance we need to drive forwards is:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="o">(</span><span class="n">Baseline</span> <span class="n">to</span> <span class="n">Airship</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="n">Robot</span> <span class="n">Length</span><span class="o">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/planb.png"><img alt="../../_images/planb.png" src="../../_images/planb.png" style="width: 100%;" /></a>
+<p>So, all we need to do now is move the gear to the peg&#8217;s height, drive forwards by the correct distance, open the claw to release the gear, then back up the length of the peg so that the gear can be pulled up.</p>
+<p>So, our autonomous plan would be:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">MoveGearSafe</span><span class="o">(</span><span class="n">GearLocation</span><span class="o">.</span><span class="na">PEG</span><span class="o">));</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(</span><span class="n">BASELINE_TO_AIRSHIP</span> <span class="o">-</span> <span class="n">ROBOT_LENGTH</span><span class="o">);</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">OpenClaw</span><span class="o">());</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(-</span><span class="n">PEG_LENGTH</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plan-for-position-a">
+<h3>Plan for Position A:<a class="headerlink" href="#plan-for-position-a" title="Permalink to this headline">¶</a></h3>
+<p>Next up is the autonomous plan for position A. This one is a bit more complicated.</p>
+<p>Since the robot can only really place the gear on the peg when perpendicular to the airship wall, the robot will have to approach the peg at an angle of -60°. This angle is negative since counterclockwise is the positive direction, and the robot in this case must be rotated clockwise.</p>
+<p>Thus, our plan is to go forward to line up the robot, then turn to -60° and then go place the gear.</p>
+<a class="reference internal image-reference" href="../../_images/plana.png"><img alt="../../_images/plana.png" src="../../_images/plana.png" style="width: 100%;" /></a>
+<p>However, we need to calculate the Forward Distance and the Turned Distance.</p>
+<p>First, let&#8217;s figure out where the peg is in relation to the robot at that position.</p>
+<p>To determine how far to the right the peg is:</p>
+<a class="reference internal image-reference" href="../../_images/plana1.png"><img alt="../../_images/plana1.png" src="../../_images/plana1.png" style="width: 100%;" /></a>
+<p>First, let&#8217;s determine the robot&#8217;s left/right position. We consider the robot&#8217;s position to be the center of the robot, so, relative to the center of the field, the robot is at:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">ROBOT_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="n">CENTER_TO_LOADING_ZONE</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_WIDTH</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>This is because it&#8217;s at the loading zone, except to account for the position at the center of the robot, half of the width is subtracted off.</p>
+<p>Then, about the position of the peg, we know the size of the airship. So, using that and the 30-60-90 triangle rules, we can find that the left/right position of the peg at:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>This is the same as:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>Now, to find the distance between the two positions, take the robot&#8217;s position and subtract the peg&#8217;s position.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="n">CENTER_TO_LOADING_ZONE</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_WIDTH</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>This is confirmed visually by the graphic.</p>
+<p>Now, for the peg&#8217;s forward position from the robot:</p>
+<a class="reference internal image-reference" href="../../_images/plana2.png"><img alt="../../_images/plana2.png" src="../../_images/plana2.png" style="width: 100%;" /></a>
+<p>This is a bit easier to find. Simply start with the distance from the baseline to the airship, and then add the distance from the closest airship edge to the peg.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">PEG_FORWARD_POSITION</span> <span class="o">=</span> <span class="n">BASELINE_TO_AIRSHIP</span> <span class="o">+</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Now, since we know the peg&#8217;s position, we can calculate the autonomous plan&#8217;s Forward Distance and Turned Distance.</p>
+<a class="reference internal image-reference" href="../../_images/plana3.png"><img alt="../../_images/plana3.png" src="../../_images/plana3.png" style="width: 100%;" /></a>
+<p>First, notice that the Turned Distance, by the 30-60-90 triangle rule, is:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">TURNED_DISTANCE</span> <span class="o">=</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Then, for forward position, note that it is simply the Peg Forward position, except with half of the robot length subtracted off (since the center of the robot is in the middle) and then with another (PEG_RIGHTWARD_POSITION / Math.sqrt(3)) to account for the forward distance traveled after turning -60°.</p>
+<p>Hence, the forward distance is:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">FORWARD_DISTANCE</span> <span class="o">=</span> <span class="n">PEG_FORWARD_POSITION</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_LENGTH</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+</pre></div>
+</div>
+<p>Now, since the distances have been calculated, the only thing left is to plug them into the autonomous plan:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">MoveGearSafe</span><span class="o">(</span><span class="n">GearLocation</span><span class="o">.</span><span class="na">PEG</span><span class="o">));</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForward</span><span class="o">(</span><span class="n">FORWARD_DISTANCE</span><span class="o">));</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">TurnToAngle</span><span class="o">(-</span><span class="mf">60.0</span><span class="o">));</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForward</span><span class="o">(</span><span class="n">TURNED_DISTANCE</span><span class="o">));</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">OpenClaw</span><span class="o">());</span>
+<span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(-</span><span class="n">PEG_LENGTH</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plan-for-position-c">
+<h3>Plan for Position C:<a class="headerlink" href="#plan-for-position-c" title="Permalink to this headline">¶</a></h3>
+<p>An important thing to note about the position C autonomous plan is that it is extremely similar to position A&#8217;s autonomous plan. The only differences are that the robot turns to 60° instead of -60°, and that when finding the Robot&#8217;s rightward position similar to in plan A, instead of:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">ROBOT_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="n">CENTER_TO_LOADING_ZONE</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_WIDTH</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>use:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">ROBOT_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="n">CENTER_TO_KEY</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_WIDTH</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>since we are starting by the key instead of the loading zone. All other formulas and commands remain the same.</p>
+</div>
+</div>
+<div class="section" id="implementing-an-autonomous-chooser">
+<h2>3. Implementing an Autonomous Chooser<a class="headerlink" href="#implementing-an-autonomous-chooser" title="Permalink to this headline">¶</a></h2>
+<p>Now, we have 3 different autonomous plans, so we must give the driver a way to choose between them.</p>
+<p>First, create an enum that will represent each plan.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">enum</span> <span class="n">Plan</span>
+<span class="o">{</span>
+    <span class="n">POSITION_A</span><span class="o">,</span> <span class="n">POSITION_B</span><span class="o">,</span> <span class="n">POSITION_C</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, in the command group&#8217;s constructor, make it so that a Plan must be passed in.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">Autonomous</span><span class="o">(</span><span class="n">Plan</span> <span class="n">plan</span><span class="o">)</span>
+<span class="o">{</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, add a switch statement that uses the plan.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">Autonomous</span><span class="o">(</span><span class="n">Plan</span> <span class="n">plan</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">switch</span><span class="o">(</span><span class="n">plan</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">case</span> <span class="n">POSITION_A</span><span class="o">:</span>
+            <span class="k">break</span><span class="o">;</span>
+
+        <span class="k">case</span> <span class="n">POSITION_B</span><span class="o">:</span>
+            <span class="k">break</span><span class="o">;</span>
+
+        <span class="k">case</span> <span class="n">POSITION_C</span><span class="o">:</span>
+            <span class="k">break</span><span class="o">;</span>
+
+<span class="nl">        default:</span>
+            <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, plug in the autonomous plans into the switch statement.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">Autonomous</span><span class="o">(</span><span class="n">Plan</span> <span class="n">plan</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">switch</span><span class="o">(</span><span class="n">plan</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">case</span> <span class="n">POSITION_A</span><span class="o">:</span>
+
+            <span class="kt">double</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="n">CENTER_TO_LOADING_ZONE</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_WIDTH</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">PEG_FORWARD_POSITION</span> <span class="o">=</span> <span class="n">BASELINE_TO_AIRSHIP</span> <span class="o">+</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+
+            <span class="kt">double</span> <span class="n">TURNED_DISTANCE</span> <span class="o">=</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">FORWARD_DISTANCE</span> <span class="o">=</span> <span class="n">PEG_FORWARD_POSITION</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_LENGTH</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">MoveGearSafe</span><span class="o">(</span><span class="n">GearLocation</span><span class="o">.</span><span class="na">PEG</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForward</span><span class="o">(</span><span class="n">FORWARD_DISTANCE</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">TurnToAngle</span><span class="o">(-</span><span class="mf">60.0</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForward</span><span class="o">(</span><span class="n">TURNED_DISTANCE</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">OpenClaw</span><span class="o">());</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(-</span><span class="n">PEG_LENGTH</span><span class="o">);</span>
+
+            <span class="k">break</span><span class="o">;</span>
+
+        <span class="k">case</span> <span class="n">POSITION_B</span><span class="o">:</span>
+
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">MoveGearSafe</span><span class="o">(</span><span class="n">GearLocation</span><span class="o">.</span><span class="na">PEG</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(</span><span class="n">BASELINE_TO_AIRSHIP</span> <span class="o">-</span> <span class="n">ROBOT_LENGTH</span><span class="o">);</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">OpenClaw</span><span class="o">());</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(-</span><span class="n">PEG_LENGTH</span><span class="o">);</span>
+
+            <span class="k">break</span><span class="o">;</span>
+
+        <span class="k">case</span> <span class="n">POSITION_C</span><span class="o">:</span>
+
+            <span class="kt">double</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">=</span> <span class="n">CENTER_TO_KEY</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_WIDTH</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">PEG_FORWARD_POSITION</span> <span class="o">=</span> <span class="n">BASELINE_TO_AIRSHIP</span> <span class="o">+</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">AIRSHIP_SIDE_LENGTH</span><span class="o">);</span>
+
+            <span class="kt">double</span> <span class="n">TURNED_DISTANCE</span> <span class="o">=</span> <span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+            <span class="kt">double</span> <span class="n">FORWARD_DISTANCE</span> <span class="o">=</span> <span class="n">PEG_FORWARD_POSITION</span> <span class="o">-</span> <span class="o">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">ROBOT_LENGTH</span><span class="o">)</span> <span class="o">-</span> <span class="o">(</span><span class="n">PEG_RIGHTWARD_POSITION</span> <span class="o">/</span> <span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">3</span><span class="o">));</span>
+
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">MoveGearSafe</span><span class="o">(</span><span class="n">GearLocation</span><span class="o">.</span><span class="na">PEG</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForward</span><span class="o">(</span><span class="n">FORWARD_DISTANCE</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">TurnToAngle</span><span class="o">(</span><span class="mf">60.0</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForward</span><span class="o">(</span><span class="n">TURNED_DISTANCE</span><span class="o">));</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">OpenClaw</span><span class="o">());</span>
+            <span class="n">addSequential</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveForwards</span><span class="o">(-</span><span class="n">PEG_LENGTH</span><span class="o">);</span>
+
+            <span class="k">break</span><span class="o">;</span>
+
+<span class="nl">        default:</span>
+            <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>If autonomous plans get more complex, you may want to instead use multiple command groups in a package instead of cramming them all into one command with a switch statement. A giant switch statement is almost always not an elegant solution.</p>
+<p>Now, go into the Robot class. Firstly, add a SendableChooser.</p>
+<p>In the class, declare the chooser:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SendableChooser</span><span class="o">&lt;</span><span class="n">Command</span><span class="o">&gt;</span> <span class="n">chooser</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>In robotInit, make sure to construct the chooser and add the autonomous plans to it:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * This function is run when the robot is first started up and should be</span>
+<span class="cm"> * used for any initialization code.</span>
+<span class="cm"> */</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">robotInit</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">drive</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drive</span><span class="o">();</span>
+    <span class="n">gearManipulator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GearManipulator</span><span class="o">();</span>
+    <span class="n">climber</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Climber</span><span class="o">();</span>
+    <span class="c1">// initialized more last since it uses all the commands</span>
+    <span class="n">oi</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OI</span><span class="o">();</span>
+
+<span class="hll">    <span class="c1">// init auto commands</span>
+</span><span class="hll">    <span class="n">chooser</span><span class="o">.</span><span class="na">addDefault</span><span class="o">(</span><span class="s">&quot;Auto Plan Position A&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Autonomous</span><span class="o">(</span><span class="n">Plan</span><span class="o">.</span><span class="na">POSITION_A</span><span class="o">));</span>
+</span><span class="hll">    <span class="n">chooser</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&quot;Auto Plan Position B&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Autonomous</span><span class="o">(</span><span class="n">Plan</span><span class="o">.</span><span class="na">POSITION_B</span><span class="o">));</span>
+</span><span class="hll">    <span class="n">chooser</span><span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="s">&quot;Auto Plan Position C&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Autonomous</span><span class="o">(</span><span class="n">Plan</span><span class="o">.</span><span class="na">POSITION_C</span><span class="o">));</span>
+</span>
+<span class="hll">    <span class="n">SmartDashboard</span><span class="o">.</span><span class="na">putData</span><span class="o">(</span><span class="s">&quot;Autonomous Plan&quot;</span><span class="o">,</span> <span class="n">chooser</span><span class="o">);</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, in autonomousInit(), make sure to start the chosen command:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">autonomousInit</span><span class="o">()</span>
+<span class="o">{</span>
+<span class="hll">    <span class="n">autonomousCommand</span> <span class="o">=</span> <span class="n">chooser</span><span class="o">.</span><span class="na">getSelected</span><span class="o">();</span>
+</span><span class="hll">    <span class="n">autonomousCommand</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, if this example was real, you would open SmartDashboard and start the robot. SmartDashboard would have the autonomous chooser, and the robot would perform whichever plan is selected once it starts autonomous mode.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="autotesting.html" class="btn btn-neutral float-right" title="Autonomous Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="autonomous.html" class="btn btn-neutral" title="Autonomous Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

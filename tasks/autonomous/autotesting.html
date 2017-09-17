@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Autonomous Testing &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Autonomous Code" href="autonomous.html"/>
+        <link rel="next" title="Camera" href="../camera/camera.html"/>
+        <link rel="prev" title="Autonomous example" href="autochooser.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="autonomous.html">Autonomous Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autochooser.html">Autonomous example</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Autonomous Testing</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="autonomous.html">Autonomous Code</a> &raquo;</li>
+        
+      <li>Autonomous Testing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="autonomous-testing">
+<h1>Autonomous Testing<a class="headerlink" href="#autonomous-testing" title="Permalink to this headline">¶</a></h1>
+<p>Before testing autonomous, you need to make sure that your encoders are fully functional, and also make sure that the drive PIDs are completely tuned.</p>
+<div class="section" id="testing-the-encoders">
+<h2>Testing the Encoders<a class="headerlink" href="#testing-the-encoders" title="Permalink to this headline">¶</a></h2>
+<p>Add a command that prints out all of the encoder values. It can look something like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestEncoders</span> <span class="kd">extends</span> <span class="n">Command</span>
+<span class="o">{</span>
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">SmartDashboard</span><span class="o">.</span><span class="na">putNumber</span><span class="o">(</span><span class="s">&quot;LEFT FRONT ENCODER&quot;</span><span class="o">,</span> <span class="n">Drive</span><span class="o">.</span><span class="na">LEFT_FRONT_ENCODER</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+        <span class="n">SmartDashboard</span><span class="o">.</span><span class="na">putNumber</span><span class="o">(</span><span class="s">&quot;LEFT BACK ENCODER&quot;</span><span class="o">,</span> <span class="n">Drive</span><span class="o">.</span><span class="na">LEFT_BACK_ENCODER</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+        <span class="n">SmartDashboard</span><span class="o">.</span><span class="na">putNumber</span><span class="o">(</span><span class="s">&quot;RIGHT FRONT ENCODER&quot;</span><span class="o">,</span> <span class="n">Drive</span><span class="o">.</span><span class="na">RIGHT_FRONT_ENCODER</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+        <span class="n">SmartDashboard</span><span class="o">.</span><span class="na">putNumber</span><span class="o">(</span><span class="s">&quot;RIGHT BACK ENCODER&quot;</span><span class="o">,</span> <span class="n">Drive</span><span class="o">.</span><span class="na">RIGHT_BACK_ENCODER</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, in the Robot file&#8217;s robotInit(), add:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// construct the command</span>
+<span class="n">Command</span> <span class="n">testEncoders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestEncoders</span><span class="o">();</span>
+<span class="c1">// make it run when disabled, since you can read from encoders while disabled</span>
+<span class="n">testEncoders</span><span class="o">.</span><span class="na">setRunWhenDisabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="c1">// start the command</span>
+<span class="n">testEncoders</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>Now, you can observe the encoder values in SmartDashboard.</p>
+<p>Now, turn on the robot and watch the robot as other people push it straight forward at a steady rate. Make sure all of the encoders increase at the same time, and at the end, are about the same value. If an encoder stays at 0, then either it&#8217;s not correctly connected, the pins are wrong, or it has no power. If an encoder increases slowly, or fails to increase at some times, it&#8217;s possible that the encoder shaft is slipping, or the disk is damaged, or a multitude of reasons. A scope can help diagnose issues with encoders not working, but that&#8217;s more of an electrical task than a software one.</p>
+<p>If any encoders&#8217; signal wires are flipped, their number will be negative when the robot goes forwards. Either flip the signal wires coming from the encoder, or flip the pins in RobotMap.</p>
+<p>Once all the issues with encoders are resolved, we can move on to the PIDs.</p>
+</div>
+<div class="section" id="testing-the-pids">
+<h2>Testing the PIDs<a class="headerlink" href="#testing-the-pids" title="Permalink to this headline">¶</a></h2>
+<p>Before testing autonomous code, if the drive PIDs have not yet been tuned, you will have to <a class="reference external" href="./../../robotcode/components/pid/pidcontroller2.html">tune the drive PIDs</a>.</p>
+<p>To test these drive PIDs, on a straight line, mark 2 pieces of tape, 10 feet away from each other. When the encoder values are 0, start the robot at one piece of tape, and push it forwards towards the other piece of tape until it is the same position relative to the tape as it started. This should be exactly 10 feet. Then, the final encoder values are the number of encoder ticks for the robot to move 10 feet.</p>
+<p>Now, use a DriveForward command to start the robot at one end, and drive forward towards the other piece of tape, using the same number of ticks as obtained by pushing the robot. The robot should be in the exact same position relative to the tape after the command ends. If it isn&#8217;t very accurate, then the PIDs probably need to be tuned better. Also, if time allows, try to repeat this with other distances, such as 5 feet. Then, you can be sure that the PIDs are truly tuned.</p>
+<p>Note that this is one of the most common issues in autonomous. Often, it may be incredibly difficult to get autonomous to work, but once the PIDs are tuned, eveything magically falls into place. So, be absolutely sure that the PIDs are tuned well (not just <em>good enough</em>) before moving on to autonomous testing.</p>
+<p>Once all the PIDs are known to be tuned, we can move on to actually testing autonomous.</p>
+</div>
+<div class="section" id="testing-the-autonomous-commands">
+<h2>Testing the autonomous commands<a class="headerlink" href="#testing-the-autonomous-commands" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, use tape to mark all of the important field markers. Remember that not only is each field different, but also that drivers are not allowed to use measuring tools when placing the robot. Because of this, the drivers should practice placing the robot in the same spot each time relative to the tapes that you put on the carpet. Communicate this information to drive coach as well.</p>
+<p>Then, put the robot on the practice field, and run the autonomous command to make sure it does what it&#8217;s supposed to do. If the robot is consistently missing a target by the same amount each time, then it&#8217;s OK to manually adjust the distances you&#8217;re passing into the autonomous commands. For example, if the robot is consistently driving too far each time, it may be OK to subtract off a few ticks in code to decrease the distance. However, in most cases, this is caused by a poorly tuned PID or incorrect calculations, so make sure these aren&#8217;t the issue first.</p>
+<p>Autonomous testing takes a long time, since you will have to repeatedly run the robot, adjust numbers, deploy and move it back. Because of this, make sure that you either have access to a twin robot (this usually happens), or that you have time at the end of build season to test autonomous (this never happens).</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../camera/camera.html" class="btn btn-neutral float-right" title="Camera" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="autochooser.html" class="btn btn-neutral" title="Autonomous example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

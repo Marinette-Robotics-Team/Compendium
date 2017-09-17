@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating a Subsystem &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Common Tasks" href="../tasks.html"/>
+        <link rel="next" title="Examples of Subsystems" href="examples/examplesubsystems.html"/>
+        <link rel="prev" title="Acquire gear from the front" href="../commands/examples/commandgroups/frontacquire.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating a Subsystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/examplesubsystems.html">Examples of Subsystems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+      <li>Creating a Subsystem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-a-subsystem">
+<h1>Creating a Subsystem<a class="headerlink" href="#creating-a-subsystem" title="Permalink to this headline">¶</a></h1>
+<p>A subsystem is a collection of components, methods, and a default command that allows any command to control the subsystem to do everything the subsystem should be able to do through its public methods and fields.</p>
+<div class="section" id="find-out-how-the-subsystem-works">
+<h2>1. Find out how the subsystem works<a class="headerlink" href="#find-out-how-the-subsystem-works" title="Permalink to this headline">¶</a></h2>
+<p>Writing a subsystem is usually simple once you understand how the subsystem is supposed to operate. So, the first step you should take when creating a new subsystem in code is to talk to design and electrical, and find out what components and sensors are part of that subsystem. Make a list of these components.</p>
+<p>Also, don&#8217;t forget to talk about how each part functions with respect to the rest of the design. For example, maybe the motor-controlled belt can&#8217;t move while certain pneumatics controlling the claw are extended, or maybe a motor is not designed to be able to turn backwards. These should be reflected in your subsystem.</p>
+<p>For example, the drive motors on the same side in a tank drive should never turn against each other, because if they do, the motors will burn themselves out. Thus, there should not be any way for a command to do this using the Drive subsystem. However, when it comes to non-drive subsystems, these interactions may not be as obvious.</p>
+</div>
+<div class="section" id="create-the-subsystem-s-file">
+<h2>2. Create the subsystem&#8217;s file<a class="headerlink" href="#create-the-subsystem-s-file" title="Permalink to this headline">¶</a></h2>
+<p>Right click on the project and choose <strong>New</strong> -&gt; <strong>Other</strong>.</p>
+<a class="reference internal image-reference" href="../../_images/scrnsub1.png"><img alt="../../_images/scrnsub1.png" src="../../_images/scrnsub1.png" style="width: 80%;" /></a>
+<p>Then, in the New window that appears, scroll down to <strong>WPILib Robot Java Development</strong> and choose <strong>Command</strong>.</p>
+<a class="reference internal image-reference" href="../../_images/scrnsub2.png"><img alt="../../_images/scrnsub2.png" src="../../_images/scrnsub2.png" style="width: 60%;" /></a>
+<a class="reference internal image-reference" href="../../_images/scrnsub3.png"><img alt="../../_images/scrnsub3.png" src="../../_images/scrnsub3.png" style="width: 60%;" /></a>
+<p>Then, name your command.</p>
+<a class="reference internal image-reference" href="../../_images/scrnsub4.png"><img alt="../../_images/scrnsub4.png" src="../../_images/scrnsub4.png" style="width: 70%;" /></a>
+<p>Press <strong>Finish</strong>, and it should be created.</p>
+<a class="reference internal image-reference" href="../../_images/scrnsub5.png"><img alt="../../_images/scrnsub5.png" src="../../_images/scrnsub5.png" style="width: 80%;" /></a>
+</div>
+<div class="section" id="add-the-components-of-the-subsystem">
+<h2>3. Add the components of the subsystem<a class="headerlink" href="#add-the-components-of-the-subsystem" title="Permalink to this headline">¶</a></h2>
+<p>Using the list of components in that subsystem from design and electrical, you can simply just add every single component to the subsystem. Don&#8217;t forget to make sure to add and access their corresponding pins in RobotMap.</p>
+<p>See <a class="reference external" href="./../../robotcode/components/components.html">Components</a> to learn more about how to create certain components in code.</p>
+<p>You may be required to group together certain actuators, such as in the case of Drive, where you need to group together the right and left motors into PIDOutputGroups.</p>
+<p>This may also occur with sensors, such as grouping together the Drive encoders into a median reading.</p>
+<p>You may also need to create a PID Controller, to control some aspect of the subsystem, if it needs to be able to move to certain positions, or hold a certain speed in some way.</p>
+</div>
+<div class="section" id="add-the-public-methods-of-the-subsystem">
+<h2>4. Add the public methods of the subsystem<a class="headerlink" href="#add-the-public-methods-of-the-subsystem" title="Permalink to this headline">¶</a></h2>
+<p>Most components should be private, since they should not be accessed directly. They should instead be accessed through public methods. These public methods must take into account each component&#8217;s interaction with the design to make sure that no matter what code a command runs, the subsystem should operate safely.</p>
+<p>For example, the drive subsystem should have public methods grouping together the motors on each side, to make sure they dont&#8217; go against each other. There should also be methods to read from encoders and stop the motors if necessary.</p>
+<p>This explanation of subsystems is poor since each subsystem can be very different. See these examples for more specific ways that subsystems are implemented.</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="first docutils">
+<dt><a class="reference external" href="examples/climber.html">Climber</a></dt>
+<dd>A simple subsystem that only contains one motor that turns.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="examples/gearmanip.html">Gear Manipulator</a></dt>
+<dd>The gear manipulator subsystem from 2017.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference external" href="examples/tankdrive.html">Drive</a></dt>
+<dd>A fairly standard tank drive subsystem.</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>List of example subsystems:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examplesubsystems.html">Examples of Subsystems</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="add-the-subsystem-to-robot">
+<h2>5. Add the subsystem to Robot<a class="headerlink" href="#add-the-subsystem-to-robot" title="Permalink to this headline">¶</a></h2>
+<p>Then, go to Robot and add the declaration of the subsystem in the class. Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Drive</span> <span class="n">drive</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>Then, make sure to instantiate the subsystem in robotInit().</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">drive</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Drive</span><span class="o">();</span>
+</pre></div>
+</div>
+<p>Now, the subsystem has been added to Robot.</p>
+<p>After the subsystem is complete, it may be helpful to add a default command if the command exists for that subsystem.</p>
+<p>And you&#8217;re done! The subsystem has now been created.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples/examplesubsystems.html" class="btn btn-neutral float-right" title="Examples of Subsystems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../commands/examples/commandgroups/frontacquire.html" class="btn btn-neutral" title="Acquire gear from the front" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

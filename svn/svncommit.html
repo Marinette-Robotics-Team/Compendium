@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SVN Commit &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>SVN Commit</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="svn-commit">
+<h1>SVN Commit<a class="headerlink" href="#svn-commit" title="Permalink to this headline">¶</a></h1>
+<p>A SVN commit takes your changes to the checkout and posts them on the online repository. Then, anyone who does a checkout or an update also gets those changes.</p>
+<p>After committing, your changes may later interfere with another person&#8217;s changes when they try to SVN Update. This is called a <a class="reference external" href="svnconflict.html">conflict</a>.</p>
+<p>First, open the commit window by right clicking and selecting <strong>SVN Commit</strong>.</p>
+<a class="reference internal image-reference" href="../_images/commit0.png"><img alt="../_images/commit0.png" src="../_images/commit0.png" style="width: 100%;" /></a>
+<p>Before you press the OK button, make sure that you tell SVN about any files and folders that you created or deleted.</p>
+<p>If you created a file, make sure that it is marked as <strong>added</strong>. If it is marked <strong>non-versioned</strong>, then you need to add it.</p>
+<a class="reference internal image-reference" href="../_images/commit11.png"><img alt="../_images/commit11.png" src="../_images/commit11.png" style="width: 70%;" /></a>
+<p>Right click the file, and choose <strong>Add</strong>.</p>
+<a class="reference internal image-reference" href="../_images/commit21.png"><img alt="../_images/commit21.png" src="../_images/commit21.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../_images/commit31.png"><img alt="../_images/commit31.png" src="../_images/commit31.png" style="width: 70%;" /></a>
+<p>If you deleted a file, make sure that it is marked as <strong>deleted</strong>. If it is marked <strong>missing</strong>, then you need to tell SVN that you deleted it.</p>
+<a class="reference internal image-reference" href="../_images/commit4.png"><img alt="../_images/commit4.png" src="../_images/commit4.png" style="width: 70%;" /></a>
+<p>Right click the file, and choose <strong>Delete</strong>.</p>
+<a class="reference internal image-reference" href="../_images/commit5.png"><img alt="../_images/commit5.png" src="../_images/commit5.png" style="width: 70%;" /></a>
+<p>Then, make sure to type a commit message describing what you changed. These messages should include what you changed, and why you changed it.</p>
+<p>Example: Added the Drive subsystem, since it is needed to write Drive commands.</p>
+<a class="reference internal image-reference" href="../_images/commit6.png"><img alt="../_images/commit6.png" src="../_images/commit6.png" style="width: 70%;" /></a>
+<p>You may be asked to enter your credentials. Enter your SVN username and password. If you don&#8217;t know yours, ask a software mentor (preferably Nick).</p>
+<p>Then, it should successfully commit those changes.</p>
+<a class="reference internal image-reference" href="../_images/commit7.png"><img alt="../_images/commit7.png" src="../_images/commit7.png" style="width: 100%;" /></a>
+<p>One thing to note is that a commit will fail if you aren&#8217;t connected to the internet. This commonly happens if the laptop has not gone through the school wifi&#8217;s login process.</p>
+<p>Another important thing to note is that when committing to trunk, no committed change should introduce errors that make the project unable to build.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

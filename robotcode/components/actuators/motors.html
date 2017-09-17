@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Motors and Speed Controllers &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="Actuators" href="actuators.html"/>
+        <link rel="next" title="Pneumatics and Solenoids" href="pneumatics.html"/>
+        <link rel="prev" title="Actuators" href="actuators.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../robotcode.html">Robot Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../structure/structure.html">Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sensors/sensors.html">Sensors</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="actuators.html">Actuators</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Motors and Speed Controllers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pneumatics.html">Pneumatics and Solenoids</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../pid/pid.html">PID Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tasks/tasks.html">Common Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../robotcode.html">Robot Code</a> &raquo;</li>
+        
+          <li><a href="../components.html">Components</a> &raquo;</li>
+        
+          <li><a href="actuators.html">Actuators</a> &raquo;</li>
+        
+      <li>Motors and Speed Controllers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="motors-and-speed-controllers">
+<h1>Motors and Speed Controllers<a class="headerlink" href="#motors-and-speed-controllers" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="../../../_images/am-0255-2.jpg"><img alt="../../../_images/am-0255-2.jpg" src="../../../_images/am-0255-2.jpg" style="width: 40%;" /></a>
+<a class="reference internal image-reference" href="../../../_images/217-8080.jpg"><img alt="../../../_images/217-8080.jpg" src="../../../_images/217-8080.jpg" style="width: 40%;" /></a>
+<p>Simply put, motors turn when given power. The amount and direction of power to supply to a motor is controlled by a speed controller.
+The speed controller allows values from -1 to 1.</p>
+<p>Example:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">speedController</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>  <span class="c1">// full power forwards</span>
+<span class="n">speedController</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mf">0.5</span><span class="o">);</span>  <span class="c1">// half power forwards</span>
+<span class="n">speedController</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>     <span class="c1">// stop</span>
+<span class="n">speedController</span><span class="o">.</span><span class="na">set</span><span class="o">(-</span><span class="mf">0.5</span><span class="o">);</span> <span class="c1">// half power backwards</span>
+<span class="n">speedController</span><span class="o">.</span><span class="na">set</span><span class="o">(-</span><span class="mf">1.0</span><span class="o">);</span> <span class="c1">// full power backwards</span>
+</pre></div>
+</div>
+<p>There are several types of speed controllers.</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Talon SRX</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/217-8080.jpg"><img alt="../../../_images/217-8080.jpg" src="../../../_images/217-8080.jpg" style="width: 30%;" /></a>
+<p>This uses the CANTalon class in code, and uses a CAN channel, configured in the RoboRIO web dashboard.
+Talons can be given brake mode or coast mode.
+They can also be configured to respond to a limit switch directly, but this is rarely used.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Victor or VictorSP</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/217-9090.jpg"><img alt="../../../_images/217-9090.jpg" src="../../../_images/217-9090.jpg" style="width: 30%;" /></a>
+<p>The speed controller often used in FRC. Connected via PWM.</p>
+</div></blockquote>
+</li>
+<li><p class="first">SPARK</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/spark.jpg"><img alt="../../../_images/spark.jpg" src="../../../_images/spark.jpg" style="width: 30%;" /></a>
+<p>A low cost speed controller that we usually use. Connected via PWM.
+Use it just like a Victor, except use the SPARK type.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>TODO: Replace this with the old controllers from our 2008 bot</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Jaguar</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/mickjaguar.png"><img alt="../../../_images/mickjaguar.png" src="../../../_images/mickjaguar.png" style="width: 60%;" /></a>
+<p>They’re old, huge, and no one really uses them anymore.
+We used to use them a long time ago though, so if you find one, you’ll know what it is.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>It is simple to create a speed controller in code. WPILib has a custom class for each motor controller that handles voltage, pwm, and other power stuff internally, so all you have to do is give the motor a value from -1 to 1.</p>
+<p>The constructor for motor controllers takes the pwm pin as an argument.</p>
+<p>Examples:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">CANTalon</span> <span class="n">DRIVE_LEFT_FRONT</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+
+<span class="n">Victor</span> <span class="n">DRIVE_RIGHT_FRONT</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Victor</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+
+<span class="n">Spark</span> <span class="n">CLIMBER_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Spark</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Note that if a speed controller or motor&#8217;s wiring is flipped, it will run backwards. This means that when you set it to 1.0, the motor will actually run full power in reverse. It is recommended that electrical fixes this in the wiring of the robot, but sometimes this is not possible due to time constraints. If so, remember that you can always use:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">speedController</span><span class="o">.</span><span class="na">setInverted</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>This flips the speed controller in code, fixing the problem.</p>
+<p>Make sure to be familiar with the status light meanings of each speed controller. It can really help in certain debugging situations.
+<a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/24166/l/144972-status-light-quick-reference">Status light reference</a></p>
+<p>Also note that speed controllers can break down. If you observe any odd behavior, such as a speed controller moving a motor when the robot is disabled, first check for any wire shorts, bad crimps, and the like. If it is certain that there are no electrical problems, then the speed controller may be broken.</p>
+<p>For Talon SRX’s, make sure to update the firmware before inspection at competitions, otherwise the inspector might not be happy.</p>
+<p>When debugging code related to speed controllers, it is helpful to look at the speed controller LED lights. For example, if the speed controller is flashing full green, but the motor is not moving, it may instead be an electrical problem.</p>
+<p>For more information on speed controllers, see <a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/13809/l/599702-driving-motors-with-speed-controller-objects-victors-talons-and-jaguars">WPILib&#8217;s documentation on speed controllers</a>.</p>
+<p>For more information on CAN, see <a class="reference external" href="https://wpilib.screenstepslive.com/s/4485/m/13809/c/88896">WPILib&#8217;s documentation on using CAN devices</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pneumatics.html" class="btn btn-neutral float-right" title="Pneumatics and Solenoids" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="actuators.html" class="btn btn-neutral" title="Actuators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

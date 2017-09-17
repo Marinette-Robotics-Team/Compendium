@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Deflector Flip &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Examples of Command Groups" href="../commandgroupexamples.html"/>
+        <link rel="next" title="Acquire gear from the front" href="frontacquire.html"/>
+        <link rel="prev" title="Examples of Command Groups" href="../commandgroupexamples.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivetrains/drivetrains.html">Drive Trains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../commands.html">Creating a Command</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../commandgroups.html">Creating a Command Group</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../commandgroupexamples.html">Examples of Command Groups</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Deflector Flip</a></li>
+<li class="toctree-l4"><a class="reference internal" href="frontacquire.html">Acquire gear from the front</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="../../commandgroups.html">Creating a Command Group</a> &raquo;</li>
+        
+          <li><a href="../commandgroupexamples.html">Examples of Command Groups</a> &raquo;</li>
+        
+      <li>Deflector Flip</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deflector-flip">
+<h1>Deflector Flip<a class="headerlink" href="#deflector-flip" title="Permalink to this headline">¶</a></h1>
+<p>This example discusses a subsystem called a <em>Deflector</em>. It may be hard to visualize this, so here is an animation describing how it works:</p>
+<a class="reference internal image-reference" href="../../../../_images/defl.gif"><img alt="../../../../_images/defl.gif" src="../../../../_images/defl.gif" style="width: 100%;" /></a>
+<p>The gear comes down the chute, but there is a deflector to make sure it doesn&#8217;t land on the top of the robot. But since the gear can get stuck on that deflector, there is a pneumatic cylinder that can push the deflector up to dislodge the gear.</p>
+<div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<p>In this example, the design of the deflector is a piece of plastic, with a pneumatic cylinder hooked up to a double action solenoid.</p>
+<p>Setting the solenoid to forwards causes the deflector to go upwards, and setting the solenoid to reverse causes the deflector to go downwards.</p>
+<p>When the operator presses the START button, the deflector should go up, wait 0.25 seconds, and then come back down.</p>
+</div>
+<div class="section" id="subsystem-methods">
+<h2>Subsystem methods<a class="headerlink" href="#subsystem-methods" title="Permalink to this headline">¶</a></h2>
+<p>This guide assumes that there already is a Deflector subsystem, and to set the deflector solenoid, you simply need to write:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Deflector</span><span class="o">.</span><span class="na">DEFLECTOR_SOLENOID</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>We also assume that there are already commands called DeflectorUp and DeflectorDown that set the deflector up and down, respectively. These commands can be as simple as:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorUp</span> <span class="kd">extends</span> <span class="n">InstantCommand</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">DeflectorUp</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">();</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">deflector</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once when the command executes</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Deflector</span><span class="o">.</span><span class="na">DEFLECTOR_SOLENOID</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorDown</span> <span class="kd">extends</span> <span class="n">InstantCommand</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">DeflectorDown</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">();</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">deflector</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once when the command executes</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Deflector</span><span class="o">.</span><span class="na">DEFLECTOR_SOLENOID</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kReverse</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>On how to create this subsystem, see <a class="reference external" href="./../../../subsystems/subsystems.html">Creating a subsystem</a>.</p>
+<p>We also assume that OI already has a Joystick named operator, and that the START button on the operator&#8217;s controller is button 11.</p>
+<p>On how to use OI, see <a class="reference external" href="./../../../../robotcode/structure/oi.html">OI</a>.</p>
+</div>
+<div class="section" id="writing-the-command">
+<h2>Writing the command<a class="headerlink" href="#writing-the-command" title="Permalink to this headline">¶</a></h2>
+<p>Once you create the DeflectorFlip command group, you&#8217;ll get a blank command group template like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.CommandGroup</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorFlip</span> <span class="kd">extends</span> <span class="n">CommandGroup</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">DeflectorFlip</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Add Commands here:</span>
+        <span class="c1">// e.g. addSequential(new Command1());</span>
+        <span class="c1">//      addSequential(new Command2());</span>
+        <span class="c1">// these will run in order.</span>
+
+        <span class="c1">// To run multiple commands at the same time,</span>
+        <span class="c1">// use addParallel()</span>
+        <span class="c1">// e.g. addParallel(new Command1());</span>
+        <span class="c1">//      addSequential(new Command2());</span>
+        <span class="c1">// Command1 and Command2 will run in parallel.</span>
+
+        <span class="c1">// A command group will require all of the subsystems that each member</span>
+        <span class="c1">// would require.</span>
+        <span class="c1">// e.g. if Command1 requires chassis, and Command2 requires arm,</span>
+        <span class="c1">// a CommandGroup containing them would require both the chassis and the</span>
+        <span class="c1">// arm.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>In the javadoc at the top, describe what this command does.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * This command group sets the deflector up for 0.25 seconds, and then sets it back down.</span>
+<span class="cm"> * It is designed to dislodge gears off of the deflector.</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>Then, the constructor is where all of the command adding goes. We need to set the deflector up, wait 0.25 seconds, and then set the deflector down. This can be accomplished using the DeflectorUp(), WaitCommand(0.25), and DeflectorDown() commands. And, since we want to execute these one after the other, we use addSequential for all of these.</p>
+<p>You can also delete the autogenerated comments in the body of the constructor if you like.</p>
+<p>Now, your command instead looks like this:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.CommandGroup</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * This command group sets the deflector up for 0.25 seconds, and then sets it back down.</span>
+<span class="cm"> * It is designed to dislodge gears off of the deflector.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorFlip</span> <span class="kd">extends</span> <span class="n">CommandGroup</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">DeflectorFlip</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">addSequential</span><span class="o">(</span><span class="n">DeflectorUp</span><span class="o">());</span>
+        <span class="n">addSequential</span><span class="o">(</span><span class="n">WaitCommand</span><span class="o">(</span><span class="mf">0.25</span><span class="o">));</span>
+        <span class="n">addSequential</span><span class="o">(</span><span class="n">DeflectorDown</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>That&#8217;s all there is to the command group. It&#8217;s done.</p>
+</div>
+<div class="section" id="running-the-command">
+<h2>Running the command<a class="headerlink" href="#running-the-command" title="Permalink to this headline">¶</a></h2>
+<p>Now, go into the OI class. We need to set the DeflectorFlip command to run whenever the operator presses the START button.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Joystick</span> <span class="n">driver</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Joystick</span> <span class="n">operator</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="nf">OI</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Joystick</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="n">operator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Joystick</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+<span class="hll">    <span class="n">Button</span> <span class="n">deflectorFlipButton</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JoystickButton</span><span class="o">(</span><span class="n">operator</span><span class="o">,</span> <span class="mi">11</span><span class="o">);</span> <span class="c1">// START button</span>
+</span><span class="hll">    <span class="n">deflectorFlipButton</span><span class="o">.</span><span class="na">whenPressed</span><span class="o">(</span><span class="k">new</span> <span class="n">DeflectorFlip</span><span class="o">());</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>And that&#8217;s it! Now, whenever the operator presses START, the deflector will flip up and down, and dislodge any gear stuck on it.</p>
+</div>
+<div class="section" id="final-code">
+<h2>Final code<a class="headerlink" href="#final-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="deflectorflip">
+<h3>DeflectorFlip<a class="headerlink" href="#deflectorflip" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.usfirst.frc.team93.robot.commands</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">edu.wpi.first.wpilibj.command.CommandGroup</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * This command group sets the deflector up for 0.25 seconds, and then sets it back down.</span>
+<span class="cm"> * It is designed to dislodge gears off of the deflector.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorFlip</span> <span class="kd">extends</span> <span class="n">CommandGroup</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">DeflectorFlip</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">addSequential</span><span class="o">(</span><span class="n">DeflectorUp</span><span class="o">());</span>
+        <span class="n">addSequential</span><span class="o">(</span><span class="n">WaitCommand</span><span class="o">(</span><span class="mf">0.25</span><span class="o">));</span>
+        <span class="n">addSequential</span><span class="o">(</span><span class="n">DeflectorDown</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deflectorup">
+<h3>DeflectorUp<a class="headerlink" href="#deflectorup" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorUp</span> <span class="kd">extends</span> <span class="n">InstantCommand</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">DeflectorUp</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">();</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">deflector</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once when the command executes</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Deflector</span><span class="o">.</span><span class="na">DEFLECTOR_SOLENOID</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kForward</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deflectordown">
+<h3>DeflectorDown<a class="headerlink" href="#deflectordown" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeflectorDown</span> <span class="kd">extends</span> <span class="n">InstantCommand</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">DeflectorDown</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kd">super</span><span class="o">();</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">deflector</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once when the command executes</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Deflector</span><span class="o">.</span><span class="na">DEFLECTOR_SOLENOID</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">DoubleSolenoid</span><span class="o">.</span><span class="na">Value</span><span class="o">.</span><span class="na">kReverse</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="frontacquire.html" class="btn btn-neutral float-right" title="Acquire gear from the front" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../commandgroupexamples.html" class="btn btn-neutral" title="Examples of Command Groups" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

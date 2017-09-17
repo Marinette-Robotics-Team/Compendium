@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Swerve Drive &mdash; Team 6624&#39;s Software Guide 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Team 6624&#39;s Software Guide 1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Drive Trains" href="drivetrains.html"/>
+        <link rel="next" title="Switching around Driver Controls in OI" href="../drivercontrols.html"/>
+        <link rel="prev" title="Mecanum Drive" href="mecanum.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Team 6624's Software Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robotcode/robotcode.html">Robot Code</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tasks.html">Common Tasks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../newproject.html">Creating a new project</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="drivetrains.html">Drive Trains</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="advancedtank.html">Advanced Tank Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advancedtank.html#sensitivity-and-control-curves">Sensitivity and Control Curves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mecanum.html">Mecanum Drive</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Swerve Drive</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../drivercontrols.html">Switching around Driver Controls in OI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration.html">Integrating code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commands.html">Creating a Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/commandgroups.html">Creating a Command Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../subsystems/subsystems.html">Creating a Subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autonomous/autonomous.html">Autonomous Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera/camera.html">Camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../github/github.html">GitHub</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Team 6624's Software Guide</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tasks.html">Common Tasks</a> &raquo;</li>
+        
+          <li><a href="drivetrains.html">Drive Trains</a> &raquo;</li>
+        
+      <li>Swerve Drive</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="swerve-drive">
+<h1>Swerve Drive<a class="headerlink" href="#swerve-drive" title="Permalink to this headline">¶</a></h1>
+<p>Swerve Drive is a type of drive train in which each wheel can point in any direction.</p>
+<a class="reference internal image-reference" href="../../_images/swerve.png"><img alt="../../_images/swerve.png" src="../../_images/swerve.png" style="width: 100%;" /></a>
+<p>Since the wheels can point in any direction, the robot can move in any direction. Additionally, it can do cool maneuvers such as turning its wheels to form a circle and spinning very quickly, as shown above in the rightmost image.</p>
+<p>Swerve drive is much more complex and much more expensive than Mecanum drive. However, it has one main advantage over Mecanum drive: swerve drive uses traction wheels, meaning that it has some pushing power, and cannot be pushed around easily. This, combined with swerve drive&#8217;s mobility, allows the robot to defend effectively. mecanum drive, is more easily pushed around on the field.</p>
+<p>This type of drive train would be used in a robot where both mobility and pushing power are both essential, and for some reason a less complex choice, such as an octocanum drive, is not feasible.</p>
+<div class="section" id="warning">
+<h2>Warning<a class="headerlink" href="#warning" title="Permalink to this headline">¶</a></h2>
+<p>The first thing to know about a swerve drive is that it is extremely complex. A programmer that takes on the challenge of creating the swerve drive must be at least somewhat experienced with PID Controllers, creating custom PID Outputs and PID Sources, and debugging.</p>
+<p>This complexity is not only software complexity, however, but also complexity for the rest of the team. For example, electrical must now deal with the fact that 8 motors are used for the drive alone, meaning that the total number of motors is likely to exceed 10 to 12. This means that when all of the subsystems on the robot are running, the robot is likely to brown out, even on a full battery charge. These brownouts can cripple the robot during matches.</p>
+<p>Furthermore, software will likely have to work on solving the brownout problem, which will add more complexity on top of an already extremely complex drive subsystem. It&#8217;s a mess.</p>
+<p>Oh, and don&#8217;t forget that swerve drive is also very expensive.</p>
+<p>I would not recommend choosing swerve drive. There are many other drive trains that provide omnidirectional drive, but are much less complex and usually less risky. One good example would be a octocanum drive that can switch between tank drive and mecanum drive, which provides an omnidirectional drive mode while still providing tank drive&#8217;s pushing power and speed capabilities in tank drive mode.</p>
+<div class="section" id="swerve-drive-subsystem-base">
+<h3>Swerve Drive subsystem base<a class="headerlink" href="#swerve-drive-subsystem-base" title="Permalink to this headline">¶</a></h3>
+<p>Now that I&#8217;m done bashing swerve drive, I&#8217;ll outline what a swerve drive subsystem might look like.</p>
+<p>A swerve drive requires 4 motors to move the drive wheels (one for each wheel), 4 encoders to track distance traveled on each wheel, 4 motors to control the angle of the wheels (one for each wheel), and 4 encoders that track the angle that each wheel is facing. A swerve drive also needs a gyro, or else field centric drive is not possible.</p>
+<p>I will refer to the motors that control how fast the drive wheels spin as the <strong>speed</strong> motors, and the motors that control the angles of the wheels as <strong>direction</strong> motors. For encoders, I refer to the ones that track distance traveled as <strong>distance</strong> encoders, and the ones that track the direction the wheel is facing as <strong>direction</strong> encoders. Note that the <strong>direction</strong> encoders do not actually have to be encoders. They can be magnetic encoders, for example, or any other free spinning rotation sensor.</p>
+<a class="reference internal image-reference" href="../../_images/swerve3.png"><img alt="../../_images/swerve3.png" src="../../_images/swerve3.png" style="width: 100%;" /></a>
+<p>First, start by declaring all the listed components in the class and initializing them in the constructor.</p>
+<p>Then, notice that the direction encoder still gives encoder ticks, not an angle in degrees. To change this, we create a custom PID Source that allows us to apply a scaling factor to the sensor value. One example of this is the <a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/PIDSourceExtended.java">PIDSourceExtended class</a> from 2017. This class uses its setGain(double scalingFactor) method to convert the encoder values to degrees. Make sure to declare and initialize those too.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Swerve Drive subsystem</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Drive</span> <span class="kd">extends</span> <span class="n">Subsystem</span>
+<span class="o">{</span>
+    <span class="c1">// Motors</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">LEFT_FRONT_DRIVE_SPEED_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">LEFT_BACK_DRIVE_SPEED_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">RIGHT_FRONT_DRIVE_SPEED_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">RIGHT_BACK_DRIVE_SPEED_MOTOR</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_MOTOR</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">CANTalon</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_MOTOR</span><span class="o">;</span>
+
+    <span class="c1">// Encoders</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">LEFT_FRONT_DRIVE_DISTANCE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">LEFT_BACK_DRIVE_DISTANCE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">RIGHT_FRONT_DRIVE_DISTANCE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">RIGHT_BACK_DRIVE_DISTANCE_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">MedianPIDSource</span> <span class="n">DRIVE_DISTANCE_ENCODERS</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_ENCODER</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Encoder</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_ENCODER</span><span class="o">;</span>
+
+    <span class="c1">// Direction encoder wrapper that scales to degrees</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">PIDSourceExtended</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_SCALED</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">PIDSourceExtended</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_SCALED</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">PIDSourceExtended</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_SCALED</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">PIDSourceExtended</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_SCALED</span><span class="o">;</span>
+
+    <span class="c1">// Gyro</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">AHRS</span> <span class="n">DRIVE_GYRO</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Drive</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// Motors</span>
+        <span class="n">LEFT_FRONT_DRIVE_SPEED_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_SPEED_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_SPEED_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_SPEED_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_SPEED_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_SPEED_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_SPEED_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_SPEED_MOTOR_PIN</span><span class="o">);</span>
+
+        <span class="n">LEFT_FRONT_DRIVE_DIRECTION_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_DIRECTION_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_DIRECTION_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_DIRECTION_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_DIRECTION_MOTOR_PIN</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_DIRECTION_MOTOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CANTalon</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_DIRECTION_MOTOR_PIN</span><span class="o">);</span>
+
+        <span class="c1">// Encoders</span>
+        <span class="n">LEFT_FRONT_DRIVE_DISTANCE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_DISTANCE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_DISTANCE_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_DISTANCE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_DISTANCE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_DISTANCE_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_DISTANCE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_DISTANCE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_DISTANCE_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_DISTANCE_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_DISTANCE_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_DISTANCE_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">DRIVE_ENCODERS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MedianPIDSource</span><span class="o">(</span><span class="n">LEFT_FRONT_DRIVE_DISTANCE_ENCODER</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_DISTANCE_ENCODER</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_DISTANCE_ENCODER</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_DISTANCE_ENCODER</span><span class="o">);</span>
+
+        <span class="n">LEFT_FRONT_DRIVE_DIRECTION_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_DIRECTION_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_FRONT_DRIVE_DIRECTION_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_DIRECTION_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_DIRECTION_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">LEFT_BACK_DRIVE_DIRECTION_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_DIRECTION_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_FRONT_DRIVE_DIRECTION_ENCODER_PIN_B</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_DIRECTION_ENCODER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Encoder</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_DIRECTION_ENCODER_PIN_A</span><span class="o">,</span> <span class="n">RobotMap</span><span class="o">.</span><span class="na">RIGHT_BACK_DRIVE_DIRECTION_ENCODER_PIN_B</span><span class="o">);</span>
+
+        <span class="c1">// Direction encoder wrapper that scales to degrees</span>
+        <span class="n">LEFT_FRONT_DRIVE_DIRECTION_SCALED</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDSourceExtended</span><span class="o">(</span><span class="n">LEFT_FRONT_DRIVE_DIRECTION_ENCODER</span><span class="o">);</span>
+        <span class="n">LEFT_BACK_DRIVE_DIRECTION_SCALED</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDSourceExtended</span><span class="o">(</span><span class="n">LEFT_BACK_DRIVE_DIRECTION_ENCODER</span><span class="o">);</span>
+        <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_SCALED</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDSourceExtended</span><span class="o">(</span><span class="n">RIGHT_FRONT_DRIVE_DIRECTION_ENCODER</span><span class="o">);</span>
+        <span class="n">RIGHT_BACK_DRIVE_DIRECTION_SCALED</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDSourceExtended</span><span class="o">(</span><span class="n">RIGHT_BACK_DRIVE_DIRECTION_ENCODER</span><span class="o">);</span>
+
+        <span class="c1">// Gyro</span>
+        <span class="n">DRIVE_GYRO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AHRS</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">MXP_PORT</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="directing-the-wheels">
+<h3>Directing the wheels<a class="headerlink" href="#directing-the-wheels" title="Permalink to this headline">¶</a></h3>
+<p>Since swerve drive wheels can rotate to any angle, we need a way to represent that in code. We do this by creating a custom class that represents a swerve drive wheel, called SwerveDriveWheel.</p>
+<p>The goal of this class is to be able to set the wheel to an angle in code, which causes the wheel to turn and face that direction relative to the robot. To accomplish this, we create a PID Controller that takes input from the wheel direction encoder, and outputs to the wheel direction motor. Then, when we set the wheel, we simply set the PID Controller&#8217;s setpoint, which will cause the wheel to turn to the angle we set it to.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwerveDriveWheel</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="n">PIDController</span> <span class="n">directionController</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">PIDOutput</span> <span class="n">directionMotor</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">PIDSource</span> <span class="n">directionSensor</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">SwerveDriveWheel</span><span class="o">(</span><span class="kt">double</span> <span class="n">P</span><span class="o">,</span> <span class="kt">double</span> <span class="n">I</span><span class="o">,</span> <span class="kt">double</span> <span class="n">D</span><span class="o">,</span> <span class="n">PIDSource</span> <span class="n">directionSensor</span><span class="o">,</span> <span class="n">PIDOutput</span> <span class="n">directionMotor</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">directionSensor</span> <span class="o">=</span> <span class="n">directionSensor</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">directionMotor</span> <span class="o">=</span> <span class="n">directionMotor</span><span class="o">;</span>
+        <span class="n">directionController</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">I</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">directionSensor</span><span class="o">,</span> <span class="n">directionMotor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDirection</span><span class="o">(</span><span class="kt">double</span> <span class="n">setpoint</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">directionController</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+        <span class="n">directionController</span><span class="o">.</span><span class="na">setSetpoint</span><span class="o">(</span><span class="n">setpoint</span><span class="o">);</span>
+        <span class="n">directionController</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Note, however, that the current system is a bit un-optimized. If we tell the wheel to turn to -270°, for example, it will actually rotate the full -270°, not knowing that a faster way would be to simply rotate to 90°. We instead want the wheel to find the fastest way to get to its angle setpoint.</p>
+<a class="reference internal image-reference" href="../../_images/swerve4.png"><img alt="../../_images/swerve4.png" src="../../_images/swerve4.png" style="width: 70%;" /></a>
+<p>One example of a method that calculates the shortest way to get between two angles is shown here:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Get the closest angle between the given angles.</span>
+<span class="cm"> */</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">closestAngle</span><span class="o">(</span><span class="kt">double</span> <span class="n">a</span><span class="o">,</span> <span class="kt">double</span> <span class="n">b</span><span class="o">)</span>
+<span class="o">{</span>
+        <span class="c1">// get direction</span>
+        <span class="kt">double</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">modulo</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="mf">360.0</span><span class="o">)</span> <span class="o">-</span> <span class="n">modulo</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="mf">360.0</span><span class="o">);</span>
+
+        <span class="c1">// convert from -360 to 360 to -180 to 180</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">dir</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mf">180.0</span><span class="o">)</span>
+        <span class="o">{</span>
+                <span class="n">dir</span> <span class="o">=</span> <span class="o">-(</span><span class="n">Math</span><span class="o">.</span><span class="na">signum</span><span class="o">(</span><span class="n">dir</span><span class="o">)</span> <span class="o">*</span> <span class="mf">360.0</span><span class="o">)</span> <span class="o">+</span> <span class="n">dir</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">dir</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>We can use this method to find the fastest way from our current wheel angle to the desired wheel angle.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDirection</span><span class="o">(</span><span class="kt">double</span> <span class="n">setpoint</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">directionController</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+
+    <span class="c1">// use the fastest way</span>
+    <span class="kt">double</span> <span class="n">currentAngle</span> <span class="o">=</span> <span class="n">directionSensor</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+    <span class="n">directionController</span><span class="o">.</span><span class="na">setSetpoint</span><span class="o">(</span><span class="n">currentAngle</span> <span class="o">+</span> <span class="n">closestAngle</span><span class="o">(</span><span class="n">currentAngle</span><span class="o">,</span> <span class="n">setpoint</span><span class="o">));</span>
+
+    <span class="n">directionController</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Another thing to keep in mind is that we can optimize this system even further. Instead of turning the wheel 135°, we can just turn the wheel to -45° and reverse the speed motor&#8217;s direction. To do this, we can make use of the <a class="reference external" href="http://nacsvn.aasd.k12.wi.us/repos/nac-software-2017/robot/trunk/Team93Robot2017/src/org/usfirst/frc/team93/robot/utilities/PIDOutputExtended.java">PIDOutputExtended class</a>, which allows us to add a scaling factor (called a gain). To reverse the motor, we simply set the gain to -1.0, and to undo the reversal, we set it back to 1.0. We also need to pass in the speed motor into the constructor.</p>
+<p>Then, in our setDirection method, to figure out whether to reverse the motor or not, we compare the angular distances to both the setpoint and the setpoint + 180°. For example, if the setpoint given to us is 135°, then we&#8217;d find the closest angle to 135° (the distance is 135°), as well as the closest angle to 135° + 180° (the distance is -45°). Since the closest angle to 135° + 180° is shorter, we would flip the motor direction, and turn to -45°.</p>
+<a class="reference internal image-reference" href="../../_images/swerve5.png"><img alt="../../_images/swerve5.png" src="../../_images/swerve5.png" style="width: 70%;" /></a>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwerveDriveWheel</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="n">PIDController</span> <span class="n">directionController</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">PIDOutput</span> <span class="n">directionMotor</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">PIDOutputExtended</span> <span class="n">speedMotor</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">PIDSource</span> <span class="n">directionSensor</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">SwerveDriveWheel</span><span class="o">(</span><span class="kt">double</span> <span class="n">P</span><span class="o">,</span> <span class="kt">double</span> <span class="n">I</span><span class="o">,</span> <span class="kt">double</span> <span class="n">D</span><span class="o">,</span> <span class="n">PIDSource</span> <span class="n">directionSensor</span><span class="o">,</span> <span class="n">PIDOutput</span> <span class="n">directionMotor</span><span class="o">,</span> <span class="n">PIDOutput</span> <span class="n">speedMotor</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">directionSensor</span> <span class="o">=</span> <span class="n">directionSensor</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">directionMotor</span> <span class="o">=</span> <span class="n">directionMotor</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">speedMotor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDOutputExtended</span><span class="o">(</span><span class="n">speedMotor</span><span class="o">);</span>
+        <span class="n">directionController</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">I</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">directionSensor</span><span class="o">,</span> <span class="n">directionMotor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDirection</span><span class="o">(</span><span class="kt">double</span> <span class="n">setpoint</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">directionController</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+
+        <span class="kt">double</span> <span class="n">currentAngle</span> <span class="o">=</span> <span class="n">directionSensor</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="c1">// find closest angle to setpoint</span>
+        <span class="kt">double</span> <span class="n">setpointAngle</span> <span class="o">=</span> <span class="n">closestAngle</span><span class="o">(</span><span class="n">currentAngle</span><span class="o">,</span> <span class="n">setpoint</span><span class="o">);</span>
+        <span class="c1">// find closest angle to setpoint + 180</span>
+        <span class="kt">double</span> <span class="n">setpointAngleFlipped</span> <span class="o">=</span> <span class="n">closestAngle</span><span class="o">(</span><span class="n">currentAngle</span><span class="o">,</span> <span class="n">setpoint</span> <span class="o">+</span> <span class="mf">180.0</span><span class="o">);</span>
+        <span class="c1">// if the closest angle to setpoint is shorter</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">setpointAngle</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">setpointAngleFlipped</span><span class="o">))</span>
+        <span class="o">{</span>
+            <span class="c1">// unflip the motor direction use the setpoint</span>
+            <span class="n">directionMotor</span><span class="o">.</span><span class="na">setGain</span><span class="o">(</span><span class="mf">1.0</span><span class="o">);</span>
+            <span class="n">directionController</span><span class="o">.</span><span class="na">setSetpoint</span><span class="o">(</span><span class="n">currentAngle</span> <span class="o">+</span> <span class="n">setpointAngle</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="c1">// if the closest angle to setpoint + 180 is shorter</span>
+        <span class="k">else</span>
+        <span class="o">{</span>
+            <span class="c1">// flip the motor direction and use the setpoint + 180</span>
+            <span class="n">directionMotor</span><span class="o">.</span><span class="na">setGain</span><span class="o">(-</span><span class="mf">1.0</span><span class="o">);</span>
+            <span class="n">directionController</span><span class="o">.</span><span class="na">setSetpoint</span><span class="o">(</span><span class="n">currentAngle</span> <span class="o">+</span> <span class="n">setpointAngleFlipped</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="n">directionController</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSpeed</span><span class="o">(</span><span class="kt">double</span> <span class="n">speed</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">speedMotor</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">speed</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Notice that, since we are using our custom version of the directionMotor passed in, we now include a setSpeed method too.</p>
+<p>Now, the wheel goes the shortest path to any angle passed to it with setDirection. Make sure to add these new components into the subsystem:</p>
+<p>Declare in the class:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">SwerveDriveWheel</span> <span class="n">LEFT_FRONT_DRIVE_WHEEL</span><span class="o">;</span>
+<span class="n">SwerveDriveWheel</span> <span class="n">LEFT_BACK_DRIVE_WHEEL</span><span class="o">;</span>
+<span class="n">SwerveDriveWheel</span> <span class="n">RIGHT_FRONT_DRIVE_WHEEL</span><span class="o">;</span>
+<span class="n">SwerveDriveWheel</span> <span class="n">RIGHT_BACK_DRIVE_WHEEL</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">Drive</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="c1">// Gyro</span>
+    <span class="n">DRIVE_GYRO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AHRS</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">MXP_PORT</span><span class="o">);</span>
+
+<span class="hll">    <span class="c1">// SwerveDriveWheels</span>
+</span><span class="hll">    <span class="kt">double</span> <span class="n">wheelP</span> <span class="o">=</span> <span class="mf">0.02</span><span class="o">;</span>
+</span><span class="hll">    <span class="kt">double</span> <span class="n">wheelI</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+</span><span class="hll">    <span class="kt">double</span> <span class="n">wheelD</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+</span><span class="hll">    <span class="n">LEFT_FRONT_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">LEFT_FRONT_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+</span><span class="hll">    <span class="n">LEFT_BACK_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+</span><span class="hll">    <span class="n">RIGHT_FRONT_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+</span><span class="hll">    <span class="n">RIGHT_BACK_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="coordinating-the-swerve-drive">
+<h3>Coordinating the Swerve Drive<a class="headerlink" href="#coordinating-the-swerve-drive" title="Permalink to this headline">¶</a></h3>
+<p>Now that we&#8217;ve created a class that allows us to direct the wheels, we can now get started on setting those wheel directions to coordinate driving.</p>
+<p>There are 3 different things a swerve drive can do:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Move in any direction (this is called <em>translating</em>)</li>
+<li>Turn in place</li>
+<li>Turn while moving</li>
+</ul>
+</div></blockquote>
+<p>These are all done with different wheel arrangements:</p>
+<a class="reference internal image-reference" href="../../_images/swerve2.png"><img alt="../../_images/swerve2.png" src="../../_images/swerve2.png" style="width: 100%;" /></a>
+<p>Firstly, let&#8217;s create a class called SwerveDriveCoordinator. Pass in 4 SwerveDriveWheels.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SwerveDriveCoordinator</span>
+<span class="o">{</span>
+    <span class="n">SwerveDriveWheel</span> <span class="n">leftFrontWheel</span><span class="o">;</span>
+    <span class="n">SwerveDriveWheel</span> <span class="n">leftBackWheel</span><span class="o">;</span>
+    <span class="n">SwerveDriveWheel</span> <span class="n">rightFrontWheel</span><span class="o">;</span>
+    <span class="n">SwerveDriveWheel</span> <span class="n">rightBackWheel</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">SwerveDriveCoordinator</span><span class="o">(</span><span class="n">SwerveDriveWheel</span> <span class="n">leftFrontWheel</span><span class="o">,</span> <span class="n">SwerveDriveWheel</span> <span class="n">leftBackWheel</span><span class="o">,</span> <span class="n">SwerveDriveWheel</span> <span class="n">rightFrontWheel</span><span class="o">,</span> <span class="n">SwerveDriveWheel</span> <span class="n">rightBackWheel</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">leftFrontWheel</span> <span class="o">=</span> <span class="n">leftFrontWheel</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">leftBackWheel</span> <span class="o">=</span> <span class="n">leftBackWheel</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">rightFrontWheel</span> <span class="o">=</span> <span class="n">rightFrontWheel</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">rightBackWheel</span> <span class="o">=</span> <span class="n">rightBackWheel</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Let&#8217;s start with translating. To translate, all we need to do is point the wheels in the direction we want to go, and give the wheels motor power.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">translate</span><span class="o">(</span><span class="kt">double</span> <span class="n">direction</span><span class="o">,</span> <span class="kt">double</span> <span class="n">power</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span><span class="o">);</span>
+    <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span><span class="o">);</span>
+    <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span><span class="o">);</span>
+    <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span><span class="o">);</span>
+
+    <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+    <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+    <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+    <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Then, for turning in place, all we need to do is set the wheels to point in a circle:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">inplaceTurn</span><span class="o">(</span><span class="kt">double</span> <span class="n">power</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="mf">135.0</span><span class="o">);</span>
+    <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="mf">45.0</span><span class="o">);</span>
+    <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(-</span><span class="mf">45.0</span><span class="o">);</span>
+    <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(-</span><span class="mf">135.0</span><span class="o">);</span>
+
+    <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+    <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+    <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+    <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">power</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Lastly, for turning while moving, we need to angle the wheels to look like the <em>Turning while moving</em> image above. However, to do this, we need to choose which wheels are the front wheels and which ones are the back wheels. We do this by assigning each wheel an angle, and then checking to see if it&#8217;s closer to the front (the direction we&#8217;re moving in) or the back (180° + the direction we&#8217;re moving in).</p>
+<a class="reference internal image-reference" href="../../_images/swerve6.png"><img alt="../../_images/swerve6.png" src="../../_images/swerve6.png" style="width: 100%;" /></a>
+<p>And, when assigning angles to wheels, we assign each wheel to its angle from the center:</p>
+<ul class="simple">
+<li>Left Front: 135°</li>
+<li>Left Back: 225°</li>
+<li>Right Front: 45°</li>
+<li>Right Back: 315°</li>
+</ul>
+<p>Then, once we find out which two wheels are in front and which two are in back, then we add a bit more to the front wheels&#8217; angles, and subtract a bit from the back wheels&#8217; angles. This will cause the robot to rotate. We&#8217;re again going to have to use the closestAngle method here, so copy it over, or find a more elegant way of reusing it.</p>
+<p>Additionally, we have to convert turnPower, which is -1.0 to 1.0, to an angle to add/subtract on the wheel angles. A good way to do that is simply multiply it by 45.0.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">translateTurn</span><span class="o">(</span><span class="kt">double</span> <span class="n">direction</span><span class="o">,</span> <span class="kt">double</span> <span class="n">translatePower</span><span class="o">,</span> <span class="kt">double</span> <span class="n">turnPower</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="kt">double</span> <span class="n">turnAngle</span> <span class="o">=</span> <span class="n">turnPower</span> <span class="o">*</span> <span class="mf">45.0</span><span class="o">;</span>
+
+    <span class="c1">// if the left front wheel is in the front</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">closestAngle</span><span class="o">(</span><span class="n">direction</span><span class="o">,</span> <span class="mf">135.0</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mf">90.0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">+</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if it&#39;s in the back</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+        <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">-</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if the left back wheel is in the front</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">closestAngle</span><span class="o">(</span><span class="n">direction</span><span class="o">,</span> <span class="mf">225.0</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mf">90.0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">+</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if it&#39;s in the back</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+        <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">-</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if the right front wheel is in the front</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">closestAngle</span><span class="o">(</span><span class="n">direction</span><span class="o">,</span> <span class="mf">45.0</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mf">90.0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">+</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if it&#39;s in the back</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+        <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">-</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if the right back wheel is in the front</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">closestAngle</span><span class="o">(</span><span class="n">direction</span><span class="o">,</span> <span class="mf">315.0</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mf">90.0</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">+</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="c1">// if it&#39;s in the back</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+        <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setDirection</span><span class="o">(</span><span class="n">direction</span> <span class="o">-</span> <span class="n">turnAngle</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="n">leftFrontWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">translatePower</span><span class="o">);</span>
+    <span class="n">leftBackWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">translatePower</span><span class="o">);</span>
+    <span class="n">rightFrontWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">translatePower</span><span class="o">);</span>
+    <span class="n">rightBackWheel</span><span class="o">.</span><span class="na">setSpeed</span><span class="o">(</span><span class="n">translatePower</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, notice that if you supply no turnPower, then the translateTurn method becomes just like the translate method.</p>
+<p>So, all we need to do now is notice that, if there is no translation commanded (power is 0.0), but there is a turn commanded (turnPower != 0.0) then we use the in-place turn method. Otherwise, we use the translateTurn method.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSwerveDrive</span><span class="o">(</span><span class="kt">double</span> <span class="n">direction</span><span class="o">,</span> <span class="kt">double</span> <span class="n">translatePower</span><span class="o">,</span> <span class="kt">double</span> <span class="n">turnPower</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">((</span><span class="n">translatePower</span> <span class="o">==</span> <span class="mf">0.0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">turnPower</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="o">))</span>
+    <span class="o">{</span>
+        <span class="n">inplaceTurn</span><span class="o">(</span><span class="n">turnPower</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span>
+    <span class="o">{</span>
+        <span class="n">translateTurn</span><span class="o">(</span><span class="n">direction</span><span class="o">,</span> <span class="n">translatePower</span><span class="o">,</span> <span class="n">turnPower</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This completes the SwerveDriveCoordinator. We can now just pass in any direction, translatePower, and turnPower, and our SwerveDriveCoordinator will handle it.</p>
+<p>Now, make sure to add it into the subsystem:</p>
+<p>Declare it in the class:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">SwerveDriveCoordinator</span> <span class="n">SWERVE_DRIVE_COORDINATOR</span><span class="o">;</span>
+</pre></div>
+</div>
+<p>and initialize it in the constructor:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">Drive</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="c1">// Gyro</span>
+    <span class="n">DRIVE_GYRO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AHRS</span><span class="o">(</span><span class="n">RobotMap</span><span class="o">.</span><span class="na">MXP_PORT</span><span class="o">);</span>
+
+    <span class="c1">// SwerveDriveWheels</span>
+    <span class="kt">double</span> <span class="n">wheelP</span> <span class="o">=</span> <span class="mf">0.02</span><span class="o">;</span>
+    <span class="kt">double</span> <span class="n">wheelI</span> <span class="o">=</span> <span class="mf">0.001</span><span class="o">;</span>
+    <span class="kt">double</span> <span class="n">wheelD</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
+    <span class="n">LEFT_FRONT_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">LEFT_FRONT_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">LEFT_FRONT_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+    <span class="n">LEFT_BACK_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+    <span class="n">RIGHT_FRONT_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+    <span class="n">RIGHT_BACK_DRIVE_WHEEL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveWheel</span><span class="o">(</span><span class="n">wheelP</span><span class="o">,</span> <span class="n">wheelI</span><span class="o">,</span> <span class="n">wheelD</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_SCALED</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_DIRECTION_MOTOR</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_SPEED_MOTOR</span><span class="o">);</span>
+
+<span class="hll">    <span class="c1">// SwerveDriveCoordinator</span>
+</span><span class="hll">    <span class="n">SWERVE_DRIVE_COORDINATOR</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwerveDriveCoordinator</span><span class="o">(</span><span class="n">LEFT_FRONT_DRIVE_WHEEL</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_WHEEL</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_WHEEL</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_WHEEL</span><span class="o">);</span>
+</span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, we&#8217;re ready to create our DriveContinuous command.</p>
+</div>
+<div class="section" id="writing-the-drivecontinuous-command">
+<h3>Writing the DriveContinuous command<a class="headerlink" href="#writing-the-drivecontinuous-command" title="Permalink to this headline">¶</a></h3>
+<p>Now, using this coordinator, we can create a Swerve drive command. For this example, we&#8217;ll use a joystick, with the direction it&#8217;s pointed at being the <em>direction</em> and the joystick&#8217;s magnitude away from the center being the <em>translationPower</em>. Then, using the twist axis, we can get <em>turnPower</em>.</p>
+<a class="reference internal image-reference" href="../../_images/joystick.png"><img alt="../../_images/joystick.png" src="../../_images/joystick.png" style="width: 70%;" /></a>
+<p>Also, note that there are two modes for a swerve drive: Field centric, and Robot centric.</p>
+<a class="reference internal image-reference" href="../../_images/centric2.png"><img alt="../../_images/centric2.png" src="../../_images/centric2.png" style="width: 70%;" /></a>
+<p>Field centric mode is control from the perspective of the driver. This means that, no matter where the robot is on the field and how it&#8217;s turned, if the driver moves the joystick forward, then the robot will go forward from the driver&#8217;s perspective. This type of control requires a gyro (which any swerve drive robot should have).</p>
+<p>In Robot centric mode, however, if the robot were turned to the right, then the robot would go rightwards from the driver&#8217;s perspective.</p>
+<p>In this example, we add in one line of code to the command that makes it field centric. To make it robot centric, simply remove the line.</p>
+<p>I also use a deadzone on the magnitude, because otherwise joystick drift will prevent the magnitude from being 0.0, which will cause the in-place turn to be unusable (since translationPower has to be 0.0).</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Swerve drive command</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DriveContinuous</span> <span class="kd">extends</span> <span class="n">Command</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">DriveContinuous</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// Use requires() here to declare subsystem dependencies</span>
+        <span class="n">requires</span><span class="o">(</span><span class="n">Robot</span><span class="o">.</span><span class="na">drive</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called just before this Command runs the first time</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">()</span>
+    <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="c1">// Called repeatedly when this Command is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// get joystick input</span>
+        <span class="kt">double</span> <span class="n">angle</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">arctan2</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">),</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">0</span><span class="o">));</span>
+        <span class="kt">double</span> <span class="n">magnitude</span> <span class="o">=</span> <span class="n">deadzone</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">hypot</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">1</span><span class="o">)),</span> <span class="mf">0.1</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">twist</span> <span class="o">=</span> <span class="n">deadzone</span><span class="o">(</span><span class="n">OI</span><span class="o">.</span><span class="na">driver</span><span class="o">.</span><span class="na">getRawAxis</span><span class="o">(</span><span class="mi">2</span><span class="o">),</span> <span class="mf">0.1</span><span class="o">);</span>
+
+        <span class="c1">// use field centric controls by subtracting off the robot angle</span>
+        <span class="n">angle</span> <span class="o">-=</span> <span class="n">Drive</span><span class="o">.</span><span class="na">DRIVE_GYRO</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+        <span class="n">Drive</span><span class="o">.</span><span class="na">SWERVE_DRIVE_COORDINATOR</span><span class="o">.</span><span class="na">setSwerveDrive</span><span class="o">(</span><span class="n">angle</span><span class="o">,</span> <span class="n">magnitude</span><span class="o">,</span> <span class="n">twist</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Make this return true when this Command no longer needs to run execute()</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">isFinished</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called once after isFinished returns true</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">end</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// sets all drive wheels to 0.0</span>
+        <span class="n">Drive</span><span class="o">.</span><span class="na">SWERVE_DRIVE_COORDINATOR</span><span class="o">.</span><span class="na">setSwerveDrive</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Called when another command which requires one or more of the same</span>
+    <span class="c1">// subsystems is scheduled to run</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">interrupted</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">end</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">double</span> <span class="nf">deadzone</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">,</span> <span class="kt">double</span> <span class="n">deadzone</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">deadzone</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Now, just don&#8217;t forget to make DriveContinuous the default command:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">initDefaultCommand</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="n">setDefaultCommand</span><span class="o">(</span><span class="k">new</span> <span class="n">DriveContinuous</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And that&#8217;s all there is to the extremely complex Swerve drive! It is also possible to add PID controllers to make sure the robot holds its angle and other enhancements, but those will require custom PID Outputs.</p>
+</div>
+<div class="section" id="writing-the-driveforwards-command">
+<h3>Writing the DriveForwards command<a class="headerlink" href="#writing-the-driveforwards-command" title="Permalink to this headline">¶</a></h3>
+<p>For example, the way to get the robot to drive a certain distance:</p>
+<p>In the Drive subsystem:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">PIDOutputGroup</span> <span class="n">DRIVE_ALL_MOTORS</span><span class="o">;</span>
+
+<span class="n">PIDController</span> <span class="n">DRIVE_DISTANCE_CONTROLLER</span><span class="o">;</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// PID Output Groups</span>
+<span class="n">DRIVE_ALL_MOTORS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDOutputGroup</span><span class="o">(</span><span class="n">LEFT_FRONT_DRIVE_WHEEL</span><span class="o">.</span><span class="na">speedMotor</span><span class="o">,</span> <span class="n">LEFT_BACK_DRIVE_WHEEL</span><span class="o">.</span><span class="na">speedMotor</span><span class="o">,</span> <span class="n">RIGHT_FRONT_DRIVE_WHEEL</span><span class="o">.</span><span class="na">speedMotor</span><span class="o">,</span> <span class="n">RIGHT_BACK_DRIVE_WHEEL</span><span class="o">.</span><span class="na">speedMotor</span><span class="o">);</span>
+
+<span class="c1">// PID Controllers</span>
+<span class="n">DRIVE_DISTANCE_CONTROLLER</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PIDController</span><span class="o">(</span><span class="mf">0.015</span><span class="o">,</span> <span class="mf">0.001</span><span class="o">,</span> <span class="mf">0.0</span><span class="o">,</span> <span class="n">DRIVE_ENCODERS</span><span class="o">,</span> <span class="n">DRIVE_ALL_MOTORS</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>Then, the swerve drive&#8217;s DriveForwards command can be created exactly the same as <a class="reference external" href="./../commands/examples/commands/drivesetpoint.html">any other drive&#8217;s DriveForwards command</a>.</p>
+<p>A similar thing would be done with the angle. Remember that you can always make a custom PIDOutput that calls Drive.SWERVE_DRIVE_COORDINATOR.setSwerveDrive to get any behavior you want out of the swerve when using PIDs.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../drivercontrols.html" class="btn btn-neutral float-right" title="Switching around Driver Controls in OI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mecanum.html" class="btn btn-neutral" title="Mecanum Drive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright .
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
